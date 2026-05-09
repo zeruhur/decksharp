@@ -1,22 +1,22 @@
-# GLOSSA
+# DECK#
 
 ## Sistema di annotazione stratificata per mazzo di carte standard
 
-version: 0.5.0 · status: draft
-
-***
+version: 0.7.0 · status: draft
 
 ## 1. Natura e scope del sistema
 
-GLOSSA è un protocollo di annotazione stratificata su un mazzo di carte standard (52 + 2 Jolly).
+DECK# è un protocollo di annotazione stratificata su un mazzo di carte standard (52 + 2 Jolly).
 
 Il suo scopo è permettere a chiunque di costruire e giocare giochi da tavolo complessi usando materiali reperibili ovunque e a costo minimo: un mazzo di carte francesi e due pennarelli permanenti. Nessun componente proprietario, nessun materiale dedicato, nessuna dipendenza da editori o produttori specifici.
 
-GLOSSA **non è** un mazzo universale. Non prescrive giochi, meccaniche, semantiche di gioco, né generi. È un sistema aperto: definisce un vocabolario grafico condiviso e una struttura fisica di annotazione. I giochi costruiti su GLOSSA usano questo vocabolario e ne assegnano i significati.
+DECK# è ispirato al **Piecepack** — sistema di componenti aperti per giochi da tavolo ideato da James Kyle nel 2000 — di cui condivide la filosofia: un substrato standardizzato e aperto su cui la comunità costruisce giochi liberamente. Come il Piecepack, DECK# è open source.
 
-Il mazzo standard porta con sé tre assi informativi preesistenti che GLOSSA riconosce come **attivi e intoccabili**. L'annotazione aggiunge informazioni che la carta non possiede; non sostituisce quelle che già ha.
+DECK# **non è** un mazzo universale. Non prescrive giochi, meccaniche, semantiche di gioco, né generi. È un sistema aperto: definisce un vocabolario grafico condiviso e una struttura fisica di annotazione. I giochi costruiti su DECK# usano questo vocabolario e ne assegnano i significati.
 
-GLOSSA è agnostico alla lingua. L'intero vocabolario grafico è composto da glifi geometrici e cifre arabiche. Nessun testo è necessario o ammesso nelle annotazioni.
+Il mazzo standard porta con sé tre assi informativi preesistenti che DECK# riconosce come **attivi e intoccabili**. L'annotazione aggiunge informazioni che la carta non possiede; non sostituisce quelle che già ha.
+
+DECK# è agnostico alla lingua. L'intero vocabolario grafico è composto da glifi geometrici e cifre arabiche. Nessun testo è necessario o ammesso nelle annotazioni.
 
 ### Fuori scope
 
@@ -37,8 +37,6 @@ I seguenti elementi sono esplicitamente fuori scope e delegati ai singoli giochi
 - Come vengono distribuite le carte
 - Il numero di giocatori
 
-***
-
 ## 2. Principi di design
 
 - **Accessibilità materiale:** l'unico requisito fisico è un mazzo di carte francesi standard e due pennarelli permanenti (nero e rosso). Materiali disponibili ovunque, senza componenti proprietari o dedicati.
@@ -46,10 +44,8 @@ I seguenti elementi sono esplicitamente fuori scope e delegati ai singoli giochi
 - **Agnostico alla lingua:** nessun testo o lettera. Solo glifi geometrici e cifre arabiche.
 - **Vincolo cromatico:** solo pennarello nero e rosso.
 - **Uso duale:** le carte sono valide sia come informazione nascosta in mano sia come componenti fisici sul tavolo.
-- **Dorso non modificato:** i dorsi restano identici e privi di annotazioni per preservare la casualità e abilitare meccaniche fog-of-war.
-- **Artefatto completo:** il mazzo GLOSSA è annotato integralmente prima di qualsiasi sessione di gioco. L'annotazione strutturale è permanente e fissa. Gli stati variabili si tracciano con token fisici, non con annotazioni.
-
-***
+- **Dorso riservato ai marcatori di quadrante:** il dorso delle 52 carte regolari riceve esclusivamente i marcatori di quadrante — identici su tutte le carte, quindi privi di informazione differenziale. Nessun'altra annotazione sul dorso. L'uniformità preserva l'anonimità delle carte coperte.
+- **Artefatto completo:** il mazzo DECK# è annotato integralmente prima di qualsiasi sessione di gioco. L'annotazione strutturale è permanente e fissa. Gli stati variabili si tracciano con token fisici, non con annotazioni.
 
 ## 3. Il substrato ereditato
 
@@ -68,8 +64,6 @@ Questi assi sono immutabili. Ogni gioco decide come mapparli a concetti di gioco
 - Le figure (J, Q, K) formano una sottoclasse del valore ordinale. Alcuni giochi potranno trattarle come categoria separata.
 - Il Jolly non appartiene a nessuno dei tre assi. È strutturalmente fuori sistema per definizione. Vedi sezione 7.
 - Il dorso della carta è una superficie esclusa dall'annotazione. Vedi Principio 5 (sezione 2).
-
-***
 
 ## 4. Il vocabolario grafico
 
@@ -94,12 +88,14 @@ Questi assi sono immutabili. Ogni gioco decide come mapparli a concetti di gioco
 
 Sette glifi. La colonna "semantiche naturali" suggerisce associazioni intuitive; non le prescrive.
 
-### 4.3 Il colore come layer semantico
+### 4.3 Il colore dei glifi — regola contrastante
 
-Ogni glifo può essere tracciato in nero o in rosso, raddoppiando lo spazio semantico senza aggiungere simboli. Convenzione non obbligatoria:
+I glifi del primario e del modificatore sono tracciati nel colore **contrastante** rispetto al seme della carta:
 
-- Nero: funzione standard, incondizionata
-- Rosso: funzione modificata, condizionale, temporanea
+- Carte rosse (♥ ♦): glifi in **nero**
+- Carte nere (♣ ♠): glifi in **rosso**
+
+Questa regola garantisce separazione visiva netta tra annotazione e substrato su tutte le carte. Il colore del glifo è interamente derivabile dal seme — non aggiunge informazione differenziale ma massimizza la leggibilità.
 
 ### 4.4 Glifi numerici
 
@@ -116,8 +112,6 @@ Le cifre 0–9 (arabiche) possono essere usate nelle zone annotabili come quanti
 
 Il quadrato □ e il cerchio ○ non confliggono con nessun seme. Il triangolo △ è sicuro se tracciato piccolo e in posizione angolare.
 
-***
-
 ## 5. Le zone annotabili
 
 ```
@@ -128,7 +122,7 @@ Il quadrato □ e il cerchio ○ non confliggono con nessun seme. Il triangolo �
 [SW] ----[S]---- [SE]
 ```
 
-| Zona | Posizione | Annotazione GLOSSA |
+| Zona | Posizione | Annotazione DECK# |
 |---|---|---|
 | S | Bordo medio inferiore (interno) | Glifo primario |
 | N | Bordo medio superiore (interno) | Speculare del primario — hand mode |
@@ -136,32 +130,13 @@ Il quadrato □ e il cerchio ○ non confliggono con nessun seme. Il triangolo �
 | SW | Angolo inferiore sinistro | Speculare del modificatore — hand mode |
 | SE | Angolo inferiore destro | Punto orientamento (polo nord) |
 | NW | Angolo superiore sinistro | Riservato — indice pre-stampato |
-| Centro / E / W | — | Non occupati dall'annotazione GLOSSA |
+| Centro / E / W | — | Non occupati dall'annotazione DECK# |
 
 **Bordi fisici:** i marcatori di connettività occupano il margine bianco esterno della carta (~3–4 mm) — fisicamente separati dalle zone interne.
 
 **Regola del posizionamento simmetrico:** ogni glifo compare in due posizioni speculari — zona primaria e zona speculare. Garantisce leggibilità a ventaglio indipendentemente dall'orientamento della carta in mano.
 
-**Nota su NW:** angolo parzialmente occupato dall'indice pre-stampato. Nessuna annotazione GLOSSA in questa zona.
-
-### 5.1 Posizionamento in zona S (e speculare N)
-
-Il glifo primario e il marcatore di quadrante coesistono nella zona S (e nel suo speculare N). La separazione è verticale ed esplicita:
-
-```
-│  area pip          │
-│                    │
-│        ×           │  ← glifo primario  (5–6 mm sopra il marcatore)
-│                    │
-│        │           │  ← marcatore di quadrante  (1–2 mm dentro cornice)
-└────────────────────┘  ← bordo interno cornice
-      cornice (~3–4 mm)
-════════════════════════  bordo fisico esterno
-```
-
-Il diagramma è normativo: le distanze relative devono essere rispettate per garantire leggibilità e riproducibilità tra mazzi diversi. La stessa logica vale specularmente per zona N (bordo superiore).
-
-***
+**Nota su NW:** angolo parzialmente occupato dall'indice pre-stampato. Nessuna annotazione DECK# in questa zona.
 
 ## 6. Il sistema spaziale
 
@@ -183,11 +158,13 @@ Il polo nord di una carta è il lato con l'indice in posizione canonica (NW in a
 
 Accostando le carte sul tavolo, i bordi a contatto si leggono come interfaccia tra due spazi.
 
-**Distinzione critica:** la linea a tutto bordo (muro) occupa l'intera lunghezza del bordo. I marcatori di quadrante sono segmenti corti al centro dei bordi. I due elementi non si confondono visivamente.
-
 ### 6.4 Marcatori di quadrante
 
-Quattro segmenti corti dal punto medio di ciascun bordo verso l'interno, senza attraversare il centro:
+I marcatori di quadrante si trovano sul **dorso** delle 52 carte regolari. Sono identici su tutte le carte — non rivelano alcuna informazione differenziale quando la carta è coperta.
+
+Sono disponibili due varianti; la scelta è lasciata a chi annota il mazzo:
+
+**Variante minima** — quattro segmenti corti dal punto medio di ciascun bordo verso l'interno, senza attraversare il centro:
 
 ```
       |
@@ -195,26 +172,27 @@ Quattro segmenti corti dal punto medio di ciascun bordo verso l'interno, senza a
       |
 ```
 
-- Disegnati in nero, indipendentemente dal colore del seme.
-- Si collocano nel bordo bianco interno, lasciando i pip visibili.
-- **Presenti su tutte le 52 carte regolari.** La capacità di 4 elementi per carta è una proprietà universale del mazzo GLOSSA; il gioco decide se e come usarla.
-- **Assenti sui Jolly.**
+**Variante estesa** — croce completa da bordo a bordo (`+` del vocabolario DECK#, applicato al dorso con funzione strutturale fissa):
+
+```
+      |
+  ————+————
+      |
+```
+
+Entrambe le varianti sono tracciate in nero. I Jolly non ricevono marcatori di quadrante nemmeno sul dorso.
 
 ### 6.5 Direzione interna
 
 Il triangolo △ in una zona angolare indica direzione. L'orientamento dell'apice rispetto al polo nord definisce il vettore.
 
-***
-
 ## 7. I Jolly
 
-I Jolly ricevono solo il **punto SE** (polo nord). Nessun altro elemento strutturale: nessun marcatore di connettività, nessun glifo primario, nessun modificatore, nessun marcatore di quadrante.
+I Jolly ricevono solo il **punto SE** (polo nord). Nessun altro elemento strutturale: nessun marcatore di connettività, nessun glifo primario, nessun modificatore. Nessun marcatore di quadrante né sul recto né sul dorso.
 
 Sono **variabili non istanziate**: nessuna semantica pre-assegnata dalla specifica. Il gioco decide tutto. Un gioco può usare zero, uno o entrambi i Jolly.
 
 Usi possibili (non prescritti): wildcard meccanica, carta evento, tracciatore di stato globale, Jolly di categoria.
-
-***
 
 ## 8. Profili di utilizzo
 
@@ -232,8 +210,6 @@ Gioco tattico su griglia, dungeon crawler, skirmish, wargame.
 **Componenti aggiuntivi:** 6 dadi d6 · 12 segnalini in 4 gruppi distinti (3 per gruppo; sostituibili con monete, cubetti, qualsiasi oggetto distinguibile).
 
 Uso dadi: 2d6 per risoluzione, fino a 4d6 come contatori su carta. Uso segnalini: posizionati sulle carte per rappresentare entità senza coprire le annotazioni.
-
-***
 
 ## 9. Modalità d'uso delle carte
 
@@ -255,45 +231,45 @@ Il gioco deve specificare:
 
 ### 9.4 Annotazione
 
-Il mazzo GLOSSA viene annotato integralmente una volta, seguendo la matrice di annotazione (sezione 13), e usato in più sessioni senza modifiche. L'annotazione strutturale è permanente.
+Il mazzo DECK# viene annotato integralmente una volta, seguendo la matrice di annotazione (sezione 13), e usato in più sessioni senza modifiche. L'annotazione strutturale è permanente.
 
 Non è prevista annotazione durante il gioco per il layer strutturale. Gli stati variabili della partita si tracciano esclusivamente con token fisici rimovibili (dadi, segnalini, monete).
 
-***
-
 ## 10. Gerarchia fisica
 
-Ogni carta presenta tre livelli sovrapposti:
+Le 52 carte regolari hanno annotazioni su entrambe le facce.
 
-1. **Substrato ereditato** (stampa originale): sempre visibile, mai coperto intenzionalmente
-2. **Annotazione strutturale GLOSSA:** connettività sui bordi fisici, glifo primario in zona S/N, modificatore in zona NE/SW, punto polo nord in SE, marcatori di quadrante
-3. **Token fisici:** oggetti posizionati sulla carta, rimuovibili
+**Recto:**
 
-L'annotazione strutturale è fissa e completa. Nessuna zona prevede più di un glifo GLOSSA per volta.
+1. Substrato ereditato (stampa originale): sempre visibile, mai coperto intenzionalmente
+2. Annotazione strutturale DECK#: connettività sui bordi fisici, glifo primario in zona S/N, modificatore in zona NE/SW, punto polo nord in SE
+3. Token fisici: oggetti posizionati sulla carta, rimuovibili
 
-***
+**Dorso:**
+
+- Marcatori di quadrante (variante minima o estesa) — identici su tutte le carte
+
+L'annotazione strutturale è fissa e completa. Nessuna zona del recto prevede più di un glifo DECK# per volta.
 
 ## 11. Responsabilità del designer
 
-Ogni gioco costruito su GLOSSA deve specificare:
+Ogni gioco costruito su DECK# deve specificare:
 
 1. Come mappa i tre assi ereditati (valore, colore, seme) a concetti di gioco
-2. Quale semantica assegna ai glifi del vocabolario GLOSSA (primario e modificatore)
+2. Quale semantica assegna ai glifi del vocabolario DECK# (primario e modificatore)
 3. Come interpreta il sistema spaziale: orientamento, polo nord, connettività
 4. Come interpreta i marcatori di quadrante (presenti su tutte le carte)
 5. Se usa i Jolly e con quale ruolo
 6. Quale profilo è richiesto (Base o Esteso)
 7. Quale modalità d'uso è prevista e le regole di transizione hand → tile
 
-***
-
 ## 12. Licenza
 
-GLOSSA è rilasciato sotto **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+DECK# è rilasciato sotto **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-Chiunque può usare, modificare e distribuire la specifica e i giochi costruiti su di essa, anche a fini commerciali, a condizione di attribuire la fonte originale. I giochi costruiti su GLOSSA non sono tenuti a rilasciare i propri regolamenti con la stessa licenza.
+Chiunque può usare, modificare e distribuire la specifica e i giochi costruiti su di essa, anche a fini commerciali, a condizione di attribuire la fonte originale. I giochi costruiti su DECK# non sono tenuti a rilasciare i propri regolamenti con la stessa licenza.
 
-***
+© Roberto Bisceglie — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ## 13. La matrice di annotazione
 
@@ -306,7 +282,7 @@ La matrice definisce le annotazioni strutturali fisse di tutte le 54 carte. Ogni
 Tutte le 52 carte regolari ricevono inoltre: punto SE (polo nord) e marcatori di quadrante.  
 I Jolly ricevono solo il punto SE.
 
-La distribuzione è un artefatto di design authored, ortogonale a valore/seme/colore per costruzione deliberata.
+La distribuzione è un artefatto di design authored, ortogonale a valore/seme/colore per costruzione deliberata. Il colore dei glifi non è incluso come colonna — è interamente derivato dal seme secondo la regola contrastante (sezione 4.3): glifi neri su ♥/♦, glifi rossi su ♣/♠.
 
 | Valore | Seme | Connettività | Primario | Modificatore |
 |---|---|---|---|---|

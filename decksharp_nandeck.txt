@@ -1,0 +1,410 @@
+sequence=number
+A
+2
+3
+4
+5
+6
+7
+8
+9
+10
+endsequence
+sequence=face
+J
+Q
+K
+endsequence
+sequence=
+suit |\169\
+suit_fnt|Symbol
+suit_col|#FF0000
+suit |\168\
+suit_fnt|Symbol
+suit_col|#FF0000
+suit |\167\
+suit_fnt|Symbol
+suit_col|#000000
+suit |\170\
+suit_fnt|Symbol
+suit_col|#000000
+endsequence
+
+sequence=glyph_col
+#000000
+#000000
+#FF0000
+#FF0000
+endsequence
+
+; zone substrato
+<corner1_a>=0,0,15%,10%
+<corner1_b>=0,10%,15%,10%
+<corner2_a>=85%,0,15%,10%
+<corner2_b>=85%,10%,15%,10%
+<corner3_a>=0,90%,15%,10%
+<corner3_b>=0,80%,15%,10%
+<corner4_a>=85%,90%,15%,10%
+<corner4_b>=85%,80%,15%,10%
+<core>=15%,20%,70%,60%
+
+; zone GLOSSA
+<glossa_ne>=90%,20%,15%,10%
+<glossa_sw>=5%,70%,15%,10%
+<glossa_s>=47%,82%,30%,16%
+<glossa_n>=47%,6%,30%,16%
+<glossa_se>=85%,85%,15%,15%
+
+cards={(suit)*((number)+(face))+3}
+
+; =============================================================
+; CONNETTIVIT?
+; =============================================================
+sequence=conn_N
+1
+0
+0
+0
+1
+1
+0
+0
+0
+1
+1
+0
+1
+0
+1
+1
+1
+1
+0
+0
+1
+0
+1
+1
+1
+0
+0
+0
+1
+0
+1
+0
+1
+1
+0
+0
+0
+1
+1
+1
+0
+0
+1
+0
+0
+0
+1
+1
+1
+0
+0
+1
+endsequence
+
+sequence=conn_S
+0
+1
+1
+0
+1
+1
+0
+0
+1
+1
+0
+0
+0
+0
+0
+1
+1
+0
+0
+1
+1
+1
+1
+1
+1
+1
+1
+0
+1
+1
+0
+0
+0
+0
+1
+1
+0
+0
+1
+0
+0
+0
+0
+1
+1
+0
+1
+0
+1
+1
+0
+0
+endsequence
+
+sequence=conn_E
+0
+0
+0
+0
+1
+0
+1
+1
+0
+0
+0
+0
+1
+1
+1
+1
+0
+0
+1
+0
+1
+1
+0
+0
+1
+1
+0
+0
+1
+1
+0
+1
+1
+1
+1
+1
+0
+0
+1
+0
+0
+1
+0
+0
+0
+1
+1
+1
+1
+0
+0
+1
+endsequence
+
+sequence=conn_W
+1
+0
+1
+1
+0
+0
+1
+1
+1
+1
+0
+1
+0
+0
+0
+1
+1
+0
+1
+0
+0
+0
+0
+0
+1
+1
+0
+1
+0
+0
+0
+0
+1
+1
+0
+1
+1
+1
+0
+0
+1
+0
+1
+0
+0
+0
+0
+1
+0
+0
+1
+0
+endsequence
+
+; =============================================================
+; DATI GLOSSA ? letti da xlsx (encoding gestito da Excel)
+; Le colonne si chiamano: prim   mod
+; =============================================================
+link=decksharp_data.xlsx
+
+; =============================================================
+; HTMLFONT per glifi Unicode
+; =============================================================
+htmlfont=glyph_prim,Segoe UI Symbol,30,BT,#000000,center
+htmlfont=glyph_mod,Segoe UI Symbol,22,BT,#000000,center
+
+; =============================================================
+; RENDER CARTE NUMERI
+; =============================================================
+for=a,1,{(suit)}
+for=b,1,{(number)}
+
+font=Arial,24,T,{suit_col?a}
+text={b+((a)-1)*((number)+(face))},{number?b},<corner1_a>
+text={b+((a)-1)*((number)+(face))},{number?b},<corner2_a>
+text={b+((a)-1)*((number)+(face))},{number?b},<corner3_a>,center,center,180
+text={b+((a)-1)*((number)+(face))},{number?b},<corner4_a>,center,center,180
+font={suit_fnt?a},32,T,{suit_col?a}
+text={b+((a)-1)*((number)+(face))},{suit?a},<corner1_b>
+text={b+((a)-1)*((number)+(face))},{suit?a},<corner2_b>
+text={b+((a)-1)*((number)+(face))},{suit?a},<corner3_b>,center,center,180
+text={b+((a)-1)*((number)+(face))},{suit?a},<corner4_b>,center,center,180
+text={b+((a)-1)*((number)+(face))},{{suit?a}Xb},<core>,center,charwrap
+
+htmltext={b+((a)-1)*((number)+(face))},"<font color=""{glyph_col?a}"">[prim]</font>",<glossa_s>,#FFFFFF,0,BE,100,glyph_prim
+htmltext={b+((a)-1)*((number)+(face))},"<font color=""{glyph_col?a}"">[prim]</font>",<glossa_n>,#FFFFFF,0,BEV,100,glyph_prim
+htmltext={b+((a)-1)*((number)+(face))},"<font color=""{glyph_col?a}"">[mod]</font>",<glossa_ne>,#FFFFFF,0,BE,100,glyph_mod
+htmltext={b+((a)-1)*((number)+(face))},"<font color=""{glyph_col?a}"">[mod]</font>",<glossa_sw>,#FFFFFF,0,BEV,100,glyph_mod
+
+font=Arial,10,T,#000000
+text={b+((a)-1)*((number)+(face))},".",<glossa_se>,right,bottom
+
+next
+next
+
+; =============================================================
+; RENDER CARTE FIGURE
+; =============================================================
+for=a,1,{(suit)}
+for=b,1,{(face)}
+
+font=Arial,24,T,{suit_col?a}
+text={b+((a)-1)*((number)+(face))+(number)},{face?b},<corner1_a>
+text={b+((a)-1)*((number)+(face))+(number)},{face?b},<corner2_a>
+text={b+((a)-1)*((number)+(face))+(number)},{face?b},<corner3_a>,center,center,180
+text={b+((a)-1)*((number)+(face))+(number)},{face?b},<corner4_a>,center,center,180
+font={suit_fnt?a},32,T,{suit_col?a}
+text={b+((a)-1)*((number)+(face))+(number)},{suit?a},<corner1_b>
+text={b+((a)-1)*((number)+(face))+(number)},{suit?a},<corner2_b>
+text={b+((a)-1)*((number)+(face))+(number)},{suit?a},<corner3_b>,center,center,180
+text={b+((a)-1)*((number)+(face))+(number)},{suit?a},<corner4_b>,center,center,180
+font=Arial,128,T,{suit_col?a}
+text={b+((a)-1)*((number)+(face))+(number)},{face?b},<core>
+
+; annotazioni GLOSSA ? figure
+htmltext={b+((a)-1)*((number)+(face))+(number)},"<font color=""{glyph_col?a}"">[prim]</font>",<glossa_s>,#FFFFFF,0,BE,100,glyph_prim_face
+htmltext={b+((a)-1)*((number)+(face))+(number)},"<font color=""{glyph_col?a}"">[prim]</font>",<glossa_n>,#FFFFFF,0,BEV,100,glyph_prim_face
+htmltext={b+((a)-1)*((number)+(face))+(number)},"<font color=""{glyph_col?a}"">[mod]</font>",<glossa_ne>,#FFFFFF,0,BE,100,glyph_mod_face
+htmltext={b+((a)-1)*((number)+(face))+(number)},"<font color=""{glyph_col?a}"">[mod]</font>",<glossa_sw>,#FFFFFF,0,BEV,100,glyph_mod_face
+
+font=Arial,10,T,#000000
+text={b+((a)-1)*((number)+(face))+(number)},".",<glossa_se>,right,bottom
+
+next
+next
+
+; =============================================================
+; MARCATORI CONNETTIVIT?
+; =============================================================
+for=i,1,52
+
+if={conn_N?i}=0
+line={i},2%,1%,98%,1%,#000000,0.08
+endif
+
+if={conn_S?i}=0
+line={i},2%,99%,98%,99%,#000000,0.08
+endif
+
+if={conn_E?i}=0
+line={i},99%,2%,99%,98%,#000000,0.08
+endif
+
+if={conn_W?i}=0
+line={i},1%,2%,1%,98%,#000000,0.08
+endif
+
+next
+
+; =============================================================
+; JOLLY ROSSO (carta 53) ? U+1F0BF
+; =============================================================
+htmlfont=joker_r,Segoe UI Symbol,120,,#FF0000,center
+rectangle={(suit)*((number)+(face))+1},0,0,100%,100%,#FFFFFF
+htmltext={(suit)*((number)+(face))+1},"<font color=""#FF0000"">&#x1F0BF;</font>",0,0,100%,100%,#FFFFFF,0,BE,100,joker_r
+font=Arial,10,T,#000000
+text={(suit)*((number)+(face))+1},".",<glossa_se>,right,bottom
+
+; =============================================================
+; JOLLY NERO (carta 54) ? U+1F0CF
+; =============================================================
+htmlfont=joker_k,Segoe UI Symbol,120,,#000000,center
+rectangle={(suit)*((number)+(face))+2},0,0,100%,100%,#FFFFFF
+htmltext={(suit)*((number)+(face))+2},"<font color=""#000000"">&#x1F0CF;</font>",0,0,100%,100%,#FFFFFF,0,BE,100,joker_k
+font=Arial,10,T,#000000
+text={(suit)*((number)+(face))+2},".",<glossa_se>,right,bottom
+
+; =============================================================
+; DORSO (carta 55)
+; =============================================================
+rectangle={(suit)*((number)+(face))+3},0,0,100%,100%,#1C1C2E
+
+; croce di quadrante
+line={(suit)*((number)+(face))+3},50%,5%,50%,95%,#DDDDDD,0.015
+line={(suit)*((number)+(face))+3},5%,50%,95%,50%,#DDDDDD,0.015
+
+; bordo interno
+rectangle={(suit)*((number)+(face))+3},4%,4%,92%,92%,#DDDDDD,EMPTY,0.01
+
+; label centrale
+font=Arial,18,BT,#FFFFFF
+text={(suit)*((number)+(face))+3},"GLOSSA",0,0,100%,100%,center,center
