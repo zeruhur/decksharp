@@ -180,7 +180,7 @@ Sono disponibili due varianti; la scelta è lasciata a chi annota il mazzo:
       |
 ```
 
-Entrambe le varianti sono tracciate in nero. I Jolly non ricevono marcatori di quadrante nemmeno sul dorso.
+Entrambe le varianti sono tracciate in nero. I Jolly ricevono i marcatori di quadrante sul dorso — identici a quelli delle 52 carte regolari — ma non ricevono alcuna annotazione sul recto oltre al punto SE.
 
 ### 6.5 Direzione interna
 
@@ -188,7 +188,7 @@ Il triangolo △ in una zona angolare indica direzione. L'orientamento dell'apic
 
 ## 7. I Jolly
 
-I Jolly ricevono solo il **punto SE** (polo nord). Nessun altro elemento strutturale: nessun marcatore di connettività, nessun glifo primario, nessun modificatore. Nessun marcatore di quadrante né sul recto né sul dorso.
+I Jolly ricevono il **punto SE** (polo nord) sul recto e i **marcatori di quadrante** sul dorso. Nessun altro elemento strutturale: nessun marcatore di connettività, nessun glifo primario, nessun modificatore.
 
 Sono **variabili non istanziate**: nessuna semantica pre-assegnata dalla specifica. Il gioco decide tutto. Un gioco può usare zero, uno o entrambi i Jolly.
 
@@ -237,15 +237,15 @@ Non è prevista annotazione durante il gioco per il layer strutturale. Gli stati
 
 ## 10. Gerarchia fisica
 
-Le 52 carte regolari hanno annotazioni su entrambe le facce.
+Le 52 carte regolari hanno annotazioni su entrambe le facce. I Jolly hanno annotazioni sul dorso e solo il punto SE sul recto.
 
-**Recto:**
+**Recto (52 carte regolari):**
 
 1. Substrato ereditato (stampa originale): sempre visibile, mai coperto intenzionalmente
 2. Annotazione strutturale DECK#: connettività sui bordi fisici, glifo primario in zona S/N, modificatore in zona NE/SW, punto polo nord in SE
 3. Token fisici: oggetti posizionati sulla carta, rimuovibili
 
-**Dorso:**
+**Dorso (tutte le 54 carte):**
 
 - Marcatori di quadrante (variante minima o estesa) — identici su tutte le carte
 
@@ -280,7 +280,7 @@ La matrice definisce le annotazioni strutturali fisse di tutte le 54 carte. Ogni
 - **Modificatore:** glifo in angolo NE (e speculare in angolo SW per hand mode).
 
 Tutte le 52 carte regolari ricevono inoltre: punto SE (polo nord) e marcatori di quadrante.  
-I Jolly ricevono solo il punto SE.
+I Jolly ricevono il punto SE sul recto e i marcatori di quadrante sul dorso.
 
 La distribuzione è un artefatto di design authored, ortogonale a valore/seme/colore per costruzione deliberata. Il colore dei glifi non è incluso come colonna — è interamente derivato dal seme secondo la regola contrastante (sezione 4.3): glifi neri su ♥/♦, glifi rossi su ♣/♠.
 

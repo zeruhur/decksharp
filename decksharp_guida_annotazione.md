@@ -53,7 +53,7 @@ Lavora prima sulle **carte rosse**: richiedono solo il pennarello nero per l'int
 
 **Strumento:** pennarello nero.
 
-Con le carte orientate sul dorso, traccia i marcatori di quadrante su tutte le 52 carte (rosse + nere). I Jolly non ricevono marcatori di quadrante.
+Con le carte orientate sul dorso, traccia i marcatori di quadrante su tutte le 54 carte (rosse + nere + Jolly).
 
 I marcatori di quadrante sono identici su tutte le carte e indicano al giocatore il centro e i lati della carta quando è posata coperta sul tavolo. Scegli una delle due varianti e mantienila per tutto il mazzo:
 
@@ -126,7 +126,7 @@ Il vocabolario DECK# comprende sette glifi:
 
 ## Eccezione: i Jolly
 
-I due Jolly ricevono **esclusivamente** il punto di orientamento in zona SE (già tracciato nella Fase 3). Nessun marcatore di quadrante sul dorso, nessun marcatore di connettività, nessun glifo primario, nessun modificatore.
+I due Jolly ricevono il **marcatore di quadrante** sul dorso (Fase 1, identico alle 52 carte regolari) e il **punto di orientamento** in zona SE (Fase 3). Nessun marcatore di connettività, nessun glifo primario, nessun modificatore.
 
 Sono variabili non istanziate: ogni gioco decide se e come usarli.
 
@@ -136,7 +136,7 @@ Sono variabili non istanziate: ogni gioco decide se e come usarli.
 
 | Elemento | Posizione | 52 carte regolari | 2 Jolly |
 |---|---|---|---|
-| Marcatori di quadrante | Dorso | ✓ | — |
+| Marcatori di quadrante | Dorso | ✓ | ✓ |
 | Marcatori di connettività | Bordi recto | ✓ (da matrice) | — |
 | Punto polo nord | Angolo SE recto | ✓ | ✓ |
 | Glifo primario | Zone S + N recto | ✓ (da matrice) | — |

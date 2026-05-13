@@ -147,7 +147,7 @@ Queste tre decisioni non sono indipendenti. Definirle insieme produce il comport
 
 ## 6. I Jolly
 
-I Jolly sono le due carte strutturalmente fuori sistema: nessun asse ereditato, nessuna annotazione DECK# tranne il polo nord. Sono variabili non istanziate.
+I Jolly sono le due carte strutturalmente fuori sistema: nessun asse ereditato, nessuna annotazione DECK# tranne il polo nord sul recto. Sul dorso ricevono i marcatori di quadrante — identici a tutte le altre carte — per non essere riconoscibili a carte coperte. Sono variabili non istanziate.
 
 La scelta di usarli — e come — dice qualcosa di fondamentale sull'architettura del gioco.
 

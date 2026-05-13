@@ -81,6 +81,8 @@ version: 0.7.0 · documento interno
 **Fonte:** cardpack-spec v0.2.0 (universalità stabilita in DC-17; migrazione al dorso in DC-07 rev. v0.6).
 **Motivazione:** sul recto i segmenti corti erano necessari per evitare di coprire i pip. Sul dorso la variante estesa (croce completa) diventa praticabile senza interferenze.
 
+**Revisione v0.7.1 (2026-05-13):** estesi anche ai Jolly sul dorso. Vedi DC-11 rev. per la motivazione.
+
 ***
 
 ## DC-11 — Jolly come variabili non istanziate
@@ -88,6 +90,8 @@ version: 0.7.0 · documento interno
 **Decisione:** i Jolly ricevono solo il punto SE (polo nord). Nessun glifo primario, nessun modificatore, nessun marcatore di connettività, nessun marcatore di quadrante.
 **Alternativa scartata:** asterisco fisso in cardpack-spec v0.2.0.
 **Motivazione:** l'asterisco trasforma i Jolly in un ruolo funzionale specifico prima che un gioco li usi. Un sistema aperto lascia i Jolly come superfici neutre. La loro assenza dagli assi ereditati è già sufficiente a distinguerli.
+
+**Revisione v0.7.1 (2026-05-13):** i Jolly ricevono i marcatori di quadrante sul dorso. La motivazione originale (neutralità del Jolly come superficie bianca) si applica al recto, non al dorso: i marcatori di quadrante sono uniformi su tutte le carte e non trasmettono alcuna informazione differenziale. La loro assenza sul dorso dei Jolly li rendeva riconoscibili a carte coperte, compromettendo il fog-of-war. Il principio di neutralità rimane integro: il Jolly è ancora privo di semantica pre-assegnata sul recto.
 
 ***
 
