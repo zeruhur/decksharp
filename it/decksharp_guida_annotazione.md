@@ -156,4 +156,9 @@ Il colore dei glifi non è nella matrice perché si ricava sempre dal seme: nero
 
 ---
 
-© Roberto Bisceglie — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+DECK#
+
+© 2026 Roberto Bisceglie
+
+This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
+

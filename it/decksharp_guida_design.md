@@ -242,4 +242,10 @@ Ogni gioco costruito su DECK# richiede che il designer specifichi esplicitamente
 - [ ] La distribuzione bilanciata dei glifi è un asset per il gioco o crea un problema da gestire?
 - [ ] Se il gioco usa un sottoinsieme del mazzo (per seme, colore o valore), la distribuzione dei glifi in quel sottoinsieme è stata verificata?
 
-© Roberto Bisceglie — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+---
+
+DECK#
+
+© 2026 Roberto Bisceglie
+
+This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/

@@ -340,3 +340,11 @@ La distribuzione è un artefatto di design authored, ortogonale a valore/seme/co
 | K | ♠ | N+S+E+W | — | △ |
 | Jolly | — | — | — | — |
 | Jolly | — | — | — | — |
+
+---
+
+DECK#
+
+© 2026 Roberto Bisceglie
+
+This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/

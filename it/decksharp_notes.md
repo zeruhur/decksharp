@@ -1,11 +1,12 @@
 # DECK# — Design Companion
+
 ## Traccia delle decisioni di progettazione
 
 version: 0.7.0 · documento interno
 
 ***
 
-## DC-01 — Nome del sistema: DECK#
+## DC-01 — Nome del sistema: DECK #
 
 **Decisione:** il sistema si chiama DECK#.
 **Alternativa considerata:** Deckpack.
@@ -186,3 +187,11 @@ version: 0.7.0 · documento interno
 **DA-03 — CHIUSA:** compatibilità con mazzi non standard fuori scope per definizione. Il prerequisito di DECK# è un mazzo francese/poker standard (52 + 2 Jolly). Mazzi spagnoli, tedeschi, tarocchi non soddisfano il substrato ereditato della sezione 3.
 
 **DA-04 — CHIUSA (rigettata):** i marcatori di quadrante sul dorso sarebbero utili in tile mode con carta coperta, ma il pattern del dorso varia da mazzo a mazzo in modo imprevedibile — su dorsi con motivi fitti i marcatori sarebbero illeggibili o nascosti. DC-07 (dorso non annotabile) rimane valido senza eccezioni.
+
+---
+
+DECK#
+
+© 2026 Roberto Bisceglie
+
+This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
