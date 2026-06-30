@@ -1,0 +1,1 @@
+Sitemap: https://zeruhur.github.io/decksharp/sitemap.xml
