@@ -19,9 +19,27 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install fonts required by Typst template (Montserrat + Lora)
+        run: |
+          mkdir -p ~/.local/share/fonts
+          BASE="https://github.com/google/fonts/raw/main/ofl"
+          for s in Regular Bold SemiBold Medium Black Italic BoldItalic; do
+            wget -q "$BASE/montserrat/static/Montserrat-$s.ttf" \
+              -O ~/.local/share/fonts/Montserrat-$s.ttf || true
+          done
+          for s in Regular Bold Italic BoldItalic; do
+            wget -q "$BASE/lora/static/Lora-$s.ttf" \
+              -O ~/.local/share/fonts/Lora-$s.ttf || true
+          done
+          fc-cache -fv
+
+      - name: Render site
+        run: quarto render
+
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: "false"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
