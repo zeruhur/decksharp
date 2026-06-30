@@ -1,0 +1,73 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - "docs/**/*.md"
+    - "docs/**/*.qmd"
+
+website:
+  title: "DECK#"
+  description: "A layered annotation protocol for standard playing card decks"
+  site-url: "https://zeruhur.github.io/decksharp/"
+  repo-url: "https://github.com/zeruhur/decksharp"
+  repo-actions: [issue]
+
+  navbar:
+    left:
+      - text: "Home"
+        href: index.html
+      - text: "English"
+        menu:
+          - text: "Specification"
+            href: docs/en/decksharp_specs.html
+          - text: "Annotation Guide"
+            href: docs/en/decksharp_annotation_guide.html
+          - text: "Design Guide"
+            href: docs/en/decksharp_design_guide.html
+          - text: "Design Notes"
+            href: docs/en/decksharp_notes.html
+      - text: "Italiano"
+        menu:
+          - text: "Specifiche"
+            href: docs/it/decksharp_specs.html
+          - text: "Guida all'Annotazione"
+            href: docs/it/decksharp_guida_annotazione.html
+          - text: "Guida al Design"
+            href: docs/it/decksharp_guida_design.html
+          - text: "Note di Design"
+            href: docs/it/decksharp_notes.html
+      - text: "About"
+        href: docs/about.html
+    right:
+      - icon: github
+        href: https://github.com/zeruhur/decksharp
+
+  favicon: docs/assets/logo.svg
+
+  page-footer:
+    left: "© 2026 [Roberto Bisceglie](https://github.com/zeruhur) — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    right: "Built with [Quarto](https://quarto.org)"
+
+brand: _brand.yml
+
+filters:
+  - _extensions/gfm-callout.lua
+  - _extensions/typst-pagebreak-h1.lua
+
+format:
+  html:
+    theme:
+      light: [materia, assets/custom.scss]
+      dark:  [darkly, assets/custom.scss]
+    toc: true
+    toc-depth: 3
+    include-in-header: assets/fonts.html
+    include-after-body: assets/format-links-top.html
+    format-links:
+      - format: typst
+        text: PDF
+        icon: file-pdf
+      - odt
+      - epub
+      - gfm

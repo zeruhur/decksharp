@@ -1,6 +1,30 @@
-# DECK#
-
-## Sistema di annotazione stratificata per mazzo di carte standard
+---
+title: "Specifiche DECK#"
+subtitle: "Sistema di annotazione stratificata per mazzo di carte standard"
+author: Roberto Bisceglie
+date: last-modified
+version: 1.0
+lang: it
+cover-logo: ../assets/logo.svg
+format:
+  typst:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    fontsize: 11pt
+    tbl-colwidths: auto
+    template: ../../_extensions/typst-template.typ
+    template-partials:
+      - ../../_extensions/typst-show.typ
+  odt:
+    toc: true
+  epub:
+    toc: true
+  docx:
+    toc: true
+  gfm:
+    toc: false
+---
 
 version: 0.7.0 · status: draft
 

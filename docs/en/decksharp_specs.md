@@ -1,6 +1,30 @@
-# DECK#
-
-## Layered annotation system for standard playing card deck
+---
+title: "DECK# Specification"
+subtitle: "Layered annotation system for standard playing card deck"
+author: Roberto Bisceglie
+date: last-modified
+version: 1.0
+lang: en
+cover-logo: ../assets/logo.svg
+format:
+  typst:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    fontsize: 11pt
+    tbl-colwidths: auto
+    template: ../../_extensions/typst-template.typ
+    template-partials:
+      - ../../_extensions/typst-show.typ
+  odt:
+    toc: true
+  epub:
+    toc: true
+  docx:
+    toc: true
+  gfm:
+    toc: false
+---
 
 version: 0.7.0 · status: draft
 

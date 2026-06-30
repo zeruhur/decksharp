@@ -1,6 +1,32 @@
-# DECK# — Guida al design dei giochi
+---
+title: "Guida al Design DECK#"
+subtitle: "Complemento alla specifica DECK# v0.7.0"
+author: Roberto Bisceglie
+date: last-modified
+version: 1.0
+lang: it
+cover-logo: ../assets/logo.svg
+format:
+  typst:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    fontsize: 11pt
+    tbl-colwidths: auto
+    template: ../../_extensions/typst-template.typ
+    template-partials:
+      - ../../_extensions/typst-show.typ
+  odt:
+    toc: true
+  epub:
+    toc: true
+  docx:
+    toc: true
+  gfm:
+    toc: false
+---
 
-**Complemento alla specifica DECK# v0.7.0**  
+
 version: 0.1.0 · status: draft
 
 ## 1. Natura di questo documento

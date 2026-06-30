@@ -1,0 +1,37 @@
+---
+title: "About DECK#"
+format-links: false
+---
+
+**DECK#** (pronounced "Deck Sharp") is an open-source standardized annotation system for regular playing cards (52 + 2 Jokers), created by [Roberto Bisceglie](https://github.com/zeruhur).
+
+It is a layered protocol enabling complex tabletop games using only a standard deck and two permanent markers (black and red). No proprietary components, no dedicated materials, no dependency on specific publishers or manufacturers.
+
+## Philosophy
+
+DECK# is inspired by **Piecepack** — an open component system for board games designed by James Kyle in 2000. Like Piecepack, DECK# provides a standardized, open substrate on which the community freely builds games.
+
+DECK# defines vocabulary and structure only. Individual games define semantics. The system is language-agnostic: the entire graphic vocabulary consists of geometric glyphs and Arabic numerals.
+
+## Design Invariants
+
+- Only 2 markers are used (black + red); glyph color is never a free choice
+- The glyph vocabulary is exactly 7 primary symbols
+- The card back may only carry identical quadrant markers
+- Annotations are additive — they never replace the substrate (suit/color/value)
+
+## License
+
+DECK# is released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). You are free to share and adapt the material for any purpose, provided appropriate credit is given.
+
+## Source
+
+Full source is available on [GitHub](https://github.com/zeruhur/decksharp).
+
+## Version
+
+Current version: **0.7.0** (Draft)
+
+---
+
+*Questa pagina è disponibile solo in inglese. Per la documentazione in italiano, vedere il menu **Italiano** nella barra di navigazione.*

@@ -1,0 +1,90 @@
+---
+pagetitle: "DECK# — Layered Card Annotation System"
+description: "An open-source standardized annotation system for regular playing cards"
+page-layout: full
+format:
+  html:
+    toc: false
+format-links: false
+---
+
+::: {.text-center .py-5}
+![](docs/assets/logo.svg){width="120px" fig-alt="DECK# Logo" fig-align="center"}
+
+# [DECK#]{style="color: var(--bs-body-color); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 4rem;"}
+
+**A layered annotation protocol for standard playing card decks**
+*Un protocollo di annotazione stratificata per mazzi di carte standard*
+
+`version 0.7.0 · draft · CC BY 4.0`
+:::
+
+---
+
+::: {.grid .gap-4 .py-4}
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .p-4 .h-100 .shadow-sm}
+### English
+
+A standardized open-source system for annotating a standard 52+2 deck with two permanent markers, enabling complex board games from materials available anywhere.
+
+[Specification](docs/en/decksharp_specs.html){.btn .btn-primary .mt-2 .me-2}
+[Annotation Guide](docs/en/decksharp_annotation_guide.html){.btn .btn-outline-secondary .mt-2 .me-2}
+[Design Guide](docs/en/decksharp_design_guide.html){.btn .btn-outline-secondary .mt-2 .me-2}
+[Design Notes](docs/en/decksharp_notes.html){.btn .btn-outline-secondary .mt-2}
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .p-4 .h-100 .shadow-sm}
+### Italiano
+
+Un sistema open source standardizzato per annotare un mazzo standard 52+2 con due pennarelli permanenti, per costruire giochi da tavolo complessi con materiali reperibili ovunque.
+
+[Specifiche](docs/it/decksharp_specs.html){.btn .btn-primary .mt-2 .me-2}
+[Guida all'Annotazione](docs/it/decksharp_guida_annotazione.html){.btn .btn-outline-secondary .mt-2 .me-2}
+[Guida al Design](docs/it/decksharp_guida_design.html){.btn .btn-outline-secondary .mt-2 .me-2}
+[Note di Design](docs/it/decksharp_notes.html){.btn .btn-outline-secondary .mt-2}
+:::
+:::
+
+:::
+
+---
+
+## What is DECK#?
+
+DECK# is a layered annotation protocol for a standard playing card deck (52 + 2 Jokers). Its purpose is to allow anyone to build and play complex board games using materials available anywhere, at minimal cost: a standard French-suited deck and two permanent markers.
+
+Inspired by **Piecepack** (James Kyle, 2000), DECK# is an open system that defines a shared graphic vocabulary — 7 geometric glyphs, spatial zones, and connectivity markers — without prescribing game mechanics or semantics. Games built on DECK# assign their own meanings to this vocabulary.
+
+DECK# is **language-agnostic**: the entire graphic vocabulary consists of geometric glyphs and Arabic numerals. No text is necessary or permitted in annotations.
+
+::: {.grid .gap-3 .mt-3}
+
+::: {.g-col-12 .g-col-md-4}
+::: {.card .p-3 .shadow-sm}
+**7 primary glyphs**
+`—  •  +  ×  △  ○  □`
+Fixed vocabulary, open semantics.
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.card .p-3 .shadow-sm}
+**2 markers only**
+Black and red permanent ink.
+Color is derived, never a free choice.
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.card .p-3 .shadow-sm}
+**Two profiles**
+Base (hand-held cards) and
+Extended (grid/tactical tiles).
+:::
+:::
+
+:::

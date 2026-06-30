@@ -1,6 +1,31 @@
-# DECK# — Deck Annotation Guide
+---
+title: "DECK# Annotation Guide"
+subtitle: "How to physically prepare your DECK# deck"
+author: Roberto Bisceglie
+date: last-modified
+version: 1.0
+lang: en
+cover-logo: ../assets/logo.svg
+format:
+  typst:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    fontsize: 11pt
+    tbl-colwidths: auto
+    template: ../../_extensions/typst-template.typ
+    template-partials:
+      - ../../_extensions/typst-show.typ
+  odt:
+    toc: true
+  epub:
+    toc: true
+  docx:
+    toc: true
+  gfm:
+    toc: false
+---
 
-**How to physically prepare your DECK# deck**  
 version: 0.1.0 · status: draft
 
 ---
