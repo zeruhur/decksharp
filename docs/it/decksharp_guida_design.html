@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Roberto Bisceglie">
+
+<title>Guida al Design DECK# – DECK#</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../docs/assets/logo.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-421f92b7efeafb8936a62dbbb3c9442a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1afb3e959ab81541f25277dd6a6313c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-421f92b7efeafb8936a62dbbb3c9442a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&amp;family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">DECK#</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Ricerca"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-english" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">English</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-english">    
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_specs.html">
+ <span class="dropdown-text">Specification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_annotation_guide.html">
+ <span class="dropdown-text">Annotation Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_design_guide.html">
+ <span class="dropdown-text">Design Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_notes.html">
+ <span class="dropdown-text">Design Notes</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-italiano" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Italiano</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-italiano">    
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_specs.html">
+ <span class="dropdown-text">Specifiche</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_guida_annotazione.html">
+ <span class="dropdown-text">Guida all’Annotazione</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_guida_design.html">
+ <span class="dropdown-text">Guida al Design</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_notes.html">
+ <span class="dropdown-text">Note di Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../docs/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/zeruhur/decksharp"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Attiva/disattiva la modalità oscura"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In questa pagina</h2>
+   
+  <ul>
+  <li><a href="#natura-di-questo-documento" id="toc-natura-di-questo-documento" class="nav-link active" data-scroll-target="#natura-di-questo-documento">1. Natura di questo documento</a></li>
+  <li><a href="#la-matematica-del-mazzo" id="toc-la-matematica-del-mazzo" class="nav-link" data-scroll-target="#la-matematica-del-mazzo">2. La matematica del mazzo</a>
+  <ul class="collapse">
+  <li><a href="#il-bilanciamento-dei-glifi" id="toc-il-bilanciamento-dei-glifi" class="nav-link" data-scroll-target="#il-bilanciamento-dei-glifi">2.1 Il bilanciamento dei glifi</a></li>
+  <li><a href="#la-struttura-della-connettività" id="toc-la-struttura-della-connettività" class="nav-link" data-scroll-target="#la-struttura-della-connettività">2.2 La struttura della connettività</a></li>
+  <li><a href="#la-texture-del-valore-ordinale" id="toc-la-texture-del-valore-ordinale" class="nav-link" data-scroll-target="#la-texture-del-valore-ordinale">2.3 La texture del valore ordinale</a></li>
+  <li><a href="#cosa-non-è-garantito" id="toc-cosa-non-è-garantito" class="nav-link" data-scroll-target="#cosa-non-è-garantito">2.4 Cosa non è garantito</a></li>
+  </ul></li>
+  <li><a href="#i-tre-assi-ereditati" id="toc-i-tre-assi-ereditati" class="nav-link" data-scroll-target="#i-tre-assi-ereditati">3. I tre assi ereditati</a>
+  <ul class="collapse">
+  <li><a href="#il-valore-ordinale" id="toc-il-valore-ordinale" class="nav-link" data-scroll-target="#il-valore-ordinale">3.1 Il valore ordinale</a></li>
+  <li><a href="#il-colore" id="toc-il-colore" class="nav-link" data-scroll-target="#il-colore">3.2 Il colore</a></li>
+  <li><a href="#il-seme" id="toc-il-seme" class="nav-link" data-scroll-target="#il-seme">3.3 Il seme</a></li>
+  <li><a href="#la-coerenza-degli-assi" id="toc-la-coerenza-degli-assi" class="nav-link" data-scroll-target="#la-coerenza-degli-assi">3.4 La coerenza degli assi</a></li>
+  </ul></li>
+  <li><a href="#il-vocabolario-grafico" id="toc-il-vocabolario-grafico" class="nav-link" data-scroll-target="#il-vocabolario-grafico">4. Il vocabolario grafico</a>
+  <ul class="collapse">
+  <li><a href="#assegnare-semantica-ai-glifi" id="toc-assegnare-semantica-ai-glifi" class="nav-link" data-scroll-target="#assegnare-semantica-ai-glifi">4.1 Assegnare semantica ai glifi</a></li>
+  <li><a href="#conflitti-visivi-da-evitare" id="toc-conflitti-visivi-da-evitare" class="nav-link" data-scroll-target="#conflitti-visivi-da-evitare">4.2 Conflitti visivi da evitare</a></li>
+  </ul></li>
+  <li><a href="#il-sistema-spaziale" id="toc-il-sistema-spaziale" class="nav-link" data-scroll-target="#il-sistema-spaziale">5. Il sistema spaziale</a>
+  <ul class="collapse">
+  <li><a href="#la-connettività-come-grafo" id="toc-la-connettività-come-grafo" class="nav-link" data-scroll-target="#la-connettività-come-grafo">5.1 La connettività come grafo</a></li>
+  <li><a href="#la-transizione-handtile" id="toc-la-transizione-handtile" class="nav-link" data-scroll-target="#la-transizione-handtile">5.2 La transizione hand→tile</a></li>
+  </ul></li>
+  <li><a href="#i-jolly" id="toc-i-jolly" class="nav-link" data-scroll-target="#i-jolly">6. I Jolly</a>
+  <ul class="collapse">
+  <li><a href="#wildcard-meccanica" id="toc-wildcard-meccanica" class="nav-link" data-scroll-target="#wildcard-meccanica">6.1 Wildcard meccanica</a></li>
+  <li><a href="#carta-evento" id="toc-carta-evento" class="nav-link" data-scroll-target="#carta-evento">6.2 Carta evento</a></li>
+  <li><a href="#tracciatore-di-stato-globale" id="toc-tracciatore-di-stato-globale" class="nav-link" data-scroll-target="#tracciatore-di-stato-globale">6.3 Tracciatore di stato globale</a></li>
+  <li><a href="#jolly-di-categoria" id="toc-jolly-di-categoria" class="nav-link" data-scroll-target="#jolly-di-categoria">6.4 Jolly di categoria</a></li>
+  </ul></li>
+  <li><a href="#pattern-di-design" id="toc-pattern-di-design" class="nav-link" data-scroll-target="#pattern-di-design">7. Pattern di design</a>
+  <ul class="collapse">
+  <li><a href="#gioco-di-carte-puro" id="toc-gioco-di-carte-puro" class="nav-link" data-scroll-target="#gioco-di-carte-puro">7.1 Gioco di carte puro</a></li>
+  <li><a href="#griglia-tattica-e-dungeon-crawler" id="toc-griglia-tattica-e-dungeon-crawler" class="nav-link" data-scroll-target="#griglia-tattica-e-dungeon-crawler">7.2 Griglia tattica e dungeon crawler</a></li>
+  <li><a href="#gioco-solitario-e-cooperativo" id="toc-gioco-solitario-e-cooperativo" class="nav-link" data-scroll-target="#gioco-solitario-e-cooperativo">7.3 Gioco solitario e cooperativo</a></li>
+  <li><a href="#multiplayer-asimmetrico" id="toc-multiplayer-asimmetrico" class="nav-link" data-scroll-target="#multiplayer-asimmetrico">7.4 Multiplayer asimmetrico</a></li>
+  </ul></li>
+  <li><a href="#checklist-del-designer" id="toc-checklist-del-designer" class="nav-link" data-scroll-target="#checklist-del-designer">8. Checklist del designer</a>
+  <ul class="collapse">
+  <li><a href="#assi-ereditati" id="toc-assi-ereditati" class="nav-link" data-scroll-target="#assi-ereditati">Assi ereditati</a></li>
+  <li><a href="#vocabolario-grafico" id="toc-vocabolario-grafico" class="nav-link" data-scroll-target="#vocabolario-grafico">Vocabolario grafico</a></li>
+  <li><a href="#sistema-spaziale-se-applicabile" id="toc-sistema-spaziale-se-applicabile" class="nav-link" data-scroll-target="#sistema-spaziale-se-applicabile">Sistema spaziale (se applicabile)</a></li>
+  <li><a href="#jolly" id="toc-jolly" class="nav-link" data-scroll-target="#jolly">Jolly</a></li>
+  <li><a href="#giocabilità" id="toc-giocabilità" class="nav-link" data-scroll-target="#giocabilità">Giocabilità</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/zeruhur/decksharp/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div><div class="quarto-alternate-formats"><h2>Altri Formati</h2><ul><li><a href="decksharp_guida_design.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="decksharp_guida_design.odt"><i class="bi bi-file"></i>OpenOffice</a></li><li><a href="decksharp_guida_design.epub"><i class="bi bi-file"></i>ePub</a></li><li><a href="decksharp_guida_design-gfm.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Guida al Design DECK#</h1>
+<p class="subtitle lead">Complemento alla specifica DECK# v0.7.0</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autore/Autrice</div>
+    <div class="quarto-title-meta-contents">
+             <p>Roberto Bisceglie </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">1 luglio 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>version: 0.1.0 · status: draft</p>
+<section id="natura-di-questo-documento" class="level2">
+<h2 class="anchored" data-anchor-id="natura-di-questo-documento">1. Natura di questo documento</h2>
+<p>Questa guida non prescrive come costruire un gioco su DECK#. Mostra cosa offre il sistema — le sue proprietà matematiche, le sue tensioni produttive, i suoi spazi di possibilità — perché il designer li possa riconoscere e sfruttare deliberatamente.</p>
+<p>DECK# è un substrato. Il designer è l’autore. Questo documento è uno strumento di orientamento, non un vincolo.</p>
+</section>
+<section id="la-matematica-del-mazzo" class="level2">
+<h2 class="anchored" data-anchor-id="la-matematica-del-mazzo">2. La matematica del mazzo</h2>
+<p>Prima di assegnare qualsiasi significato, vale la pena capire la struttura che si eredita. Il mazzo DECK# annotato porta con sé proprietà che non sono ovvie ma che hanno implicazioni profonde sul design.</p>
+<section id="il-bilanciamento-dei-glifi" class="level3">
+<h3 class="anchored" data-anchor-id="il-bilanciamento-dei-glifi">2.1 Il bilanciamento dei glifi</h3>
+<p>I sette glifi primari (—, •, +, ×, △, ○, □) compaiono ciascuno 7 o 8 volte sulle 52 carte regolari. Lo stesso vale per i modificatori.</p>
+<p>Implicazione pratica: <strong>qualunque semantica tu assegni a un glifo, quella semantica sarà distribuita uniformemente nel mazzo</strong>. Se il cerchio ○ significa “carta evento”, ci saranno 7–8 eventi nel mazzo, né troppo rari né dominanti. Il bilanciamento è una garanzia di sistema, non una responsabilità del designer.</p>
+<p>Questo vale anche per le coppie primario+modificatore: esistono 32 coppie distinte su 52 carte. La varietà è alta; nessuna combinazione domina.</p>
+</section>
+<section id="la-struttura-della-connettività" class="level3">
+<h3 class="anchored" data-anchor-id="la-struttura-della-connettività">2.2 La struttura della connettività</h3>
+<p>I bordi aperti per carta si distribuiscono in tre fasce precise:</p>
+<div class="line-block">Bordi aperti | Numero di carte |</div>
+<p>||| | 1 | 16 | | 2 | 16 | | 3 | 16 | | 4 (tutti) | 4 |</p>
+<p>Una simmetria quasi musicale: tre fasce da 16, più quattro carte con connettività massima. Se stai costruendo un gioco con elementi spaziali, questa distribuzione è la tua palette topologica: un terzo del mazzo crea vicoli, un terzo corridoi, un terzo incroci, quattro carte nodi.</p>
+</section>
+<section id="la-texture-del-valore-ordinale" class="level3">
+<h3 class="anchored" data-anchor-id="la-texture-del-valore-ordinale">2.3 La texture del valore ordinale</h3>
+<p>La connettività non è distribuita in modo perfettamente uniforme rispetto al valore della carta — e questo non è un difetto, è una texture che i giochi possono sfruttare.</p>
+<div class="line-block">Fascia di valore | Bordi aperti medi |</div>
+<p>||| | A, J (basso) | 1.25 – 1.50 | | 2, 5, 6 (medio-basso) | 1.50 | | 3, 7, 10 (medio-alto) | 2.25 – 2.50 | | 8, K (alto) | 3.00 | | Q | 2.75 |</p>
+<p>Se mappi il valore ordinale a “rango” o “potere”, le carte alte tendono a essere anche più connesse spazialmente. Questo può essere una risonanza interessante — o una tensione da spezzare deliberatamente. Entrambe sono scelte di design valide, ma devono essere scelte consapevoli.</p>
+</section>
+<section id="cosa-non-è-garantito" class="level3">
+<h3 class="anchored" data-anchor-id="cosa-non-è-garantito">2.4 Cosa non è garantito</h3>
+<p>La connettività è ortogonale a seme e colore per costruzione deliberata — nessun seme domina un’altra dimensione dell’annotazione. Il valore ordinale, invece, presenta la texture descritta sopra. Tenerla a mente evita sorprese durante il playtesting.</p>
+</section>
+</section>
+<section id="i-tre-assi-ereditati" class="level2">
+<h2 class="anchored" data-anchor-id="i-tre-assi-ereditati">3. I tre assi ereditati</h2>
+<p>Il mazzo standard porta tre assi informativi che DECK# non ridefinisce. Come questi assi vengono mappati a concetti di gioco è la prima grande decisione del designer — e probabilmente la più strutturante.</p>
+<section id="il-valore-ordinale" class="level3">
+<h3 class="anchored" data-anchor-id="il-valore-ordinale">3.1 Il valore ordinale</h3>
+<p>Tredici gradi da A a K. Questo asse è il più ricco in termini di granularità.</p>
+<p>Possibili mappature:</p>
+<ul>
+<li><strong>Potenza o intensità</strong>: più alto = più forte. La mappatura più intuitiva, con la texture di connettività come corollario spaziale.</li>
+<li><strong>Fase o stadio</strong>: A = inizio, K = fine. Utile per giochi narrativi o con archi temporali.</li>
+<li><strong>Tipo discreto</strong>: A–6 = un tipo, 7–K = un altro. Riduce la granularità a vantaggio della semplicità.</li>
+<li><strong>Risorse quantificate</strong>: il valore come numero puro. Efficace per giochi economici.</li>
+</ul>
+<p>Le figure (J, Q, K) formano una sottoclasse naturale. Trattarle come categoria speciale aggiunge un livello di gerarchia senza costi di componenti.</p>
+</section>
+<section id="il-colore" class="level3">
+<h3 class="anchored" data-anchor-id="il-colore">3.2 Il colore</h3>
+<p>Rosso / Nero. Asse binario, massimamente visibile.</p>
+<p>Possibili mappature:</p>
+<ul>
+<li><strong>Fazione o polarità</strong>: la mappatura più immediata. Due forze, due fazioni, due stati.</li>
+<li><strong>Modalità</strong>: azione/reazione, attacco/difesa, giorno/notte.</li>
+<li><strong>Costo e beneficio</strong>: rosso = rischio, nero = sicurezza — o viceversa.</li>
+</ul>
+<p>Il colore è l’asse con la maggiore saliency visiva. Assegnargli un significato di bassa importanza meccanica è uno spreco. Assegnargli troppa importanza lo rende un discriminatore di gioco prima ancora che il giocatore possa leggere le annotazioni.</p>
+</section>
+<section id="il-seme" class="level3">
+<h3 class="anchored" data-anchor-id="il-seme">3.3 Il seme</h3>
+<p>Quattro semi, due rossi e due neri. Il seme porta una struttura interna: non è solo un asse a quattro valori, ma un asse a quattro valori con due coppie cromatiche.</p>
+<p>Possibili mappature:</p>
+<ul>
+<li><strong>Quattro categorie indipendenti</strong>: classi, biomi, fazioni, tipi di risorsa.</li>
+<li><strong>Due coppie con distinzione interna</strong>: cuori vs quadri come varianti di “rosso”, fiori vs picche come varianti di “nero”. Utile per sistemi con gerarchia a due livelli.</li>
+<li><strong>Ignora il seme, usa solo il colore</strong>: legittimo se le quattro categorie creano troppa complessità per il gioco target.</li>
+</ul>
+</section>
+<section id="la-coerenza-degli-assi" class="level3">
+<h3 class="anchored" data-anchor-id="la-coerenza-degli-assi">3.4 La coerenza degli assi</h3>
+<p>Una domanda chiave da porsi prima del playtesting: <strong>gli assi ereditati parlano tra loro in modo coerente con il tono del gioco?</strong></p>
+<p>Se il valore mappa a “livello di minaccia” e il colore mappa a “alleato/nemico”, il Re rosso sarà una minaccia massima da parte di un nemico. Il Due nero sarà una minaccia minima da parte di un alleato. Questa combinazione ha senso nel tuo gioco? Produce situazioni interessanti o confuse?</p>
+<p>Non esiste una risposta unica. Esiste solo la necessità di averla posta.</p>
+</section>
+</section>
+<section id="il-vocabolario-grafico" class="level2">
+<h2 class="anchored" data-anchor-id="il-vocabolario-grafico">4. Il vocabolario grafico</h2>
+<p>I sette glifi di DECK# sono aniconici: non raffigurano nulla. Questo è una caratteristica, non una limitazione. L’aniconicità garantisce che la semantica assegnata dal gioco non entri in conflitto con associazioni culturali pregresse — o che possa farlo deliberatamente.</p>
+<section id="assegnare-semantica-ai-glifi" class="level3">
+<h3 class="anchored" data-anchor-id="assegnare-semantica-ai-glifi">4.1 Assegnare semantica ai glifi</h3>
+<p>Alcune considerazioni pratiche:</p>
+<p><strong>Sfrutta le semantiche naturali senza esserne prigioniero.</strong> La specifica suggerisce associazioni intuitive (△ = direzione, × = negazione, ○ = ciclo). Queste associazioni riducono il carico cognitivo per il giocatore nuovo. Usarle è spesso la scelta più efficiente; ignorarle è possibile ma richiede un sistema di riferimento compensativo (glossario, leggenda).</p>
+<p><strong>Primario e modificatore sono due layer semantici distinti.</strong> Non trattarli come due “proprietà” equivalenti. Una mappatura efficace tende ad avere il primario come categoria o tipo (cosa è questa carta) e il modificatore come qualità o stato (come si comporta). L’inversione è possibile ma rara.</p>
+<p><strong>Considera il carico cognitivo totale.</strong> Sette glifi per strato, due strati, più i tre assi ereditati: il giocatore può trovarsi a decodificare fino a cinque dimensioni per carta. La semplicità di lettura va testata sul campo, non assunta.</p>
+</section>
+<section id="conflitti-visivi-da-evitare" class="level3">
+<h3 class="anchored" data-anchor-id="conflitti-visivi-da-evitare">4.2 Conflitti visivi da evitare</h3>
+<p>La specifica elenca le forme riservate ai semi (cuore, rombo, trifoglio, picca). Il punto non è solo estetico: un glifo che assomiglia a un seme crea ambiguità di lettura in condizioni di gioco reali — carte usate, luce non ideale, giocatori non familiari col sistema.</p>
+<p>Il quadrato □ e il cerchio ○ sono i glifi più sicuri. Il triangolo △ è sicuro in posizione angolare e piccolo. Linea — e croce + sono letti automaticamente come separatori o connettori — un’associazione da sfruttare o da contrastare con istruzione esplicita.</p>
+</section>
+</section>
+<section id="il-sistema-spaziale" class="level2">
+<h2 class="anchored" data-anchor-id="il-sistema-spaziale">5. Il sistema spaziale</h2>
+<p>Il sistema spaziale di DECK# è opzionale a livello di profilo (Base vs Esteso), ma la sua struttura merita attenzione anche nei giochi di carte puri — perché definisce come le carte interagiscono fisicamente sul tavolo.</p>
+<section id="la-connettività-come-grafo" class="level3">
+<h3 class="anchored" data-anchor-id="la-connettività-come-grafo">5.1 La connettività come grafo</h3>
+<p>Accostando carte sul tavolo, i bordi marcati come “muro” chiudono il passaggio; i bordi aperti creano connessione. Il risultato è un grafo topologico emergente: non è la griglia di un gioco di ruolo standard, non è una mappa fissa, è uno spazio che si costruisce carta per carta durante la partita.</p>
+<p>Implicazioni di design:</p>
+<ul>
+<li>Il gioco può lasciare che il giocatore scelga l’orientamento delle carte (polo nord = variabile), creando un sistema generativo. Ogni sessione produce una mappa diversa.</li>
+<li>Il gioco può fissare l’orientamento, usando la connettività come proprietà intrinseca della carta — un corridoio è un corridoio, indipendentemente da come è posato.</li>
+<li>Il gioco può mescolare i due approcci: orientamento libero in fase di setup, fisso in fase di gioco.</li>
+</ul>
+</section>
+<section id="la-transizione-handtile" class="level3">
+<h3 class="anchored" data-anchor-id="la-transizione-handtile">5.2 La transizione hand→tile</h3>
+<p>Quando una carta passa dalla mano al tavolo, cambia ontologia: da informazione nascosta a componente fisico. Questa transizione deve essere specificata dal designer in tre punti:</p>
+<p><strong>1. Rivelazione:</strong> la carta viene posata coperta o scoperta? Una carta coperta è uno spazio di incertezza; una scoperta è informazione condivisa. Entrambe hanno senso in contesti diversi.</p>
+<p><strong>2. Orientamento:</strong> il polo nord è scelto dal giocatore o è fisso? La scelta dell’orientamento è un atto strategico se le annotazioni spaziali (connettività, direzione del triangolo) hanno peso meccanico.</p>
+<p><strong>3. Attivazione:</strong> le annotazioni spaziali diventano attive immediatamente o in un momento successivo? Una carta posata coperta con connettività che si attiva solo alla rivelazione crea una meccanica di sorpresa. Una carta con effetto ritardato crea pianificazione.</p>
+<p>Queste tre decisioni non sono indipendenti. Definirle insieme produce il comportamento tattico del posizionamento.</p>
+</section>
+</section>
+<section id="i-jolly" class="level2">
+<h2 class="anchored" data-anchor-id="i-jolly">6. I Jolly</h2>
+<p>I Jolly sono le due carte strutturalmente fuori sistema: nessun asse ereditato, nessuna annotazione DECK# tranne il polo nord sul recto. Sul dorso ricevono i marcatori di quadrante — identici a tutte le altre carte — per non essere riconoscibili a carte coperte. Sono variabili non istanziate.</p>
+<p>La scelta di usarli — e come — dice qualcosa di fondamentale sull’architettura del gioco.</p>
+<section id="wildcard-meccanica" class="level3">
+<h3 class="anchored" data-anchor-id="wildcard-meccanica">6.1 Wildcard meccanica</h3>
+<p>Il Jolly come carta universale: può essere giocata come qualsiasi carta del mazzo, o come qualsiasi valore/seme/glifo. Semplice da implementare, alto impatto strategico. Rischio: banalizzare le decisioni se troppo potente, o essere ignorata se troppo debole.</p>
+</section>
+<section id="carta-evento" class="level3">
+<h3 class="anchored" data-anchor-id="carta-evento">6.2 Carta evento</h3>
+<p>Il Jolly come interruzione del flusso normale: quando pescato o posato, innesca un effetto globale. Non è parte del mazzo “giocabile” in senso ordinario — è un marcatore di discontinuità. Utile per giochi con archi narrativi o fasi di gioco distinte.</p>
+</section>
+<section id="tracciatore-di-stato-globale" class="level3">
+<h3 class="anchored" data-anchor-id="tracciatore-di-stato-globale">6.3 Tracciatore di stato globale</h3>
+<p>Il Jolly come componente fisso sul tavolo, non in mano. Viene usato per tenere traccia di uno stato condiviso — un contatore, una fase, una condizione attiva. In questo caso non viene mai “giocato”: è sempre visibile, sempre presente. Funziona in giochi con variabili di stato persistenti tra turni.</p>
+</section>
+<section id="jolly-di-categoria" class="level3">
+<h3 class="anchored" data-anchor-id="jolly-di-categoria">6.4 Jolly di categoria</h3>
+<p>I due Jolly come due entità distinte (non intercambiabili). Ognuno rappresenta qualcosa di irriducibile al sistema ordinale — un personaggio unico, una risorsa non generabile, un evento singolare. Richiede che il gioco dia loro un’identità esplicita.</p>
+<p><strong>La domanda da porsi:</strong> il tuo gioco ha bisogno di elementi che non si possano ottenere variando valore, seme, colore e glifi? Se sì, i Jolly sono lo strumento. Se no, usarli è opzionale — e ometterli è una scelta di design, non una mancanza.</p>
+</section>
+</section>
+<section id="pattern-di-design" class="level2">
+<h2 class="anchored" data-anchor-id="pattern-di-design">7. Pattern di design</h2>
+<p>Questi non sono template. Sono configurazioni ricorrenti che emergono da come i profili Base ed Esteso vengono utilizzati in pratica. Riconoscerli aiuta a orientarsi nella fase di ideazione.</p>
+<section id="gioco-di-carte-puro" class="level3">
+<h3 class="anchored" data-anchor-id="gioco-di-carte-puro">7.1 Gioco di carte puro</h3>
+<p><strong>Profilo Base.</strong> Le carte restano in mano o vengono posate come azione (non come griglia). Il sistema spaziale è inattivo o marginale. Il nucleo del gioco è la gestione della mano e la risoluzione delle carte giocate.</p>
+<p>DECK# aggiunge: due livelli semantici per carta (primario + modificatore), più i tre assi ereditati. È possibile costruire giochi con meccaniche di drafting, combo, o narrativa emergente senza mai posare una carta sul tavolo in modalità tile.</p>
+<p><strong>Tensione produttiva:</strong> il bilanciamento dei glifi garantisce equità di distribuzione. Un gioco di carte che sfrutta questo avrà meno problemi di “mazzo rotto” rispetto a un sistema custom.</p>
+</section>
+<section id="griglia-tattica-e-dungeon-crawler" class="level3">
+<h3 class="anchored" data-anchor-id="griglia-tattica-e-dungeon-crawler">7.2 Griglia tattica e dungeon crawler</h3>
+<p><strong>Profilo Esteso.</strong> Le carte vengono posate sul tavolo in modalità tile, costruendo lo spazio di gioco. La connettività dei bordi definisce la topologia. Segnalini e dadi gestiscono entità e risoluzione.</p>
+<p>DECK# aggiunge: uno spazio generativo che cambia ogni sessione, con proprietà topologiche predeterminate (connettività) ma disposizione variabile (orientamento). L’asimmetria della distribuzione della connettività (vedi sezione 2.3) può generare zone naturalmente più aperte o più chiuse.</p>
+<p><strong>Tensione produttiva:</strong> la transizione hand→tile è il momento meccanico più ricco. Come si rivela lo spazio — chi decide l’orientamento, quando si attivano i bordi — definisce il ritmo tattico del gioco.</p>
+</section>
+<section id="gioco-solitario-e-cooperativo" class="level3">
+<h3 class="anchored" data-anchor-id="gioco-solitario-e-cooperativo">7.3 Gioco solitario e cooperativo</h3>
+<p><strong>Profilo Base o Esteso.</strong> Un solo giocatore (o gruppo cooperativo) contro il sistema. DECK# non include meccaniche oracolari per default — questa è una scelta deliberata. Il designer deve costruire un motore oracolare che usi il mazzo come fonte di risposta.</p>
+<p>Approcci possibili:</p>
+<ul>
+<li>Pesca una carta e leggi il primario come risposta (sì/no/forse, basato su opposizioni binarie dei glifi).</li>
+<li>Combina valore + glifo primario per generare un evento da una tabella.</li>
+<li>Usa la connettività della carta pescata per determinare la direzione narrativa.</li>
+</ul>
+<p>DECK# offre sufficiente spazio semantico multidimensionale per costruire sistemi oracolari ricchi senza richiedere componenti aggiuntivi.</p>
+</section>
+<section id="multiplayer-asimmetrico" class="level3">
+<h3 class="anchored" data-anchor-id="multiplayer-asimmetrico">7.4 Multiplayer asimmetrico</h3>
+<p><strong>Profilo Base o Esteso.</strong> Giocatori con ruoli, risorse o capacità diverse. DECK# supporta l’asimmetria attraverso la mappatura degli assi: il colore (rosso/nero) è l’asse più naturale per differenziare fazioni. Il seme può aggiungere un secondo livello di differenziazione intra-fazione.</p>
+<p><strong>Attenzione:</strong> in un gioco asimmetrico, la distribuzione bilanciata dei glifi è una risorsa equa per tutti i giocatori. Se un giocatore ha accesso solo a un sottoinsieme del mazzo (per seme o colore), la distribuzione dei glifi in quel sottoinsieme non è più garantita uguale. Vale la pena verificare le distribuzioni parziali durante la progettazione.</p>
+</section>
+</section>
+<section id="checklist-del-designer" class="level2">
+<h2 class="anchored" data-anchor-id="checklist-del-designer">8. Checklist del designer</h2>
+<p>Ogni gioco costruito su DECK# richiede che il designer specifichi esplicitamente i seguenti elementi. Questa checklist estende la sezione 11 della specifica con domande orientate al design.</p>
+<section id="assi-ereditati" class="level3">
+<h3 class="anchored" data-anchor-id="assi-ereditati">Assi ereditati</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Come viene mappato il valore ordinale (A–K)? È una scala continua o discretizzata per fasce?</label></li>
+<li><label><input type="checkbox">Come viene usato il colore (rosso/nero)? La mappatura è meccanicamente significativa?</label></li>
+<li><label><input type="checkbox">Come vengono usati i semi? Come quattro categorie, due coppie, o viene ignorata la distinzione di seme?</label></li>
+<li><label><input type="checkbox">Le tre mappature sono coerenti tra loro? Producono combinazioni interessanti o problematiche?</label></li>
+</ul>
+</section>
+<section id="vocabolario-grafico" class="level3">
+<h3 class="anchored" data-anchor-id="vocabolario-grafico">Vocabolario grafico</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Quale semantica viene assegnata ai glifi primari? È documentata in modo chiaro per il giocatore?</label></li>
+<li><label><input type="checkbox">Quale semantica viene assegnata ai glifi modificatori? È distinta e complementare al primario?</label></li>
+<li><label><input type="checkbox">I glifi usati sfruttano o contrastano le semantiche naturali (sezione 4 della specifica)?</label></li>
+</ul>
+</section>
+<section id="sistema-spaziale-se-applicabile" class="level3">
+<h3 class="anchored" data-anchor-id="sistema-spaziale-se-applicabile">Sistema spaziale (se applicabile)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Il profilo è Base o Esteso?</label></li>
+<li><label><input type="checkbox">Se Esteso: come viene gestita la transizione hand→tile (rivelazione, orientamento, attivazione)?</label></li>
+<li><label><input type="checkbox">La distribuzione della connettività (1/2/3/4 bordi aperti) è congruente con il design dello spazio di gioco?</label></li>
+</ul>
+</section>
+<section id="jolly" class="level3">
+<h3 class="anchored" data-anchor-id="jolly">Jolly</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">I Jolly vengono usati? Se sì, quanti (zero, uno, entrambi)?</label></li>
+<li><label><input type="checkbox">Quale ruolo hanno: wildcard, evento, tracciatore di stato, entità distinta?</label></li>
+<li><label><input type="checkbox">Il loro ruolo è irriducibile a quello di qualsiasi altra carta del sistema?</label></li>
+</ul>
+</section>
+<section id="giocabilità" class="level3">
+<h3 class="anchored" data-anchor-id="giocabilità">Giocabilità</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Quante dimensioni informative deve decodificare il giocatore per leggere una carta? Questo carico è sostenibile?</label></li>
+<li><label><input type="checkbox">La distribuzione bilanciata dei glifi è un asset per il gioco o crea un problema da gestire?</label></li>
+<li><label><input type="checkbox">Se il gioco usa un sottoinsieme del mazzo (per seme, colore o valore), la distribuzione dei glifi in quel sottoinsieme è stata verificata?</label></li>
+</ul>
+<hr>
+<p>DECK#</p>
+<p>© 2026 Roberto Bisceglie</p>
+<p>This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var sidebar = document.getElementById("quarto-margin-sidebar");
+  var formats = document.querySelector(".quarto-alternate-formats");
+  if (sidebar && formats) {
+    sidebar.insertBefore(formats, sidebar.firstChild);
+  }
+
+  // Rename "Typst" label to "PDF"
+  document.querySelectorAll(".quarto-alternate-formats a").forEach(function (a) {
+    a.childNodes.forEach(function (node) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() === "Typst") {
+        node.textContent = "PDF";
+      }
+    });
+  });
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zeruhur\.github\.io\/decksharp\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 <a href="https://github.com/zeruhur">Roberto Bisceglie</a> — <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/zeruhur/decksharp/issues/new" class="toc-action"><i class="bi bi-github"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,5 +1,495 @@
 [
   {
+    "objectID": "docs/it/decksharp_notes.html",
+    "href": "docs/it/decksharp_notes.html",
+    "title": "Note di Design DECK#",
+    "section": "",
+    "text": "version: 0.7.0 · documento interno"
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-01-nome-del-sistema-deck",
+    "href": "docs/it/decksharp_notes.html#dc-01-nome-del-sistema-deck",
+    "title": "Note di Design DECK#",
+    "section": "DC-01 — Nome del sistema: DECK",
+    "text": "DC-01 — Nome del sistema: DECK\nDecisione: il sistema si chiama DECK#. Alternativa considerata: Deckpack. Motivazione: DECK# (dal greco: lingua, vocabolario) riflette la natura del sistema — un vocabolario condiviso per comunicare informazioni meccaniche. È agnostico alla lingua pur essendo un nome non neutro, il che è appropriato: il nome è un’etichetta meta, non un componente del sistema. Deckpack resta valido per eventuali edizioni fisiche o derivati commerciali."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-02-ampiezza-del-mazzo-base-52-2-jolly",
+    "href": "docs/it/decksharp_notes.html#dc-02-ampiezza-del-mazzo-base-52-2-jolly",
+    "title": "Note di Design DECK#",
+    "section": "DC-02 — Ampiezza del mazzo base: 52 + 2 Jolly",
+    "text": "DC-02 — Ampiezza del mazzo base: 52 + 2 Jolly\nDecisione: 54 carte totali. Motivazione: i Jolly sono strutturalmente distinti già nel mazzo standard — l’unica carta priva di seme e valore. Escluderli sarebbe sprecare una risorsa di design. Le carte pubblicitarie presenti in alcuni mazzi non sono standardizzate e non entrano nella specifica."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-03-marcatura-permanente",
+    "href": "docs/it/decksharp_notes.html#dc-03-marcatura-permanente",
+    "title": "Note di Design DECK#",
+    "section": "DC-03 — Marcatura permanente",
+    "text": "DC-03 — Marcatura permanente\nDecisione: annotazioni con pennarello indelebile. Alternative considerate: cancellabile per tutti i layer; sistema misto. Motivazione: la marcatura permanente trasforma ogni mazzo in un artefatto unico. Gli stati variabili vengono tracciati con token fisici già rimovibili per natura. Il sistema misto è disponibile come pratica opzionale per i singoli giochi ma non viene prescritto."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-04-sistema-aperto-nessuna-mappatura-valore-funzione",
+    "href": "docs/it/decksharp_notes.html#dc-04-sistema-aperto-nessuna-mappatura-valore-funzione",
+    "title": "Note di Design DECK#",
+    "section": "DC-04 — Sistema aperto: nessuna mappatura valore → funzione",
+    "text": "DC-04 — Sistema aperto: nessuna mappatura valore → funzione\nDecisione: DECK# non assegna funzioni meccaniche per valore. Alternativa scartata: cardpack-spec v0.2.0 aveva definito Space (A-6) / Resource (7-10) / Actor (J-Q-K) come partizione fissa. Motivazione: quella partizione è la struttura di un gioco tattico specifico, non un vocabolario aperto. Blocca qualsiasi gioco che voglia usare un Asso come personaggio o un Re come territorio. Un sistema aperto non prescrive cosa rappresenta ogni carta — lo fa ogni gioco costruito sopra."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-05-sette-glifi-primari-vocabolario-chiuso",
+    "href": "docs/it/decksharp_notes.html#dc-05-sette-glifi-primari-vocabolario-chiuso",
+    "title": "Note di Design DECK#",
+    "section": "DC-05 — Sette glifi primari (vocabolario chiuso)",
+    "text": "DC-05 — Sette glifi primari (vocabolario chiuso)\nDecisione: esattamente 7 glifi: punto, linea, croce, diagonale, triangolo, cerchio, quadrato. Motivazione: coprono le forme geometriche primitive producibili con 1-4 tratti. Sufficientemente distinti visivamente tra loro e dai semi. Il vocabolario è chiuso per garantire interoperabilità — un glifo non presente non esiste in DECK#. L’asterisco di cardpack-spec v0.2.0 è stato escluso perché visivamente ambiguo e motivato da un ruolo semantico (Jolly) che la specifica non deve pre-assegnare."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-06-colore-dei-glifi-regola-contrastante",
+    "href": "docs/it/decksharp_notes.html#dc-06-colore-dei-glifi-regola-contrastante",
+    "title": "Note di Design DECK#",
+    "section": "DC-06 — Colore dei glifi: regola contrastante",
+    "text": "DC-06 — Colore dei glifi: regola contrastante\nDecisione originale (v0.1–v0.6): il colore del pennarello è un layer semantico indipendente, ortogonale al glifo; convenzione non prescritta. Decisione aggiornata (v0.7): il colore dei glifi segue la regola contrastante fissa — glifi neri su carte rosse (♥/♦), glifi rossi su carte nere (♣/♠). Vedi DC-22. Motivazione del cambiamento: un asse semantico “disponibile ma non prescritto” non entra mai nell’annotazione canonica. La regola contrastante è semplice, memorabile e garantisce alta leggibilità su tutte le carte senza richiedere una colonna colore nella matrice."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-07-dorso-eccezione-per-marcatori-di-quadrante",
+    "href": "docs/it/decksharp_notes.html#dc-07-dorso-eccezione-per-marcatori-di-quadrante",
+    "title": "Note di Design DECK#",
+    "section": "DC-07 — Dorso: eccezione per marcatori di quadrante",
+    "text": "DC-07 — Dorso: eccezione per marcatori di quadrante\nDecisione originale (v0.1–v0.5): dorso escluso dall’annotazione. Decisione aggiornata (v0.6): il dorso delle 52 carte regolari riceve esclusivamente i marcatori di quadrante. Due varianti ammesse: minima (quattro segmenti corti ai punti medi) o estesa (croce completa +). La scelta è lasciata a chi annota. I Jolly non ricevono marcatori di quadrante nemmeno sul dorso. Motivazione dell’eccezione: i marcatori di quadrante sono identici su tutte le 52 carte regolari — non rivelano nessuna informazione differenziale. La motivazione originale (preservare l’anonimità per fog-of-war) non si applica a marcatori uniformi. Il beneficio è eliminare la coesistenza con il glifo primario in zona S (DA-01 / DC-21, ora superate)."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-08-convenzione-del-polo-nord",
+    "href": "docs/it/decksharp_notes.html#dc-08-convenzione-del-polo-nord",
+    "title": "Note di Design DECK#",
+    "section": "DC-08 — Convenzione del polo nord",
+    "text": "DC-08 — Convenzione del polo nord\nDecisione: polo nord = lato con indice NW canonico. Punto in SE come marcatore di orientamento. Problema: le carte hanno simmetria verticale per motivi ergonomici. Con elementi spaziali, va rotta esplicitamente. Motivazione: il punto in SE è la soluzione meno invasiva — non copre nulla, è asimmetrico, richiede un tratto. Una freccia fissa avrebbe introdotto semantica spaziale anche per giochi senza orientamento."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-09-posizionamento-simmetrico-in-hand-mode",
+    "href": "docs/it/decksharp_notes.html#dc-09-posizionamento-simmetrico-in-hand-mode",
+    "title": "Note di Design DECK#",
+    "section": "DC-09 — Posizionamento simmetrico in hand mode",
+    "text": "DC-09 — Posizionamento simmetrico in hand mode\nDecisione: annotazioni in due posizioni speculari — glifo primario in zona S con speculare in N; modificatore in angolo NE con speculare in SW. Vedi DC-18 per le zone specifiche. Fonte: cardpack-spec v0.2.0 (zone aggiornate in DC-18). Motivazione: convenzione ergonomica standard dei mazzi — gli indici sono già duplicati e ruotati per la stessa ragione. Garantisce leggibilità a ventaglio senza regole aggiuntive."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-10-marcatori-di-quadrante",
+    "href": "docs/it/decksharp_notes.html#dc-10-marcatori-di-quadrante",
+    "title": "Note di Design DECK#",
+    "section": "DC-10 — Marcatori di quadrante",
+    "text": "DC-10 — Marcatori di quadrante\nDecisione: presenti sul dorso delle 52 carte regolari (migrazione dal recto in v0.6, vedi DC-07 rev.). Due varianti: minima (quattro segmenti corti) o estesa (croce +). Assenti sui Jolly. Fonte: cardpack-spec v0.2.0 (universalità stabilita in DC-17; migrazione al dorso in DC-07 rev. v0.6). Motivazione: sul recto i segmenti corti erano necessari per evitare di coprire i pip. Sul dorso la variante estesa (croce completa) diventa praticabile senza interferenze.\nRevisione v0.7.1 (2026-05-13): estesi anche ai Jolly sul dorso. Vedi DC-11 rev. per la motivazione."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-11-jolly-come-variabili-non-istanziate",
+    "href": "docs/it/decksharp_notes.html#dc-11-jolly-come-variabili-non-istanziate",
+    "title": "Note di Design DECK#",
+    "section": "DC-11 — Jolly come variabili non istanziate",
+    "text": "DC-11 — Jolly come variabili non istanziate\nDecisione: i Jolly ricevono solo il punto SE (polo nord). Nessun glifo primario, nessun modificatore, nessun marcatore di connettività, nessun marcatore di quadrante. Alternativa scartata: asterisco fisso in cardpack-spec v0.2.0. Motivazione: l’asterisco trasforma i Jolly in un ruolo funzionale specifico prima che un gioco li usi. Un sistema aperto lascia i Jolly come superfici neutre. La loro assenza dagli assi ereditati è già sufficiente a distinguerli.\nRevisione v0.7.1 (2026-05-13): i Jolly ricevono i marcatori di quadrante sul dorso. La motivazione originale (neutralità del Jolly come superficie bianca) si applica al recto, non al dorso: i marcatori di quadrante sono uniformi su tutte le carte e non trasmettono alcuna informazione differenziale. La loro assenza sul dorso dei Jolly li rendeva riconoscibili a carte coperte, compromettendo il fog-of-war. Il principio di neutralità rimane integro: il Jolly è ancora privo di semantica pre-assegnata sul recto."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-12-profili-base-ed-esteso",
+    "href": "docs/it/decksharp_notes.html#dc-12-profili-base-ed-esteso",
+    "title": "Note di Design DECK#",
+    "section": "DC-12 — Profili Base ed Esteso",
+    "text": "DC-12 — Profili Base ed Esteso\nDecisione: due profili con requisiti crescenti. Fonte: cardpack-spec v0.2.0 (assente in DECK# v0.1). Motivazione: il sistema deve essere accessibile con il minimo materiale ma non fingere che tutti i giochi abbiano gli stessi requisiti. La distinzione è una dichiarazione di scope, non una gerarchia."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-13-sezione-responsabilità-del-designer",
+    "href": "docs/it/decksharp_notes.html#dc-13-sezione-responsabilità-del-designer",
+    "title": "Note di Design DECK#",
+    "section": "DC-13 — Sezione “Responsabilità del designer”",
+    "text": "DC-13 — Sezione “Responsabilità del designer”\nDecisione: lista esplicita di ciò che ogni gioco costruito su DECK# deve specificare. Motivazione: senza questa sezione un designer non sa dove inizia il suo lavoro. La lista delimita l’interfaccia tra specifica e gioco."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-14-licenza-cc-by-4.0",
+    "href": "docs/it/decksharp_notes.html#dc-14-licenza-cc-by-4.0",
+    "title": "Note di Design DECK#",
+    "section": "DC-14 — Licenza CC BY 4.0",
+    "text": "DC-14 — Licenza CC BY 4.0\nDecisione: Creative Commons Attribution 4.0 International. Alternative considerate: CC0, CC BY-SA, licenza proprietaria con permesso d’uso. Motivazione: CC BY 4.0 bilancia apertura e attribuzione. Permette uso commerciale, non impone copyleft sui derivati, richiede solo citazione della fonte. CC0 avrebbe rinunciato a qualsiasi tracciabilità dell’ecosistema. CC BY-SA avrebbe creato frizioni per giochi commerciali."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-15-layer-unico-strutturale",
+    "href": "docs/it/decksharp_notes.html#dc-15-layer-unico-strutturale",
+    "title": "Note di Design DECK#",
+    "section": "DC-15 — Layer unico strutturale",
+    "text": "DC-15 — Layer unico strutturale\nDecisione: i glifi sono strutturali per definizione. Non esiste un layer semantico separato aggiunto dal gioco — il designer interpreta i glifi strutturali, non aggiunge un layer proprio. Alternativa scartata: modello a due layer (strutturale DECK# + semantico per gioco). Motivazione: la distinzione layer strutturale / layer semantico è concettuale, non fisica. Sul mazzo c’è un solo strato di annotazione. La semantica è un’operazione di lettura, non di scrittura."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-16-tre-dimensioni-strutturali-per-carta",
+    "href": "docs/it/decksharp_notes.html#dc-16-tre-dimensioni-strutturali-per-carta",
+    "title": "Note di Design DECK#",
+    "section": "DC-16 — Tre dimensioni strutturali per carta",
+    "text": "DC-16 — Tre dimensioni strutturali per carta\nDecisione: ogni carta è definita da tre dimensioni: Connettività (pattern di bordi aperti tra 15 configurazioni), Primario (glifo in zona S), Modificatore (glifo in angolo NE). Gerarchia posizionale, non semantica: Primario + Modificatore identici (es. ×/×) sono combinazioni legittime. Motivazione: tre dimensioni indipendenti creano uno spazio combinatorio (15 × 7 × 7 = 735 configurazioni teoriche) molto più ricco dei 52 slot necessari, garantendo libertà di design nella distribuzione."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-17-marcatori-di-quadrante-universali",
+    "href": "docs/it/decksharp_notes.html#dc-17-marcatori-di-quadrante-universali",
+    "title": "Note di Design DECK#",
+    "section": "DC-17 — Marcatori di quadrante universali",
+    "text": "DC-17 — Marcatori di quadrante universali\nDecisione: i marcatori di quadrante sono presenti su tutte le 52 carte regolari. Assenti sui Jolly. Alternativa scartata: presenza variabile come dimensione della matrice. Motivazione: la capacità spaziale uniforme semplifica l’annotazione e sposta la gestione della capacità al gioco, che può ignorarla, usarla parzialmente o sfruttarla integralmente."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-18-zone-primario-in-s-modificatore-in-ne",
+    "href": "docs/it/decksharp_notes.html#dc-18-zone-primario-in-s-modificatore-in-ne",
+    "title": "Note di Design DECK#",
+    "section": "DC-18 — Zone: Primario in S, Modificatore in NE",
+    "text": "DC-18 — Zone: Primario in S, Modificatore in NE\nDecisione: glifo primario in zona S (interno, bordo medio inferiore) con speculare in N; modificatore in angolo NE con speculare in SW. Centro non occupato da annotazioni DECK#. Alternativa scartata: primario al centro (bloccato dai pip sulle carte numerali). Motivazione: zona S è visibile quando le carte sono tenute a ventaglio; è pulita e separata dai pip per tutte le carte. NE è il secondo angolo più visibile. Il centro resta leggibile per i pip e disponibile come spazio visivo neutro."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-19-matrice-di-annotazione-come-artefatto-di-design",
+    "href": "docs/it/decksharp_notes.html#dc-19-matrice-di-annotazione-come-artefatto-di-design",
+    "title": "Note di Design DECK#",
+    "section": "DC-19 — Matrice di annotazione come artefatto di design",
+    "text": "DC-19 — Matrice di annotazione come artefatto di design\nDecisione: la distribuzione di connettività e glifi sulle 52 carte è un artefatto authored, ortogonale a valore/seme/colore per costruzione deliberata. Non esiste formula algoritmica che colleghi proprietà del substrato all’annotazione strutturale. Motivazione: l’ortogonalità per formula richiederebbe di usare valore/seme come indice, re-encodandoli implicitamente. L’ortogonalità per design è più robusta: nessuna correlazione sistematica, varietà topologica controllata."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-20-annotazione-pre-gioco-come-standard-assoluto",
+    "href": "docs/it/decksharp_notes.html#dc-20-annotazione-pre-gioco-come-standard-assoluto",
+    "title": "Note di Design DECK#",
+    "section": "DC-20 — Annotazione pre-gioco come standard assoluto",
+    "text": "DC-20 — Annotazione pre-gioco come standard assoluto\nDecisione: il mazzo DECK# viene annotato integralmente prima di qualsiasi sessione. Nessuna annotazione in gioco per il layer strutturale. Motivazione: coerente con il modello del mazzo come artefatto fisso. Rimuove una fonte di ambiguità dalla sezione “Responsabilità del designer” — non è una scelta del gioco, è un vincolo del sistema."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-22-colore-dei-glifi-regola-contrastante",
+    "href": "docs/it/decksharp_notes.html#dc-22-colore-dei-glifi-regola-contrastante",
+    "title": "Note di Design DECK#",
+    "section": "DC-22 — Colore dei glifi: regola contrastante",
+    "text": "DC-22 — Colore dei glifi: regola contrastante\nDecisione: glifi neri su carte rosse (♥/♦); glifi rossi su carte nere (♣/♠). Regola fissa, nessuna colonna colore nella matrice. Alternative scartate: (1) colore come asse semantico indipendente nella matrice — richiede distribuzione progettata e aggiunge complessità; (2) tutti i glifi in nero — perde leggibilità su carte nere. Motivazione: il colore contrastante è interamente derivabile dal seme (zero informazione differenziale nuova) ma massimizza la separazione visiva tra annotazione e substrato. La semplicità della regola è il valore principale: chiunque annoti il mazzo può ricavarla senza consultare la matrice."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#dc-21-convivenza-marcatore-di-quadrante-e-glifo-primario-in-zona-s",
+    "href": "docs/it/decksharp_notes.html#dc-21-convivenza-marcatore-di-quadrante-e-glifo-primario-in-zona-s",
+    "title": "Note di Design DECK#",
+    "section": "DC-21 — Convivenza marcatore di quadrante e glifo primario in zona S",
+    "text": "DC-21 — Convivenza marcatore di quadrante e glifo primario in zona S\nSUPERATA in v0.6 da DC-07 rev. I marcatori di quadrante migrano sul dorso: la coesistenza con il glifo primario in zona S non si pone più. La sezione 5.1 della spec (diagramma di posizionamento) è stata rimossa."
+  },
+  {
+    "objectID": "docs/it/decksharp_notes.html#decisioni-aperte",
+    "href": "docs/it/decksharp_notes.html#decisioni-aperte",
+    "title": "Note di Design DECK#",
+    "section": "Decisioni aperte",
+    "text": "Decisioni aperte\nDA-01 — CHIUSA (DC-16, DC-18): la coesistenza di più glifi nella stessa zona non si pone — ogni zona ha al massimo un glifo DECK#.\nDA-02 — Notazione per subset di mazzo: sistema standard per documentare quale sottoinsieme viene usato (es. DECK#/♠A-6).\nDA-03 — CHIUSA: compatibilità con mazzi non standard fuori scope per definizione. Il prerequisito di DECK# è un mazzo francese/poker standard (52 + 2 Jolly). Mazzi spagnoli, tedeschi, tarocchi non soddisfano il substrato ereditato della sezione 3.\nDA-04 — CHIUSA (rigettata): i marcatori di quadrante sul dorso sarebbero utili in tile mode con carta coperta, ma il pattern del dorso varia da mazzo a mazzo in modo imprevedibile — su dorsi con motivi fitti i marcatori sarebbero illeggibili o nascosti. DC-07 (dorso non annotabile) rimane valido senza eccezioni.\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html",
+    "href": "docs/it/decksharp_guida_annotazione.html",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "",
+    "text": "version: 0.1.0 · status: draft"
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#cosa-serve",
+    "href": "docs/it/decksharp_guida_annotazione.html#cosa-serve",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Cosa serve",
+    "text": "Cosa serve\n\nUn mazzo di carte francesi standard (52 carte + 2 Jolly)\nUn pennarello permanente nero a punta fine\nUn pennarello permanente rosso a punta fine\nLa matrice di annotazione (sezione 13 della specifica, o il file decksharp_matrix.csv)\n\nTempo stimato: 15–20 minuti."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#prima-di-iniziare",
+    "href": "docs/it/decksharp_guida_annotazione.html#prima-di-iniziare",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Prima di iniziare",
+    "text": "Prima di iniziare\nIl mazzo DECK# si annota una volta sola, prima di qualsiasi partita. Le annotazioni sono permanenti. Non ci sono annotazioni da fare durante il gioco: gli stati variabili si gestiscono con token fisici (dadi, segnalini, monete).\nOgni carta riceve quattro tipi di annotazione, in zone distinte:\n\n\n\n\n\n\n\n\nAnnotazione\nZona\nStrumento\n\n\n\n\nMarcatori di quadrante\nDorso\nPennarello nero\n\n\nMarcatori di connettività\nBordi fisici (recto)\nPennarello nero\n\n\nPunto di orientamento (polo nord)\nAngolo SE (recto)\nPennarello nero\n\n\nGlifo primario + modificatore\nZone S/N e NE/SW (recto)\nNero o rosso (vedi sotto)\n\n\n\nRegola cromatica: il colore del glifo è sempre contrastante rispetto al seme della carta. - Carte rosse (♥ ♦) → glifi in nero - Carte nere (♣ ♠) → glifi in rosso\nIl colore del glifo non è una scelta: si ricava automaticamente dal seme."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#preparazione-divisione-del-mazzo",
+    "href": "docs/it/decksharp_guida_annotazione.html#preparazione-divisione-del-mazzo",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Preparazione: divisione del mazzo",
+    "text": "Preparazione: divisione del mazzo\nSepara il mazzo in tre gruppi:\n\nCarte rosse (♥ ♦) — 26 carte\nCarte nere (♣ ♠) — 26 carte\nJolly — 2 carte, messe da parte\n\nLavora prima sulle carte rosse: richiedono solo il pennarello nero per l’intera annotazione. Procedi poi con le carte nere: richiedono il cambio di strumento solo nell’ultima fase (glifi in rosso). Affronta i Jolly alla fine — hanno un’annotazione minima e separata."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#fase-1-marcatori-di-quadrante-dorso",
+    "href": "docs/it/decksharp_guida_annotazione.html#fase-1-marcatori-di-quadrante-dorso",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Fase 1 — Marcatori di quadrante (dorso)",
+    "text": "Fase 1 — Marcatori di quadrante (dorso)\nStrumento: pennarello nero.\nCon le carte orientate sul dorso, traccia i marcatori di quadrante su tutte le 54 carte (rosse + nere + Jolly).\nI marcatori di quadrante sono identici su tutte le carte e indicano al giocatore il centro e i lati della carta quando è posata coperta sul tavolo. Scegli una delle due varianti e mantienila per tutto il mazzo:\nVariante minima — quattro segmenti corti che partono dal punto medio di ciascun bordo verso il centro, senza attraversarlo:\n      |\n  —     —\n      |\nVariante estesa — croce completa da bordo a bordo:\n      |\n  ————+————\n      |\nLascia asciugare l’inchiostro prima di girare le carte."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#fase-2-marcatori-di-connettività-bordi",
+    "href": "docs/it/decksharp_guida_annotazione.html#fase-2-marcatori-di-connettività-bordi",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Fase 2 — Marcatori di connettività (bordi)",
+    "text": "Fase 2 — Marcatori di connettività (bordi)\nStrumento: pennarello nero.\nConsulta la matrice di annotazione. Per ogni carta, la colonna Connettività indica quali bordi sono aperti (connessi). I bordi non elencati ricevono un marcatore di muro: una linea spessa tracciata lungo il margine bianco esterno della carta (~3–4 mm), sul recto.\nEsempio: se la matrice indica N+W, i bordi Nord e Ovest sono aperti — non si toccano. I bordi Sud ed Est ricevono il marcatore di muro.\nLascia qualche secondo di asciugatura tra una carta e l’altra prima di sovrapporle."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#fase-3-punto-di-orientamento-polo-nord",
+    "href": "docs/it/decksharp_guida_annotazione.html#fase-3-punto-di-orientamento-polo-nord",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Fase 3 — Punto di orientamento (polo nord)",
+    "text": "Fase 3 — Punto di orientamento (polo nord)\nStrumento: pennarello nero.\nTraccia un piccolo punto • nell’angolo estremo in basso a destra di ogni carta — la zona SE del recto. Questo punto rompe la simmetria verticale delle carte standard e indica il polo nord: il lato con l’indice pre-stampato in alto a sinistra (NW).\nIl punto va su tutte le 52 carte regolari e sui 2 Jolly."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#fase-4-glifi-primari-e-modificatori",
+    "href": "docs/it/decksharp_guida_annotazione.html#fase-4-glifi-primari-e-modificatori",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Fase 4 — Glifi primari e modificatori",
+    "text": "Fase 4 — Glifi primari e modificatori\nStrumento: pennarello nero per le carte rosse (♥ ♦) · pennarello rosso per le carte nere (♣ ♠).\nConsulta la matrice di annotazione. Per ogni carta, annota:\n\nGlifo primario nella zona S (bordo medio inferiore, interno alla carta) e il suo speculare capovolto in zona N (bordo medio superiore).\nGlifo modificatore nell’angolo NE (angolo superiore destro) e il suo speculare capovolto in zona SW (angolo inferiore sinistro).\n\nLe posizioni speculari (N e SW) servono a rendere la carta leggibile a ventaglio, indipendentemente dall’orientamento in mano.\nIl vocabolario DECK# comprende sette glifi:\n\n\n\nGlifo\nCome si traccia\n\n\n\n\n• punto\nun punto\n\n\n— linea\nuna linea orizzontale\n\n\n+ croce\ndue linee perpendicolari\n\n\n× diagonale\ndue linee diagonali\n\n\n△ triangolo\ntre tratti\n\n\n○ cerchio\nun anello chiuso\n\n\n□ quadrato\nquattro tratti"
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#eccezione-i-jolly",
+    "href": "docs/it/decksharp_guida_annotazione.html#eccezione-i-jolly",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Eccezione: i Jolly",
+    "text": "Eccezione: i Jolly\nI due Jolly ricevono il marcatore di quadrante sul dorso (Fase 1, identico alle 52 carte regolari) e il punto di orientamento in zona SE (Fase 3). Nessun marcatore di connettività, nessun glifo primario, nessun modificatore.\nSono variabili non istanziate: ogni gioco decide se e come usarli."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#schema-riepilogativo-per-carta",
+    "href": "docs/it/decksharp_guida_annotazione.html#schema-riepilogativo-per-carta",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Schema riepilogativo per carta",
+    "text": "Schema riepilogativo per carta\n\n\n\nElemento\nPosizione\n52 carte regolari\n2 Jolly\n\n\n\n\nMarcatori di quadrante\nDorso\n✓\n✓\n\n\nMarcatori di connettività\nBordi recto\n✓ (da matrice)\n—\n\n\nPunto polo nord\nAngolo SE recto\n✓\n✓\n\n\nGlifo primario\nZone S + N recto\n✓ (da matrice)\n—\n\n\nGlifo modificatore\nZone NE + SW recto\n✓ (da matrice)\n—"
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_annotazione.html#come-leggere-la-matrice-di-annotazione",
+    "href": "docs/it/decksharp_guida_annotazione.html#come-leggere-la-matrice-di-annotazione",
+    "title": "Guida all’Annotazione DECK#",
+    "section": "Come leggere la matrice di annotazione",
+    "text": "Come leggere la matrice di annotazione\nLa matrice elenca tutte le 54 carte con tre informazioni:\n\nConnettività: i bordi aperti, in notazione N/S/E/W separati da +. I bordi non elencati ricevono il marcatore di muro.\nPrimario: il glifo da tracciare in zona S (e N speculare).\nModificatore: il glifo da tracciare in zona NE (e SW speculare).\n\nIl colore dei glifi non è nella matrice perché si ricava sempre dal seme: nero per ♥/♦, rosso per ♣/♠.\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html",
+    "href": "docs/en/decksharp_notes.html",
+    "title": "DECK# Design Notes",
+    "section": "",
+    "text": "version: 0.7.0 · internal document"
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-01-system-name-deck",
+    "href": "docs/en/decksharp_notes.html#dc-01-system-name-deck",
+    "title": "DECK# Design Notes",
+    "section": "DC-01 — System name: DECK",
+    "text": "DC-01 — System name: DECK\nDecision: the system is named DECK#. Alternative considered: Deckpack. Rationale: DECK# (from Greek: language, vocabulary) reflects the nature of the system — a shared vocabulary for communicating mechanical information. It is language-agnostic while being a non-neutral name, which is appropriate: the name is a meta-label, not a system component. Deckpack remains valid for potential physical editions or commercial derivatives."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-02-base-deck-size-52-2-jokers",
+    "href": "docs/en/decksharp_notes.html#dc-02-base-deck-size-52-2-jokers",
+    "title": "DECK# Design Notes",
+    "section": "DC-02 — Base deck size: 52 + 2 Jokers",
+    "text": "DC-02 — Base deck size: 52 + 2 Jokers\nDecision: 54 cards total. Rationale: Jokers are structurally distinct in the standard deck — the only cards without a suit or rank. Excluding them would waste a design resource. Advertising cards present in some decks are not standardized and are not part of the specification."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-03-permanent-marking",
+    "href": "docs/en/decksharp_notes.html#dc-03-permanent-marking",
+    "title": "DECK# Design Notes",
+    "section": "DC-03 — Permanent marking",
+    "text": "DC-03 — Permanent marking\nDecision: annotations with permanent marker. Alternatives considered: erasable for all layers; mixed system. Rationale: permanent marking transforms each deck into a unique artifact. Variable states are tracked with physical tokens, which are already removable by nature. The mixed system is available as an optional practice for individual games but is not prescribed."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-04-open-system-no-rank-function-mapping",
+    "href": "docs/en/decksharp_notes.html#dc-04-open-system-no-rank-function-mapping",
+    "title": "DECK# Design Notes",
+    "section": "DC-04 — Open system: no rank → function mapping",
+    "text": "DC-04 — Open system: no rank → function mapping\nDecision: DECK# does not assign mechanical functions by rank. Discarded alternative: cardpack-spec v0.2.0 had defined Space (A–6) / Resource (7–10) / Actor (J–Q–K) as a fixed partition. Rationale: that partition is the structure of a specific tactical game, not an open vocabulary. It blocks any game that wants to use an Ace as a character or a King as a territory. An open system does not prescribe what each card represents — each game built on top does that."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-05-seven-primary-glyphs-closed-vocabulary",
+    "href": "docs/en/decksharp_notes.html#dc-05-seven-primary-glyphs-closed-vocabulary",
+    "title": "DECK# Design Notes",
+    "section": "DC-05 — Seven primary glyphs (closed vocabulary)",
+    "text": "DC-05 — Seven primary glyphs (closed vocabulary)\nDecision: exactly 7 glyphs: dot, line, cross, diagonal, triangle, circle, square. Rationale: they cover the primitive geometric shapes producible with 1–4 strokes. Sufficiently visually distinct from each other and from suits. The vocabulary is closed to guarantee interoperability — a glyph not in the list does not exist in DECK#. The asterisk from cardpack-spec v0.2.0 was excluded because visually ambiguous and motivated by a semantic role (Joker) that the specification must not pre-assign."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-06-glyph-color-contrasting-rule",
+    "href": "docs/en/decksharp_notes.html#dc-06-glyph-color-contrasting-rule",
+    "title": "DECK# Design Notes",
+    "section": "DC-06 — Glyph color: contrasting rule",
+    "text": "DC-06 — Glyph color: contrasting rule\nOriginal decision (v0.1–v0.6): marker color is an independent semantic layer, orthogonal to the glyph; convention not prescribed. Updated decision (v0.7): glyph color follows a fixed contrasting rule — black glyphs on red cards (♥/♦), red glyphs on black cards (♣/♠). See DC-22. Rationale for change: a semantic axis that is “available but not prescribed” never enters the canonical annotation. The contrasting rule is simple, memorable, and guarantees high legibility on all cards without requiring a color column in the matrix."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-07-back-exception-for-quadrant-markers",
+    "href": "docs/en/decksharp_notes.html#dc-07-back-exception-for-quadrant-markers",
+    "title": "DECK# Design Notes",
+    "section": "DC-07 — Back: exception for quadrant markers",
+    "text": "DC-07 — Back: exception for quadrant markers\nOriginal decision (v0.1–v0.5): back excluded from annotation. Updated decision (v0.6): the back of the 52 standard cards receives only quadrant markers. Two variants allowed: minimal (four short segments at midpoints) or extended (full + cross). The choice is left to the annotator. Jokers do not receive quadrant markers on the back. Rationale for exception: quadrant markers are identical on all 52 standard cards — they reveal no differential information. The original rationale (preserving anonymity for fog of war) does not apply to uniform markers. The benefit is eliminating the coexistence of quadrant markers and the primary glyph in S zone (DA-01 / DC-21, now superseded)."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-08-north-pole-convention",
+    "href": "docs/en/decksharp_notes.html#dc-08-north-pole-convention",
+    "title": "DECK# Design Notes",
+    "section": "DC-08 — North pole convention",
+    "text": "DC-08 — North pole convention\nDecision: north pole = side with index in canonical position (NW at top left). Dot in SE as orientation marker. Problem: cards have vertical symmetry for ergonomic reasons. With spatial elements, this must be explicitly broken. Rationale: the SE dot is the least invasive solution — it covers nothing, is asymmetric, requires one stroke. A fixed arrow would have introduced spatial semantics even for games without orientation."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-09-symmetrical-placement-in-hand-mode",
+    "href": "docs/en/decksharp_notes.html#dc-09-symmetrical-placement-in-hand-mode",
+    "title": "DECK# Design Notes",
+    "section": "DC-09 — Symmetrical placement in hand mode",
+    "text": "DC-09 — Symmetrical placement in hand mode\nDecision: annotations in two mirror positions — primary glyph in S zone with mirror in N; modifier in NE corner with mirror in SW. See DC-18 for specific zones. Source: cardpack-spec v0.2.0 (zones updated in DC-18). Rationale: standard ergonomic convention for card decks — indices are already duplicated and rotated for the same reason. Guarantees fan readability without additional rules."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-10-quadrant-markers",
+    "href": "docs/en/decksharp_notes.html#dc-10-quadrant-markers",
+    "title": "DECK# Design Notes",
+    "section": "DC-10 — Quadrant markers",
+    "text": "DC-10 — Quadrant markers\nDecision: present on the back of the 52 standard cards (migrated from front face in v0.6, see DC-07 rev.). Two variants: minimal (four short segments) or extended (+ cross). Absent on Jokers. Source: cardpack-spec v0.2.0 (universality established in DC-17; migration to back in DC-07 rev. v0.6). Rationale: on the front face, short segments were necessary to avoid covering pips. On the back, the extended variant (full cross) becomes viable without interference.\nRevision v0.7.1 (2026-05-13): extended to Jokers on the back as well. See DC-11 rev. for rationale."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-11-jokers-as-uninstantiated-variables",
+    "href": "docs/en/decksharp_notes.html#dc-11-jokers-as-uninstantiated-variables",
+    "title": "DECK# Design Notes",
+    "section": "DC-11 — Jokers as uninstantiated variables",
+    "text": "DC-11 — Jokers as uninstantiated variables\nDecision: Jokers receive only the SE dot (north pole). No primary glyph, no modifier, no connectivity markers, no quadrant markers. Discarded alternative: fixed asterisk in cardpack-spec v0.2.0. Rationale: the asterisk assigns Jokers a specific functional role before any game uses them. An open system leaves Jokers as neutral surfaces. Their absence from the inherited axes is already sufficient to distinguish them.\nRevision v0.7.1 (2026-05-13): Jokers receive quadrant markers on the back. The original rationale (Joker neutrality as a blank surface) applies to the front face, not the back: quadrant markers are uniform on all cards and convey no differential information. Their absence on Joker backs made them recognizable when face-down, compromising fog of war. The neutrality principle remains intact: the Joker is still free of pre-assigned semantics on the front face."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-12-base-and-extended-profiles",
+    "href": "docs/en/decksharp_notes.html#dc-12-base-and-extended-profiles",
+    "title": "DECK# Design Notes",
+    "section": "DC-12 — Base and Extended profiles",
+    "text": "DC-12 — Base and Extended profiles\nDecision: two profiles with increasing requirements. Source: cardpack-spec v0.2.0 (absent in DECK# v0.1). Rationale: the system must be accessible with minimal materials but should not pretend all games have the same requirements. The distinction is a scope declaration, not a hierarchy."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-13-designer-responsibilities-section",
+    "href": "docs/en/decksharp_notes.html#dc-13-designer-responsibilities-section",
+    "title": "DECK# Design Notes",
+    "section": "DC-13 — “Designer responsibilities” section",
+    "text": "DC-13 — “Designer responsibilities” section\nDecision: explicit list of what every game built on DECK# must specify. Rationale: without this section, a designer does not know where their work begins. The list delimits the interface between specification and game."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-14-cc-by-4.0-license",
+    "href": "docs/en/decksharp_notes.html#dc-14-cc-by-4.0-license",
+    "title": "DECK# Design Notes",
+    "section": "DC-14 — CC BY 4.0 License",
+    "text": "DC-14 — CC BY 4.0 License\nDecision: Creative Commons Attribution 4.0 International. Alternatives considered: CC0, CC BY-SA, proprietary license with usage permission. Rationale: CC BY 4.0 balances openness and attribution. It permits commercial use, does not impose copyleft on derivatives, and requires only source citation. CC0 would have sacrificed any ecosystem traceability. CC BY-SA would have created friction for commercial games."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-15-single-structural-layer",
+    "href": "docs/en/decksharp_notes.html#dc-15-single-structural-layer",
+    "title": "DECK# Design Notes",
+    "section": "DC-15 — Single structural layer",
+    "text": "DC-15 — Single structural layer\nDecision: glyphs are structural by definition. There is no separate semantic layer added by the game — the designer interprets the structural glyphs; they do not add their own layer. Discarded alternative: two-layer model (DECK# structural + game semantic). Rationale: the structural/semantic layer distinction is conceptual, not physical. Only one annotation layer exists on the deck. Semantics is a reading operation, not a writing one."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-16-three-structural-dimensions-per-card",
+    "href": "docs/en/decksharp_notes.html#dc-16-three-structural-dimensions-per-card",
+    "title": "DECK# Design Notes",
+    "section": "DC-16 — Three structural dimensions per card",
+    "text": "DC-16 — Three structural dimensions per card\nDecision: each card is defined by three dimensions: Connectivity (open edge patterns across 15 configurations), Primary (glyph in S zone), Modifier (glyph in NE corner). Positional hierarchy, not semantic: identical Primary + Modifier (e.g., ×/×) are legitimate combinations. Rationale: three independent dimensions create a combinatorial space (15 × 7 × 7 = 735 theoretical configurations) far richer than the 52 slots needed, guaranteeing design freedom in distribution."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-17-universal-quadrant-markers",
+    "href": "docs/en/decksharp_notes.html#dc-17-universal-quadrant-markers",
+    "title": "DECK# Design Notes",
+    "section": "DC-17 — Universal quadrant markers",
+    "text": "DC-17 — Universal quadrant markers\nDecision: quadrant markers are present on all 52 standard cards. Absent on Jokers. Discarded alternative: variable presence as a matrix dimension. Rationale: uniform spatial capability simplifies annotation and shifts capacity management to the game, which can ignore it, use it partially, or exploit it fully."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-18-zones-primary-in-s-modifier-in-ne",
+    "href": "docs/en/decksharp_notes.html#dc-18-zones-primary-in-s-modifier-in-ne",
+    "title": "DECK# Design Notes",
+    "section": "DC-18 — Zones: Primary in S, Modifier in NE",
+    "text": "DC-18 — Zones: Primary in S, Modifier in NE\nDecision: primary glyph in S zone (internal, lower middle edge) with mirror in N; modifier in NE corner with mirror in SW. Center not occupied by DECK# annotations. Discarded alternative: primary at center (blocked by pips on number cards). Rationale: S zone is visible when cards are held in a fan; it is clean and separated from pips for all cards. NE is the second most visible corner. The center remains readable for pips and available as a neutral visual space."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-19-annotation-matrix-as-design-artifact",
+    "href": "docs/en/decksharp_notes.html#dc-19-annotation-matrix-as-design-artifact",
+    "title": "DECK# Design Notes",
+    "section": "DC-19 — Annotation matrix as design artifact",
+    "text": "DC-19 — Annotation matrix as design artifact\nDecision: the distribution of connectivity and glyphs across 52 cards is an authored artifact, orthogonal to rank/suit/color by deliberate construction. No algorithmic formula connects substrate properties to structural annotation. Rationale: formula-based orthogonality would require using rank/suit as an index, implicitly re-encoding them. Design-based orthogonality is more robust: no systematic correlation, controlled topological variety."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-20-pre-session-annotation-as-absolute-standard",
+    "href": "docs/en/decksharp_notes.html#dc-20-pre-session-annotation-as-absolute-standard",
+    "title": "DECK# Design Notes",
+    "section": "DC-20 — Pre-session annotation as absolute standard",
+    "text": "DC-20 — Pre-session annotation as absolute standard\nDecision: the DECK# deck is fully annotated before any session. No in-game annotation for the structural layer. Rationale: consistent with the deck-as-fixed-artifact model. Removes a source of ambiguity from the “Designer responsibilities” section — it is not a game choice, it is a system constraint."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-22-glyph-color-contrasting-rule",
+    "href": "docs/en/decksharp_notes.html#dc-22-glyph-color-contrasting-rule",
+    "title": "DECK# Design Notes",
+    "section": "DC-22 — Glyph color: contrasting rule",
+    "text": "DC-22 — Glyph color: contrasting rule\nDecision: black glyphs on red cards (♥/♦); red glyphs on black cards (♣/♠). Fixed rule, no color column in the matrix. Discarded alternatives: (1) color as independent semantic axis in the matrix — requires designed distribution and adds complexity; (2) all glyphs in black — loses legibility on black cards. Rationale: contrasting color is entirely derivable from suit (zero new differential information) but maximizes visual separation between annotation and substrate. The rule’s simplicity is its primary value: anyone annotating the deck can derive it without consulting the matrix."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#dc-21-coexistence-of-quadrant-marker-and-primary-glyph-in-s-zone",
+    "href": "docs/en/decksharp_notes.html#dc-21-coexistence-of-quadrant-marker-and-primary-glyph-in-s-zone",
+    "title": "DECK# Design Notes",
+    "section": "DC-21 — Coexistence of quadrant marker and primary glyph in S zone",
+    "text": "DC-21 — Coexistence of quadrant marker and primary glyph in S zone\nSUPERSEDED in v0.6 by DC-07 rev. Quadrant markers migrate to the back: coexistence with the primary glyph in S zone is no longer an issue. Section 5.1 of the spec (placement diagram) has been removed."
+  },
+  {
+    "objectID": "docs/en/decksharp_notes.html#open-decisions",
+    "href": "docs/en/decksharp_notes.html#open-decisions",
+    "title": "DECK# Design Notes",
+    "section": "Open decisions",
+    "text": "Open decisions\nDA-01 — CLOSED (DC-16, DC-18): coexistence of multiple glyphs in the same zone is not an issue — each zone holds at most one DECK# glyph.\nDA-02 — Deck subset notation: standard system for documenting which subset is used (e.g., DECK#/♠A–6).\nDA-03 — CLOSED: compatibility with non-standard decks is out of scope by definition. DECK#’s prerequisite is a standard French/poker deck (52 + 2 Jokers). Spanish, German, and tarot decks do not satisfy the inherited substrate of section 3.\nDA-04 — CLOSED (rejected): quadrant markers on the back would be useful in tile mode with a face-down card, but the back pattern varies from deck to deck in unpredictable ways — on decks with dense patterns the markers would be illegible or hidden. DC-07 (back not annotatable) remains valid without exceptions.\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html",
+    "href": "docs/en/decksharp_annotation_guide.html",
+    "title": "DECK# Annotation Guide",
+    "section": "",
+    "text": "version: 0.1.0 · status: draft"
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#what-you-need",
+    "href": "docs/en/decksharp_annotation_guide.html#what-you-need",
+    "title": "DECK# Annotation Guide",
+    "section": "What you need",
+    "text": "What you need\n\nA standard French-suited playing card deck (52 cards + 2 Jokers)\nA fine-tip black permanent marker\nA fine-tip red permanent marker\nThe annotation matrix (section 13 of the specification, or the decksharp_matrix.csv file)\n\nEstimated time: 15–20 minutes."
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#before-you-begin",
+    "href": "docs/en/decksharp_annotation_guide.html#before-you-begin",
+    "title": "DECK# Annotation Guide",
+    "section": "Before you begin",
+    "text": "Before you begin\nThe DECK# deck is annotated once, before any play session. Annotations are permanent. There is no in-game annotation: variable states are managed with physical tokens (dice, tokens, coins).\nEach card receives four types of annotation, in distinct zones:\n\n\n\n\n\n\n\n\nAnnotation\nZone\nTool\n\n\n\n\nQuadrant markers\nBack\nBlack marker\n\n\nConnectivity markers\nPhysical edges (front face)\nBlack marker\n\n\nOrientation dot (north pole)\nSE corner (front face)\nBlack marker\n\n\nPrimary glyph + modifier\nS/N and NE/SW zones (front face)\nBlack or red (see below)\n\n\n\nColor rule: glyph color is always contrasting relative to the card’s suit. - Red cards (♥ ♦) → glyphs in black - Black cards (♣ ♠) → glyphs in red\nGlyph color is not a choice: it is automatically derived from suit."
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#preparation-sorting-the-deck",
+    "href": "docs/en/decksharp_annotation_guide.html#preparation-sorting-the-deck",
+    "title": "DECK# Annotation Guide",
+    "section": "Preparation: sorting the deck",
+    "text": "Preparation: sorting the deck\nSeparate the deck into three groups:\n\nRed cards (♥ ♦) — 26 cards\nBlack cards (♣ ♠) — 26 cards\nJokers — 2 cards, set aside\n\nWork first on red cards: they require only the black marker for all annotation. Then proceed to black cards: they require a tool switch only in the final phase (glyphs in red). Handle Jokers last — they have minimal, separate annotation."
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#phase-1-quadrant-markers-back",
+    "href": "docs/en/decksharp_annotation_guide.html#phase-1-quadrant-markers-back",
+    "title": "DECK# Annotation Guide",
+    "section": "Phase 1 — Quadrant markers (back)",
+    "text": "Phase 1 — Quadrant markers (back)\nTool: black marker.\nWith cards oriented face-down, draw quadrant markers on all 54 cards (red + black + Jokers).\nQuadrant markers are identical on all cards and indicate the center and sides of the card to the player when it is placed face-down on the table. Choose one of the two variants and keep it consistent throughout the deck:\nMinimal variant — four short segments starting from the midpoint of each edge toward the center, without crossing it:\n      |\n  —     —\n      |\nExtended variant — full cross from edge to edge:\n      |\n  ————+————\n      |\nAllow the ink to dry before flipping the cards."
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#phase-2-connectivity-markers-edges",
+    "href": "docs/en/decksharp_annotation_guide.html#phase-2-connectivity-markers-edges",
+    "title": "DECK# Annotation Guide",
+    "section": "Phase 2 — Connectivity markers (edges)",
+    "text": "Phase 2 — Connectivity markers (edges)\nTool: black marker.\nConsult the annotation matrix. For each card, the Connectivity column indicates which edges are open (connected). Edges not listed receive a wall marker: a thick line drawn along the external white margin of the card (~3–4 mm), on the front face.\nExample: if the matrix shows N+W, the North and West edges are open — leave them unmarked. The South and East edges receive the wall marker.\nAllow a few seconds of drying time between cards before stacking them."
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#phase-3-orientation-dot-north-pole",
+    "href": "docs/en/decksharp_annotation_guide.html#phase-3-orientation-dot-north-pole",
+    "title": "DECK# Annotation Guide",
+    "section": "Phase 3 — Orientation dot (north pole)",
+    "text": "Phase 3 — Orientation dot (north pole)\nTool: black marker.\nDraw a small dot • in the far lower right corner of each card — the SE zone of the front face. This dot breaks the vertical symmetry of standard cards and indicates the north pole: the side with the pre-printed index at top left (NW).\nThe dot goes on all 52 standard cards and both Jokers."
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#phase-4-primary-glyphs-and-modifiers",
+    "href": "docs/en/decksharp_annotation_guide.html#phase-4-primary-glyphs-and-modifiers",
+    "title": "DECK# Annotation Guide",
+    "section": "Phase 4 — Primary glyphs and modifiers",
+    "text": "Phase 4 — Primary glyphs and modifiers\nTool: black marker for red cards (♥ ♦) · red marker for black cards (♣ ♠).\nConsult the annotation matrix. For each card, annotate:\n\nPrimary glyph in the S zone (lower middle edge, inside the card) and its rotated mirror in the N zone (upper middle edge).\nModifier glyph in the NE corner (upper right corner) and its rotated mirror in the SW zone (lower left corner).\n\nThe mirror positions (N and SW) make the card readable in a fan, regardless of orientation in hand.\nThe DECK# vocabulary comprises seven glyphs:\n\n\n\nGlyph\nHow to draw it\n\n\n\n\n• dot\na single dot\n\n\n— line\na horizontal line\n\n\n+ cross\ntwo perpendicular lines\n\n\n× diagonal\ntwo diagonal lines\n\n\n△ triangle\nthree strokes\n\n\n○ circle\na closed ring\n\n\n□ square\nfour strokes"
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#exception-jokers",
+    "href": "docs/en/decksharp_annotation_guide.html#exception-jokers",
+    "title": "DECK# Annotation Guide",
+    "section": "Exception: Jokers",
+    "text": "Exception: Jokers\nThe two Jokers receive the quadrant marker on the back (Phase 1, identical to the 52 standard cards) and the orientation dot in the SE zone (Phase 3). No connectivity markers, no primary glyph, no modifier.\nThey are uninstantiated variables: each game decides whether and how to use them."
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#summary-chart-per-card",
+    "href": "docs/en/decksharp_annotation_guide.html#summary-chart-per-card",
+    "title": "DECK# Annotation Guide",
+    "section": "Summary chart per card",
+    "text": "Summary chart per card\n\n\n\nElement\nPosition\n52 standard cards\n2 Jokers\n\n\n\n\nQuadrant markers\nBack\n✓\n✓\n\n\nConnectivity markers\nFront face edges\n✓ (from matrix)\n—\n\n\nNorth pole dot\nSE corner front face\n✓\n✓\n\n\nPrimary glyph\nS + N zones front face\n✓ (from matrix)\n—\n\n\nModifier glyph\nNE + SW zones front face\n✓ (from matrix)\n—"
+  },
+  {
+    "objectID": "docs/en/decksharp_annotation_guide.html#how-to-read-the-annotation-matrix",
+    "href": "docs/en/decksharp_annotation_guide.html#how-to-read-the-annotation-matrix",
+    "title": "DECK# Annotation Guide",
+    "section": "How to read the annotation matrix",
+    "text": "How to read the annotation matrix\nThe matrix lists all 54 cards with three pieces of information:\n\nConnectivity: open edges, in N/S/E/W notation separated by +. Edges not listed receive the wall marker.\nPrimary: the glyph to draw in the S zone (and its mirror in N).\nModifier: the glyph to draw in the NE zone (and its mirror in SW).\n\nGlyph color is not in the matrix because it is always derived from suit: black for ♥/♦, red for ♣/♠.\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
     "objectID": "docs/about.html",
     "href": "docs/about.html",
     "title": "About DECK#",
@@ -54,5 +544,327 @@
     "title": "DECK#",
     "section": "What is DECK#?",
     "text": "What is DECK#?\nDECK# is a layered annotation protocol for a standard playing card deck (52 + 2 Jokers). Its purpose is to allow anyone to build and play complex board games using materials available anywhere, at minimal cost: a standard French-suited deck and two permanent markers.\nInspired by Piecepack (James Kyle, 2000), DECK# is an open system that defines a shared graphic vocabulary — 7 geometric glyphs, spatial zones, and connectivity markers — without prescribing game mechanics or semantics. Games built on DECK# assign their own meanings to this vocabulary.\nDECK# is language-agnostic: the entire graphic vocabulary consists of geometric glyphs and Arabic numerals. No text is necessary or permitted in annotations.\n\n\n\n7 primary glyphs —  •  +  ×  △  ○  □ Fixed vocabulary, open semantics.\n\n\n\n\n2 markers only Black and red permanent ink. Color is derived, never a free choice.\n\n\n\n\nTwo profiles Base (hand-held cards) and Extended (grid/tactical tiles)."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html",
+    "href": "docs/en/decksharp_specs.html",
+    "title": "DECK# Specification",
+    "section": "",
+    "text": "version: 0.7.0 · status: draft"
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#nature-and-scope-of-the-system",
+    "href": "docs/en/decksharp_specs.html#nature-and-scope-of-the-system",
+    "title": "DECK# Specification",
+    "section": "1. Nature and scope of the system",
+    "text": "1. Nature and scope of the system\nDECK# is a layered annotation protocol for a standard playing card deck (52 + 2 Jokers).\nIts purpose is to allow anyone to build and play complex board games using materials available anywhere, at minimal cost: a standard French-suited deck and two permanent markers. No proprietary components, no dedicated materials, no dependency on specific publishers or manufacturers.\nDECK# is inspired by Piecepack — an open component system for board games designed by James Kyle in 2000 — sharing its philosophy: a standardized, open substrate on which the community freely builds games. Like Piecepack, DECK# is open source.\nDECK# is not a universal deck. It does not prescribe games, mechanics, gameplay semantics, or genres. It is an open system: it defines a shared graphic vocabulary and a physical annotation structure. Games built on DECK# use this vocabulary and assign their own meanings to it.\nThe standard deck carries three pre-existing information axes that DECK# recognizes as active and untouchable. Annotation adds information the card does not already have; it does not replace what is already there.\nDECK# is language-agnostic. The entire graphic vocabulary consists of geometric glyphs and Arabic numerals. No text is necessary or permitted in annotations.\n\nOut of scope\nThe following elements are explicitly out of scope and delegated to individual games:\n\nThe meaning of suits\nThe meaning of the inherited red/black color axis\nThe meaning of numeric ranks\nThe meaning of each glyph (the vocabulary is shared; the semantics are not)\nThe rank → mechanical function mapping (e.g., A–6 = space, 7–10 = resource)\nMovement rules and grid topology\nResolution, combat, and interaction mechanics\nEconomy and resource mechanics\nWildcard activation conditions\nVictory conditions and scenario objectives\nOracle mechanics for solo or cooperative play\nHow many cards are used\nHow cards are dealt\nThe number of players"
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#design-principles",
+    "href": "docs/en/decksharp_specs.html#design-principles",
+    "title": "DECK# Specification",
+    "section": "2. Design principles",
+    "text": "2. Design principles\n\nMaterial accessibility: the only physical requirement is a standard French-suited deck and two permanent markers (black and red). Materials available anywhere, with no proprietary or dedicated components.\nAdditive, non-destructive: annotations add structural information without overwriting the inherited substrate.\nLanguage-agnostic: no text or letters. Only geometric glyphs and Arabic numerals.\nColor constraint: only black and red markers.\nDual use: cards are valid both as hidden information held in hand and as physical components laid on the table.\nBack reserved for quadrant markers: the back of the 52 standard cards receives only quadrant markers — identical on all cards, therefore carrying no differential information. No other annotations on the back. Uniformity preserves the anonymity of face-down cards.\nComplete artifact: the DECK# deck is fully annotated before any play session. Structural annotation is permanent and fixed. Variable states are tracked with physical tokens, not annotations."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#the-inherited-substrate",
+    "href": "docs/en/decksharp_specs.html#the-inherited-substrate",
+    "title": "DECK# Specification",
+    "section": "3. The inherited substrate",
+    "text": "3. The inherited substrate\n\n3.1 The three axes\n\n\n\n\n\n\n\n\nAxis\nValues\nNature\n\n\n\n\nColor\nRed / Black\nBinary\n\n\nSuit polarity\nHearts vs Diamonds (red) — Clubs vs Spades (black)\nBinary within color\n\n\nRank\nA(1) — 2 — … — 10 — J — Q — K\nOrdinal scale, 13 degrees\n\n\n\nThese axes are immutable. Each game decides how to map them to game concepts; they cannot be physically redefined on the card.\n\n\n3.2 Notes on the substrate\n\nFace cards (J, Q, K) form a subclass of the ordinal rank. Some games may treat them as a separate category.\nThe Joker belongs to none of the three axes. It is structurally outside the system by definition. See section 7.\nThe card back is a surface excluded from annotation. See Principle 5 (section 2)."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#the-graphic-vocabulary",
+    "href": "docs/en/decksharp_specs.html#the-graphic-vocabulary",
+    "title": "DECK# Specification",
+    "section": "4. The graphic vocabulary",
+    "text": "4. The graphic vocabulary\n\n4.1 Principles\n\nAll glyphs can be drawn with a few strokes by anyone, without artistic skill.\nThe only additional chromatic resource is the red marker. Black is the default color.\nNo text. No glyph that references any specific alphabet.\nGlyphs must not be visually confused with the existing suits.\n\n\n\n4.2 Primary glyphs\n\n\n\nGlyph\nStrokes\nNatural semantics (not prescribed)\n\n\n\n\n• dot\n1\npresence, activation, marker\n\n\n— line\n1\nedge, separation, threshold\n\n\n+ cross\n2\nconnection, crossing, union\n\n\n× diagonal\n2\nnegation, block, exclusion\n\n\n△ triangle\n3\ndirection, hierarchy, gradient\n\n\n○ circle\n1 curved\ncycle, containment, neutral state\n\n\n□ square\n4\nzone, region, closed space\n\n\n\nSeven glyphs. The “natural semantics” column suggests intuitive associations; it does not prescribe them.\n\n\n4.3 Glyph color — contrasting rule\nPrimary and modifier glyphs are drawn in the contrasting color relative to the card’s suit:\n\nRed cards (♥ ♦): glyphs in black\nBlack cards (♣ ♠): glyphs in red\n\nThis rule ensures clear visual separation between annotation and substrate on all cards. The glyph color is entirely derivable from suit — it adds no differential information but maximizes legibility.\n\n\n4.4 Numeric glyphs\nDigits 0–9 (Arabic) may be used in annotatable zones as quantities, levels, or counters. They combine with color following the same logic as primary glyphs.\n\n\n4.5 Visual conflicts to avoid\n\n\n\nSuit\nReserved shape\n\n\n\n\nHearts\nHeart shape\n\n\nDiamonds\nFull or empty diamond\n\n\nClubs\nTrefoil / three-lobed shape\n\n\nSpades\nSpade / inverted heart with stem\n\n\n\nThe square □ and circle ○ do not conflict with any suit. The triangle △ is safe if drawn small and in a corner position."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#annotatable-zones",
+    "href": "docs/en/decksharp_specs.html#annotatable-zones",
+    "title": "DECK# Specification",
+    "section": "5. Annotatable zones",
+    "text": "5. Annotatable zones\n[NW] ----[N]---- [NE]\n  |               |\n [W]  [center]  [E]\n  |               |\n[SW] ----[S]---- [SE]\n\n\n\nZone\nPosition\nDECK# Annotation\n\n\n\n\nS\nLower middle edge (internal)\nPrimary glyph\n\n\nN\nUpper middle edge (internal)\nMirror of primary — hand mode\n\n\nNE\nUpper right corner\nModifier glyph\n\n\nSW\nLower left corner\nMirror of modifier — hand mode\n\n\nSE\nLower right corner\nOrientation dot (north pole)\n\n\nNW\nUpper left corner\nReserved — pre-printed index\n\n\nCenter / E / W\n—\nNot used by DECK# annotation\n\n\n\nPhysical edges: connectivity markers occupy the external white margin of the card (~3–4 mm) — physically separate from the internal zones.\nSymmetrical placement rule: each glyph appears in two mirror positions — primary zone and mirror zone. This ensures fan readability regardless of card orientation in hand.\nNote on NW: corner partially occupied by the pre-printed index. No DECK# annotation in this zone."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#the-spatial-system",
+    "href": "docs/en/decksharp_specs.html#the-spatial-system",
+    "title": "DECK# Specification",
+    "section": "6. The spatial system",
+    "text": "6. The spatial system\n\n6.1 The symmetry problem\nStandard cards have vertical symmetry: they read the same upside down. As soon as a game introduces spatial elements, this symmetry must be explicitly broken.\n\n\n6.2 The north pole convention\nThe north pole of a card is the side with the index in canonical position (NW at top left). Recommended practice for sessions with spatial elements: draw a small dot in the SE corner before the session begins — a corner free from printing, asymmetric with respect to the NW index.\n\n\n6.3 Edge markers\n\n\n\n\n\n\n\nMarking\nStructural meaning\n\n\n\n\nThick full-edge line\nWall: passage closed\n\n\nUnmarked edge\nOpen: connected, passable\n\n\nDot • at edge midpoint\nThreshold: intermediate state, defined by the game\n\n\n\nWhen cards are placed adjacent on the table, the edges in contact are read as the interface between two spaces.\n\n\n6.4 Quadrant markers\nQuadrant markers are found on the back of the 52 standard cards. They are identical on all cards — they reveal no differential information when the card is face-down.\nTwo variants are available; the choice is left to whoever annotates the deck:\nMinimal variant — four short segments from the midpoint of each edge toward the interior, without crossing the center:\n      |\n  —     —\n      |\nExtended variant — full cross from edge to edge (the + from the DECK# vocabulary, applied to the back with a fixed structural function):\n      |\n  ————+————\n      |\nBoth variants are drawn in black. Jokers receive quadrant markers on the back — identical to those on the 52 standard cards — but receive no annotation on the front face beyond the SE dot.\n\n\n6.5 Internal direction\nThe triangle △ in a corner zone indicates direction. The orientation of the apex relative to the north pole defines the vector."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#jokers",
+    "href": "docs/en/decksharp_specs.html#jokers",
+    "title": "DECK# Specification",
+    "section": "7. Jokers",
+    "text": "7. Jokers\nJokers receive the SE dot (north pole) on the front face and the quadrant markers on the back. No other structural elements: no connectivity markers, no primary glyph, no modifier.\nThey are uninstantiated variables: no pre-assigned semantics from the specification. The game decides everything. A game may use zero, one, or both Jokers.\nPossible uses (not prescribed): mechanical wildcard, event card, global state tracker, category Joker."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#usage-profiles",
+    "href": "docs/en/decksharp_specs.html#usage-profiles",
+    "title": "DECK# Specification",
+    "section": "8. Usage profiles",
+    "text": "8. Usage profiles\n\nBase Profile\nPure card game, hand management, narrative, solo scenarios.\nComponents: 1 annotated deck (52 + 2) · 1 fine-tip black permanent marker · 1 fine-tip red permanent marker.\nEstimated annotation time: 15–20 minutes.\n\n\nExtended Profile\nTactical grid game, dungeon crawler, skirmish, wargame.\nAdditional components: 6 d6 dice · 12 tokens in 4 distinct groups (3 per group; replaceable with coins, cubes, or any distinguishable objects).\nDice use: 2d6 for resolution, up to 4d6 as counters on a card. Token use: placed on cards to represent entities without covering annotations."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#card-usage-modes",
+    "href": "docs/en/decksharp_specs.html#card-usage-modes",
+    "title": "DECK# Specification",
+    "section": "9. Card usage modes",
+    "text": "9. Card usage modes\n\n9.1 Tile mode\nCard face-up on the table, visible to all, fixed position. Spatial elements active.\n\n\n9.2 Hand mode\nCard in hand, hidden. Spatial elements generally inactive. Annotations must follow the symmetrical placement rule (section 5).\n\n\n9.3 Hand → tile transition\nThe game must specify:\n\nWhether the card is placed face-down or face-up\nWhether orientation (north pole) is chosen by the player or fixed\nWhether spatial annotations become active immediately or at a later point\n\n\n\n9.4 Annotation\nThe DECK# deck is fully annotated once, following the annotation matrix (section 13), and used across multiple sessions without modification. Structural annotation is permanent.\nNo in-game annotation is intended for the structural layer. Variable game states are tracked exclusively with removable physical tokens (dice, tokens, coins)."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#physical-hierarchy",
+    "href": "docs/en/decksharp_specs.html#physical-hierarchy",
+    "title": "DECK# Specification",
+    "section": "10. Physical hierarchy",
+    "text": "10. Physical hierarchy\nThe 52 standard cards have annotations on both faces. Jokers have annotations on the back and only the SE dot on the front face.\nFront face (52 standard cards):\n\nInherited substrate (original printing): always visible, never intentionally covered\nDECK# structural annotation: connectivity on physical edges, primary glyph in S/N zone, modifier in NE/SW zone, north pole dot in SE\nPhysical tokens: objects placed on the card, removable\n\nBack (all 54 cards):\n\nQuadrant markers (minimal or extended variant) — identical on all cards\n\nStructural annotation is fixed and complete. No zone on the front face holds more than one DECK# glyph at a time."
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#designer-responsibilities",
+    "href": "docs/en/decksharp_specs.html#designer-responsibilities",
+    "title": "DECK# Specification",
+    "section": "11. Designer responsibilities",
+    "text": "11. Designer responsibilities\nEvery game built on DECK# must specify:\n\nHow it maps the three inherited axes (rank, color, suit) to game concepts\nWhat semantics it assigns to the DECK# vocabulary glyphs (primary and modifier)\nHow it interprets the spatial system: orientation, north pole, connectivity\nHow it interprets the quadrant markers (present on all cards)\nWhether it uses Jokers and with what role\nWhich profile is required (Base or Extended)\nWhat usage mode is intended and the hand → tile transition rules"
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#license",
+    "href": "docs/en/decksharp_specs.html#license",
+    "title": "DECK# Specification",
+    "section": "12. License",
+    "text": "12. License\nDECK# is released under Creative Commons Attribution 4.0 International (CC BY 4.0).\nAnyone may use, modify, and distribute the specification and games built on it, including for commercial purposes, provided the original source is credited. Games built on DECK# are not required to release their own rulesets under the same license.\n© Roberto Bisceglie — CC BY 4.0"
+  },
+  {
+    "objectID": "docs/en/decksharp_specs.html#annotation-matrix",
+    "href": "docs/en/decksharp_specs.html#annotation-matrix",
+    "title": "DECK# Specification",
+    "section": "13. Annotation matrix",
+    "text": "13. Annotation matrix\nThe matrix defines the fixed structural annotations for all 54 cards. Each card receives:\n\nConnectivity: open edges (others receive a wall marker). Notation: N/S/E/W separated by +.\nPrimary: glyph in S zone (and mirror in N zone for hand mode).\nModifier: glyph in NE corner (and mirror in SW corner for hand mode).\n\nAll 52 standard cards also receive: SE dot (north pole) and quadrant markers.\nJokers receive the SE dot on the front face and quadrant markers on the back.\nThe distribution is an authored design artifact, orthogonal to rank/suit/color by deliberate construction. Glyph color is not included as a column — it is entirely derived from suit according to the contrasting rule (section 4.3): black glyphs on ♥/♦, red glyphs on ♣/♠.\n\n\n\nRank\nSuit\nConnectivity\nPrimary\nModifier\n\n\n\n\nA\n♥\nN+W\n—\n•\n\n\n2\n♥\nS\n□\n+\n\n\n3\n♥\nS+W\n×\n△\n\n\n4\n♥\nW\n△\n+\n\n\n5\n♥\nN+S+E\n□\n△\n\n\n6\n♥\nN+S\n—\n•\n\n\n7\n♥\nE+W\n+\n—\n\n\n8\n♥\nE+W\n•\n—\n\n\n9\n♥\nS+W\n×\n○\n\n\n10\n♥\nN+S+W\n•\n+\n\n\nJ\n♥\nN\n+\n□\n\n\nQ\n♥\nW\n•\n△\n\n\nK\n♥\nN+E\n△\n•\n\n\nA\n♦\nE\n+\n○\n\n\n2\n♦\nN+E\n×\n×\n\n\n3\n♦\nN+S+E+W\n○\n+\n\n\n4\n♦\nN+S+W\n○\n□\n\n\n5\n♦\nN\n□\n•\n\n\n6\n♦\nE+W\n×\n×\n\n\n7\n♦\nS\n+\n—\n\n\n8\n♦\nN+S+E+W\n—\n×\n\n\n9\n♦\nS+E\n□\n—\n\n\n10\n♦\nN+S\n—\n×\n\n\nJ\n♦\nN+S\n△\n•\n\n\nQ\n♦\nN+S+E+W\n○\n—\n\n\nK\n♦\nS+E+W\n•\n□\n\n\nA\n♣\nS\n△\n•\n\n\n2\n♣\nE+W\n□\n•\n\n\n3\n♣\nN+S+E\n•\n△\n\n\n4\n♣\nS+E\n—\n×\n\n\n5\n♣\nN\n□\n+\n\n\n6\n♣\nE\n+\n○\n\n\n7\n♣\nN+E+W\n+\n○\n\n\n8\n♣\nN+E+W\n□\n+\n\n\n9\n♣\nS+E+W\n○\n□\n\n\n10\n♣\nS+E+W\n—\n○\n\n\nJ\n♣\nN+W\n•\n□\n\n\nQ\n♣\nN+E+W\n△\n—\n\n\nK\n♣\nN+S+E\n×\n+\n\n\nA\n♠\nN\n—\n—\n\n\n2\n♠\nW\n×\n+\n\n\n3\n♠\nE\n○\n□\n\n\n4\n♠\nN+S+W\n+\n×\n\n\n5\n♠\nS\n×\n□\n\n\n6\n♠\nE\n•\n△\n\n\n7\n♠\nN+S+E\n○\n×\n\n\n8\n♠\nN+E+W\n•\n△\n\n\n9\n♠\nS+E+W\n△\n○\n\n\n10\n♠\nN+S\n△\n—\n\n\nJ\n♠\nW\n+\n•\n\n\nQ\n♠\nN+S+W\n○\n○\n\n\nK\n♠\nN+S+E+W\n—\n△\n\n\nJoker\n—\n—\n—\n—\n\n\nJoker\n—\n—\n—\n—\n\n\n\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html",
+    "href": "docs/en/decksharp_design_guide.html",
+    "title": "DECK# Game Design Guide",
+    "section": "",
+    "text": "version: 0.1.0 · status: draft"
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#nature-of-this-document",
+    "href": "docs/en/decksharp_design_guide.html#nature-of-this-document",
+    "title": "DECK# Game Design Guide",
+    "section": "1. Nature of this document",
+    "text": "1. Nature of this document\nThis guide does not prescribe how to build a game on DECK#. It shows what the system offers — its mathematical properties, its productive tensions, its spaces of possibility — so the designer can recognize and deliberately exploit them.\nDECK# is a substrate. The designer is the author. This document is an orientation tool, not a constraint."
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#the-mathematics-of-the-deck",
+    "href": "docs/en/decksharp_design_guide.html#the-mathematics-of-the-deck",
+    "title": "DECK# Game Design Guide",
+    "section": "2. The mathematics of the deck",
+    "text": "2. The mathematics of the deck\nBefore assigning any meaning, it is worth understanding the structure you inherit. The annotated DECK# deck carries properties that are not obvious but have deep implications for design.\n\n2.1 Glyph balance\nThe seven primary glyphs (—, •, +, ×, △, ○, □) each appear 7 or 8 times across the 52 standard cards. The same holds for modifiers.\nPractical implication: whatever semantics you assign to a glyph, that semantics will be uniformly distributed throughout the deck. If the circle ○ means “event card,” there will be 7–8 events in the deck — neither too rare nor dominant. Balance is a system guarantee, not a designer responsibility.\nThis also holds for primary+modifier pairs: there are 32 distinct pairs across 52 cards. Variety is high; no combination dominates.\n\n\n2.2 Connectivity structure\nOpen edges per card are distributed across three precise tiers:\nOpen edges | Number of cards |\n||| | 1 | 16 | | 2 | 16 | | 3 | 16 | | 4 (all) | 4 |\nAn almost musical symmetry: three tiers of 16, plus four cards with maximum connectivity. If you are building a game with spatial elements, this distribution is your topological palette: one third of the deck creates dead ends, one third corridors, one third intersections, and four cards are nodes.\n\n\n2.3 The texture of ordinal rank\nConnectivity is not distributed perfectly uniformly relative to card rank — and this is not a flaw; it is a texture that games can exploit.\nRank range | Average open edges |\n||| | A, J (low) | 1.25 – 1.50 | | 2, 5, 6 (low-mid) | 1.50 | | 3, 7, 10 (high-mid) | 2.25 – 2.50 | | 8, K (high) | 3.00 | | Q | 2.75 |\nIf you map ordinal rank to “rank” or “power,” high cards tend to be more spatially connected as well. This can be an interesting resonance — or a tension to deliberately break. Both are valid design choices, but they must be conscious choices.\n\n\n2.4 What is not guaranteed\nConnectivity is orthogonal to suit and color by deliberate construction — no suit dominates another dimension of annotation. Ordinal rank, however, exhibits the texture described above. Keeping this in mind avoids surprises during playtesting."
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#the-three-inherited-axes",
+    "href": "docs/en/decksharp_design_guide.html#the-three-inherited-axes",
+    "title": "DECK# Game Design Guide",
+    "section": "3. The three inherited axes",
+    "text": "3. The three inherited axes\nThe standard deck carries three information axes that DECK# does not redefine. How these axes are mapped to game concepts is the designer’s first major decision — and probably the most structuring one.\n\n3.1 Ordinal rank\nThirteen degrees from A to K. This axis is the richest in terms of granularity.\nPossible mappings:\n\nPower or intensity: higher = stronger. The most intuitive mapping, with connectivity texture as a spatial corollary.\nPhase or stage: A = beginning, K = end. Useful for narrative games or those with temporal arcs.\nDiscrete type: A–6 = one type, 7–K = another. Reduces granularity in favor of simplicity.\nQuantified resources: rank as a pure number. Effective for economic games.\n\nFace cards (J, Q, K) form a natural subclass. Treating them as a special category adds a level of hierarchy at no component cost.\n\n\n3.2 Color\nRed / Black. Binary axis, maximally visible.\nPossible mappings:\n\nFaction or polarity: the most immediate mapping. Two forces, two factions, two states.\nMode: action/reaction, attack/defense, day/night.\nCost and benefit: red = risk, black = safety — or vice versa.\n\nColor is the axis with the highest visual salience. Assigning it a mechanically low-importance meaning is a waste. Assigning it too much importance makes it a game discriminator before the player can even read the annotations.\n\n\n3.3 Suit\nFour suits, two red and two black. Suit carries an internal structure: it is not merely a four-value axis, but a four-value axis with two chromatic pairs.\nPossible mappings:\n\nFour independent categories: classes, biomes, factions, resource types.\nTwo pairs with internal distinction: hearts vs diamonds as variants of “red,” clubs vs spades as variants of “black.” Useful for systems with a two-level hierarchy.\nIgnore suit, use only color: legitimate if four categories create too much complexity for the target game.\n\n\n\n3.4 Axis coherence\nA key question to ask before playtesting: do the inherited axes speak to each other in a way that is coherent with the game’s tone?\nIf rank maps to “threat level” and color maps to “ally/enemy,” the Red King will be a maximum threat from an enemy. The Black Two will be a minimal threat from an ally. Does this combination make sense in your game? Does it produce interesting or confusing situations?\nThere is no single answer. There is only the necessity of having asked."
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#the-graphic-vocabulary",
+    "href": "docs/en/decksharp_design_guide.html#the-graphic-vocabulary",
+    "title": "DECK# Game Design Guide",
+    "section": "4. The graphic vocabulary",
+    "text": "4. The graphic vocabulary\nDECK#’s seven glyphs are aniconic: they depict nothing. This is a feature, not a limitation. Aniconicity ensures that the semantics assigned by the game do not conflict with pre-existing cultural associations — or that it can do so deliberately.\n\n4.1 Assigning semantics to glyphs\nSome practical considerations:\nExploit natural semantics without being bound by them. The specification suggests intuitive associations (△ = direction, × = negation, ○ = cycle). These associations reduce the cognitive load for new players. Using them is often the most efficient choice; ignoring them is possible but requires a compensatory reference system (glossary, legend).\nPrimary and modifier are two distinct semantic layers. Do not treat them as two equivalent “properties.” An effective mapping tends to have the primary as category or type (what this card is) and the modifier as quality or state (how it behaves). The reversal is possible but rare.\nConsider total cognitive load. Seven glyphs per layer, two layers, plus three inherited axes: the player may need to decode up to five dimensions per card. Reading simplicity must be field-tested, not assumed.\n\n\n4.2 Visual conflicts to avoid\nThe specification lists the shapes reserved for suits (heart, diamond, trefoil, spade). The point is not merely aesthetic: a glyph that resembles a suit creates reading ambiguity in real play conditions — worn cards, non-ideal lighting, players unfamiliar with the system.\nThe square □ and circle ○ are the safest glyphs. The triangle △ is safe in a corner position and when small. The line — and cross + are automatically read as separators or connectors — an association to exploit or counter with explicit instruction."
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#the-spatial-system",
+    "href": "docs/en/decksharp_design_guide.html#the-spatial-system",
+    "title": "DECK# Game Design Guide",
+    "section": "5. The spatial system",
+    "text": "5. The spatial system\nDECK#’s spatial system is optional at the profile level (Base vs Extended), but its structure deserves attention even in pure card games — because it defines how cards interact physically on the table.\n\n5.1 Connectivity as a graph\nWhen cards are placed adjacent on the table, edges marked as “wall” close the passage; open edges create connection. The result is an emergent topological graph: not the grid of a standard role-playing game, not a fixed map, but a space that is built card by card during play.\nDesign implications:\n\nThe game can allow the player to choose card orientation (north pole = variable), creating a generative system. Each session produces a different map.\nThe game can fix orientation, using connectivity as an intrinsic card property — a corridor is a corridor, regardless of how it is placed.\nThe game can mix both approaches: free orientation during setup, fixed during play.\n\n\n\n5.2 The hand → tile transition\nWhen a card moves from hand to table, it changes ontology: from hidden information to physical component. This transition must be specified by the designer across three points:\n1. Reveal: is the card placed face-down or face-up? A face-down card is a space of uncertainty; a face-up one is shared information. Both make sense in different contexts.\n2. Orientation: is the north pole chosen by the player or fixed? Choosing orientation is a strategic act if spatial annotations (connectivity, triangle direction) carry mechanical weight.\n3. Activation: do spatial annotations become active immediately or at a later point? A card placed face-down with connectivity that activates only on reveal creates a surprise mechanic. A card with a delayed effect creates planning opportunities.\nThese three decisions are not independent. Defining them together produces the tactical behavior of placement."
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#jokers",
+    "href": "docs/en/decksharp_design_guide.html#jokers",
+    "title": "DECK# Game Design Guide",
+    "section": "6. Jokers",
+    "text": "6. Jokers\nJokers are the two cards structurally outside the system: no inherited axis, no DECK# annotation except the north pole dot on the front face. On the back they receive quadrant markers — identical to all other cards — so they are not recognizable when face-down. They are uninstantiated variables.\nThe choice to use them — and how — says something fundamental about the game’s architecture.\n\n6.1 Mechanical wildcard\nThe Joker as universal card: it can be played as any card in the deck, or as any rank/suit/glyph. Simple to implement, high strategic impact. Risk: trivializing decisions if too powerful, or being ignored if too weak.\n\n\n6.2 Event card\nThe Joker as an interruption of normal flow: when drawn or played, it triggers a global effect. It is not part of the “playable” deck in the ordinary sense — it is a discontinuity marker. Useful for games with narrative arcs or distinct game phases.\n\n\n6.3 Global state tracker\nThe Joker as a fixed component on the table, not in hand. Used to track a shared state — a counter, a phase, an active condition. In this case it is never “played”: it is always visible, always present. Works in games with persistent state variables between turns.\n\n\n6.4 Category Joker\nThe two Jokers as two distinct entities (not interchangeable). Each represents something irreducible to the ordinal system — a unique character, a non-generatable resource, a singular event. Requires the game to give them an explicit identity.\nThe question to ask: does your game need elements that cannot be obtained by varying rank, suit, color, and glyphs? If so, Jokers are the tool. If not, using them is optional — and omitting them is a design choice, not an omission."
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#design-patterns",
+    "href": "docs/en/decksharp_design_guide.html#design-patterns",
+    "title": "DECK# Game Design Guide",
+    "section": "7. Design patterns",
+    "text": "7. Design patterns\nThese are not templates. They are recurring configurations that emerge from how the Base and Extended profiles are used in practice. Recognizing them helps orient the ideation phase.\n\n7.1 Pure card game\nBase Profile. Cards stay in hand or are played as an action (not placed as a grid). The spatial system is inactive or marginal. The core of the game is hand management and resolution of played cards.\nDECK# adds: two semantic levels per card (primary + modifier), plus the three inherited axes. Games with drafting, combo, or emergent narrative mechanics are possible without ever placing a card in tile mode.\nProductive tension: glyph balance guarantees distribution equity. A card game that exploits this will have fewer “broken deck” problems than a custom system.\n\n\n7.2 Tactical grid and dungeon crawler\nExtended Profile. Cards are placed on the table in tile mode, building the play space. Edge connectivity defines the topology. Tokens and dice manage entities and resolution.\nDECK# adds: a generative space that changes each session, with predetermined topological properties (connectivity) but variable arrangement (orientation). The asymmetry of connectivity distribution (see section 2.3) can naturally produce more open or more closed zones.\nProductive tension: the hand → tile transition is the richest mechanical moment. How space is revealed — who decides orientation, when edges activate — defines the tactical rhythm of the game.\n\n\n7.3 Solo and cooperative game\nBase or Extended Profile. A single player (or cooperative group) against the system. DECK# does not include oracle mechanics by default — this is a deliberate choice. The designer must build an oracle engine that uses the deck as a source of answers.\nPossible approaches:\n\nDraw a card and read the primary glyph as an answer (yes/no/maybe, based on binary glyph oppositions).\nCombine rank + primary glyph to generate an event from a table.\nUse the connectivity of the drawn card to determine narrative direction.\n\nDECK# provides sufficient multidimensional semantic space to build rich oracle systems without requiring additional components.\n\n\n7.4 Asymmetric multiplayer\nBase or Extended Profile. Players with different roles, resources, or capabilities. DECK# supports asymmetry through axis mapping: color (red/black) is the most natural axis for differentiating factions. Suit can add a second level of intra-faction differentiation.\nCaution: in an asymmetric game, balanced glyph distribution is a fair resource for all players. If a player has access only to a subset of the deck (by suit or color), glyph distribution in that subset is no longer guaranteed equal. It is worth verifying partial distributions during design."
+  },
+  {
+    "objectID": "docs/en/decksharp_design_guide.html#designer-checklist",
+    "href": "docs/en/decksharp_design_guide.html#designer-checklist",
+    "title": "DECK# Game Design Guide",
+    "section": "8. Designer checklist",
+    "text": "8. Designer checklist\nEvery game built on DECK# requires the designer to explicitly specify the following elements. This checklist extends section 11 of the specification with design-oriented questions.\n\nInherited axes\n\nHow is ordinal rank (A–K) mapped? Is it a continuous scale or discretized into tiers?\nHow is color (red/black) used? Is the mapping mechanically significant?\nHow are suits used? As four categories, two pairs, or is the suit distinction ignored?\nAre the three mappings mutually coherent? Do they produce interesting or problematic combinations?\n\n\n\nGraphic vocabulary\n\nWhat semantics are assigned to primary glyphs? Is it clearly documented for the player?\nWhat semantics are assigned to modifier glyphs? Is it distinct and complementary to the primary?\nDo the glyphs used exploit or contrast the natural semantics (section 4 of the specification)?\n\n\n\nSpatial system (if applicable)\n\nIs the profile Base or Extended?\nIf Extended: how is the hand → tile transition managed (reveal, orientation, activation)?\nIs the connectivity distribution (1/2/3/4 open edges) congruent with the play space design?\n\n\n\nJokers\n\nAre Jokers used? If so, how many (zero, one, both)?\nWhat role do they have: wildcard, event, state tracker, distinct entity?\nIs their role irreducible to that of any other card in the system?\n\n\n\nPlayability\n\nHow many information dimensions must the player decode to read a card? Is this load sustainable?\nIs balanced glyph distribution an asset for the game or does it create a problem to manage?\nIf the game uses a deck subset (by suit, color, or rank), has glyph distribution in that subset been verified?\n\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html",
+    "href": "docs/it/decksharp_specs.html",
+    "title": "Specifiche DECK#",
+    "section": "",
+    "text": "version: 0.7.0 · status: draft"
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#natura-e-scope-del-sistema",
+    "href": "docs/it/decksharp_specs.html#natura-e-scope-del-sistema",
+    "title": "Specifiche DECK#",
+    "section": "1. Natura e scope del sistema",
+    "text": "1. Natura e scope del sistema\nDECK# è un protocollo di annotazione stratificata su un mazzo di carte standard (52 + 2 Jolly).\nIl suo scopo è permettere a chiunque di costruire e giocare giochi da tavolo complessi usando materiali reperibili ovunque e a costo minimo: un mazzo di carte francesi e due pennarelli permanenti. Nessun componente proprietario, nessun materiale dedicato, nessuna dipendenza da editori o produttori specifici.\nDECK# è ispirato al Piecepack — sistema di componenti aperti per giochi da tavolo ideato da James Kyle nel 2000 — di cui condivide la filosofia: un substrato standardizzato e aperto su cui la comunità costruisce giochi liberamente. Come il Piecepack, DECK# è open source.\nDECK# non è un mazzo universale. Non prescrive giochi, meccaniche, semantiche di gioco, né generi. È un sistema aperto: definisce un vocabolario grafico condiviso e una struttura fisica di annotazione. I giochi costruiti su DECK# usano questo vocabolario e ne assegnano i significati.\nIl mazzo standard porta con sé tre assi informativi preesistenti che DECK# riconosce come attivi e intoccabili. L’annotazione aggiunge informazioni che la carta non possiede; non sostituisce quelle che già ha.\nDECK# è agnostico alla lingua. L’intero vocabolario grafico è composto da glifi geometrici e cifre arabiche. Nessun testo è necessario o ammesso nelle annotazioni.\n\nFuori scope\nI seguenti elementi sono esplicitamente fuori scope e delegati ai singoli giochi:\n\nIl significato dei semi\nIl significato del colore rosso/nero degli assi ereditati\nIl significato dei valori numerici\nIl significato di ogni glifo (il vocabolario è condiviso, la semantica no)\nLa mappatura valore → funzione meccanica (es. A-6 = spazio, 7-10 = risorsa)\nRegole di movimento e topologia della griglia\nMeccaniche di risoluzione, combattimento, interazione\nMeccaniche di economia e risorse\nCondizioni di attivazione delle wildcard\nCondizioni di vittoria e obiettivi di scenario\nMeccaniche oracolari per gioco solitario o cooperativo\nQuante carte vengono usate\nCome vengono distribuite le carte\nIl numero di giocatori"
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#principi-di-design",
+    "href": "docs/it/decksharp_specs.html#principi-di-design",
+    "title": "Specifiche DECK#",
+    "section": "2. Principi di design",
+    "text": "2. Principi di design\n\nAccessibilità materiale: l’unico requisito fisico è un mazzo di carte francesi standard e due pennarelli permanenti (nero e rosso). Materiali disponibili ovunque, senza componenti proprietari o dedicati.\nAdditivo, non distruttivo: le annotazioni aggiungono informazioni strutturali senza sovrascrivere il substrato ereditato.\nAgnostico alla lingua: nessun testo o lettera. Solo glifi geometrici e cifre arabiche.\nVincolo cromatico: solo pennarello nero e rosso.\nUso duale: le carte sono valide sia come informazione nascosta in mano sia come componenti fisici sul tavolo.\nDorso riservato ai marcatori di quadrante: il dorso delle 52 carte regolari riceve esclusivamente i marcatori di quadrante — identici su tutte le carte, quindi privi di informazione differenziale. Nessun’altra annotazione sul dorso. L’uniformità preserva l’anonimità delle carte coperte.\nArtefatto completo: il mazzo DECK# è annotato integralmente prima di qualsiasi sessione di gioco. L’annotazione strutturale è permanente e fissa. Gli stati variabili si tracciano con token fisici, non con annotazioni."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#il-substrato-ereditato",
+    "href": "docs/it/decksharp_specs.html#il-substrato-ereditato",
+    "title": "Specifiche DECK#",
+    "section": "3. Il substrato ereditato",
+    "text": "3. Il substrato ereditato\n\n3.1 I tre assi\n\n\n\n\n\n\n\n\nAsse\nValori\nNatura\n\n\n\n\nColore\nRosso / Nero\nBinario\n\n\nPolarità del seme\nCuori vs Quadri (rosso) — Fiori vs Picche (nero)\nBinario interno al colore\n\n\nValore\nA(1) — 2 — … — 10 — J — Q — K\nScala ordinale, 13 gradi\n\n\n\nQuesti assi sono immutabili. Ogni gioco decide come mapparli a concetti di gioco; non può ridefinirli fisicamente sulla carta.\n\n\n3.2 Note sul substrato\n\nLe figure (J, Q, K) formano una sottoclasse del valore ordinale. Alcuni giochi potranno trattarle come categoria separata.\nIl Jolly non appartiene a nessuno dei tre assi. È strutturalmente fuori sistema per definizione. Vedi sezione 7.\nIl dorso della carta è una superficie esclusa dall’annotazione. Vedi Principio 5 (sezione 2)."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#il-vocabolario-grafico",
+    "href": "docs/it/decksharp_specs.html#il-vocabolario-grafico",
+    "title": "Specifiche DECK#",
+    "section": "4. Il vocabolario grafico",
+    "text": "4. Il vocabolario grafico\n\n4.1 Principi\n\nTutti i glifi sono producibili con pochi tratti da chiunque, senza abilità grafica.\nL’unica risorsa cromatica aggiuntiva è il pennarello rosso. Il nero è il colore di default.\nNessun testo. Nessun glifo che rimandi a un alfabeto specifico.\nI glifi non devono confondersi visivamente con i semi esistenti.\n\n\n\n4.2 Glifi primari\n\n\n\nGlifo\nTratti\nSemantiche naturali (non prescritte)\n\n\n\n\n- punto\n1\npresenza, attivazione, marcatore\n\n\n— linea\n1\nbordo, separazione, soglia\n\n\n+ croce\n2\nconnessione, incrocio, unione\n\n\n× diagonale\n2\nnegazione, blocco, esclusione\n\n\n△ triangolo\n3\ndirezione, gerarchia, gradiente\n\n\n○ cerchio\n1 curvo\nciclo, contenimento, stato neutro\n\n\n□ quadrato\n4\nzona, regione, spazio chiuso\n\n\n\nSette glifi. La colonna “semantiche naturali” suggerisce associazioni intuitive; non le prescrive.\n\n\n4.3 Il colore dei glifi — regola contrastante\nI glifi del primario e del modificatore sono tracciati nel colore contrastante rispetto al seme della carta:\n\nCarte rosse (♥ ♦): glifi in nero\nCarte nere (♣ ♠): glifi in rosso\n\nQuesta regola garantisce separazione visiva netta tra annotazione e substrato su tutte le carte. Il colore del glifo è interamente derivabile dal seme — non aggiunge informazione differenziale ma massimizza la leggibilità.\n\n\n4.4 Glifi numerici\nLe cifre 0–9 (arabiche) possono essere usate nelle zone annotabili come quantità, livelli, contatori. Si combinano con il colore seguendo la stessa logica dei glifi primari.\n\n\n4.5 Conflitti visivi da evitare\n\n\n\nSeme\nForma riservata\n\n\n\n\nCuori\nForma a cuore\n\n\nQuadri\nRombo pieno o vuoto\n\n\nFiori\nTrifoglio / forma a tre lobi\n\n\nPicche\nPicca / cuore invertito con gambo\n\n\n\nIl quadrato □ e il cerchio ○ non confliggono con nessun seme. Il triangolo △ è sicuro se tracciato piccolo e in posizione angolare."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#le-zone-annotabili",
+    "href": "docs/it/decksharp_specs.html#le-zone-annotabili",
+    "title": "Specifiche DECK#",
+    "section": "5. Le zone annotabili",
+    "text": "5. Le zone annotabili\n[NW] ----[N]---- [NE]\n  |               |\n [W]  [centro]  [E]\n  |               |\n[SW] ----[S]---- [SE]\n\n\n\n\n\n\n\n\nZona\nPosizione\nAnnotazione DECK#\n\n\n\n\nS\nBordo medio inferiore (interno)\nGlifo primario\n\n\nN\nBordo medio superiore (interno)\nSpeculare del primario — hand mode\n\n\nNE\nAngolo superiore destro\nGlifo modificatore\n\n\nSW\nAngolo inferiore sinistro\nSpeculare del modificatore — hand mode\n\n\nSE\nAngolo inferiore destro\nPunto orientamento (polo nord)\n\n\nNW\nAngolo superiore sinistro\nRiservato — indice pre-stampato\n\n\nCentro / E / W\n—\nNon occupati dall’annotazione DECK#\n\n\n\nBordi fisici: i marcatori di connettività occupano il margine bianco esterno della carta (~3–4 mm) — fisicamente separati dalle zone interne.\nRegola del posizionamento simmetrico: ogni glifo compare in due posizioni speculari — zona primaria e zona speculare. Garantisce leggibilità a ventaglio indipendentemente dall’orientamento della carta in mano.\nNota su NW: angolo parzialmente occupato dall’indice pre-stampato. Nessuna annotazione DECK# in questa zona."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#il-sistema-spaziale",
+    "href": "docs/it/decksharp_specs.html#il-sistema-spaziale",
+    "title": "Specifiche DECK#",
+    "section": "6. Il sistema spaziale",
+    "text": "6. Il sistema spaziale\n\n6.1 Il problema della simmetria\nLe carte standard hanno simmetria verticale: si leggono uguale capovolte. Non appena un gioco introduce elementi spaziali, questa simmetria deve essere rotta esplicitamente.\n\n\n6.2 La convenzione del polo nord\nIl polo nord di una carta è il lato con l’indice in posizione canonica (NW in alto a sinistra). Pratica consigliata per sessioni con elementi spaziali: tracciare un punto piccolo nell’angolo SE prima dell’inizio — angolo libero dalla stampa, asimmetrico rispetto all’indice NW.\n\n\n6.3 Marcatori di bordo\n\n\n\nMarcatura\nSignificato strutturale\n\n\n\n\nLinea spessa a tutto bordo\nMuro: passaggio chiuso\n\n\nBordo non marcato\nAperto: connesso, attraversabile\n\n\nPunto - a metà bordo\nSoglia: stato intermedio, definito dal gioco\n\n\n\nAccostando le carte sul tavolo, i bordi a contatto si leggono come interfaccia tra due spazi.\n\n\n6.4 Marcatori di quadrante\nI marcatori di quadrante si trovano sul dorso delle 52 carte regolari. Sono identici su tutte le carte — non rivelano alcuna informazione differenziale quando la carta è coperta.\nSono disponibili due varianti; la scelta è lasciata a chi annota il mazzo:\nVariante minima — quattro segmenti corti dal punto medio di ciascun bordo verso l’interno, senza attraversare il centro:\n      |\n  —     —\n      |\nVariante estesa — croce completa da bordo a bordo (+ del vocabolario DECK#, applicato al dorso con funzione strutturale fissa):\n      |\n  ————+————\n      |\nEntrambe le varianti sono tracciate in nero. I Jolly ricevono i marcatori di quadrante sul dorso — identici a quelli delle 52 carte regolari — ma non ricevono alcuna annotazione sul recto oltre al punto SE.\n\n\n6.5 Direzione interna\nIl triangolo △ in una zona angolare indica direzione. L’orientamento dell’apice rispetto al polo nord definisce il vettore."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#i-jolly",
+    "href": "docs/it/decksharp_specs.html#i-jolly",
+    "title": "Specifiche DECK#",
+    "section": "7. I Jolly",
+    "text": "7. I Jolly\nI Jolly ricevono il punto SE (polo nord) sul recto e i marcatori di quadrante sul dorso. Nessun altro elemento strutturale: nessun marcatore di connettività, nessun glifo primario, nessun modificatore.\nSono variabili non istanziate: nessuna semantica pre-assegnata dalla specifica. Il gioco decide tutto. Un gioco può usare zero, uno o entrambi i Jolly.\nUsi possibili (non prescritti): wildcard meccanica, carta evento, tracciatore di stato globale, Jolly di categoria."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#profili-di-utilizzo",
+    "href": "docs/it/decksharp_specs.html#profili-di-utilizzo",
+    "title": "Specifiche DECK#",
+    "section": "8. Profili di utilizzo",
+    "text": "8. Profili di utilizzo\n\nProfilo Base\nGioco di carte puro, gestione della mano, narrativa, scenari solitario.\nComponenti: 1 mazzo annotato (52 + 2) · 1 pennarello nero permanente fine · 1 pennarello rosso permanente fine. Tempo di annotazione stimato: 15–20 minuti.\n\n\nProfilo Esteso\nGioco tattico su griglia, dungeon crawler, skirmish, wargame.\nComponenti aggiuntivi: 6 dadi d6 · 12 segnalini in 4 gruppi distinti (3 per gruppo; sostituibili con monete, cubetti, qualsiasi oggetto distinguibile).\nUso dadi: 2d6 per risoluzione, fino a 4d6 come contatori su carta. Uso segnalini: posizionati sulle carte per rappresentare entità senza coprire le annotazioni."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#modalità-duso-delle-carte",
+    "href": "docs/it/decksharp_specs.html#modalità-duso-delle-carte",
+    "title": "Specifiche DECK#",
+    "section": "9. Modalità d’uso delle carte",
+    "text": "9. Modalità d’uso delle carte\n\n9.1 Tile mode\nCarta sul tavolo, visibile a tutti, posizione fissa. Elementi spaziali attivi.\n\n\n9.2 Hand mode\nCarta in mano, nascosta. Elementi spaziali generalmente inattivi. Annotazioni devono seguire la regola del posizionamento simmetrico (sezione 5).\n\n\n9.3 Transizione hand → tile\nIl gioco deve specificare:\n\nSe la carta viene posata coperta o scoperta\nSe l’orientamento (polo nord) è scelto dal giocatore o fisso\nSe le annotazioni spaziali diventano attive immediatamente o in un momento successivo\n\n\n\n9.4 Annotazione\nIl mazzo DECK# viene annotato integralmente una volta, seguendo la matrice di annotazione (sezione 13), e usato in più sessioni senza modifiche. L’annotazione strutturale è permanente.\nNon è prevista annotazione durante il gioco per il layer strutturale. Gli stati variabili della partita si tracciano esclusivamente con token fisici rimovibili (dadi, segnalini, monete)."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#gerarchia-fisica",
+    "href": "docs/it/decksharp_specs.html#gerarchia-fisica",
+    "title": "Specifiche DECK#",
+    "section": "10. Gerarchia fisica",
+    "text": "10. Gerarchia fisica\nLe 52 carte regolari hanno annotazioni su entrambe le facce. I Jolly hanno annotazioni sul dorso e solo il punto SE sul recto.\nRecto (52 carte regolari):\n\nSubstrato ereditato (stampa originale): sempre visibile, mai coperto intenzionalmente\nAnnotazione strutturale DECK#: connettività sui bordi fisici, glifo primario in zona S/N, modificatore in zona NE/SW, punto polo nord in SE\nToken fisici: oggetti posizionati sulla carta, rimuovibili\n\nDorso (tutte le 54 carte):\n\nMarcatori di quadrante (variante minima o estesa) — identici su tutte le carte\n\nL’annotazione strutturale è fissa e completa. Nessuna zona del recto prevede più di un glifo DECK# per volta."
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#responsabilità-del-designer",
+    "href": "docs/it/decksharp_specs.html#responsabilità-del-designer",
+    "title": "Specifiche DECK#",
+    "section": "11. Responsabilità del designer",
+    "text": "11. Responsabilità del designer\nOgni gioco costruito su DECK# deve specificare:\n\nCome mappa i tre assi ereditati (valore, colore, seme) a concetti di gioco\nQuale semantica assegna ai glifi del vocabolario DECK# (primario e modificatore)\nCome interpreta il sistema spaziale: orientamento, polo nord, connettività\nCome interpreta i marcatori di quadrante (presenti su tutte le carte)\nSe usa i Jolly e con quale ruolo\nQuale profilo è richiesto (Base o Esteso)\nQuale modalità d’uso è prevista e le regole di transizione hand → tile"
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#licenza",
+    "href": "docs/it/decksharp_specs.html#licenza",
+    "title": "Specifiche DECK#",
+    "section": "12. Licenza",
+    "text": "12. Licenza\nDECK# è rilasciato sotto Creative Commons Attribution 4.0 International (CC BY 4.0).\nChiunque può usare, modificare e distribuire la specifica e i giochi costruiti su di essa, anche a fini commerciali, a condizione di attribuire la fonte originale. I giochi costruiti su DECK# non sono tenuti a rilasciare i propri regolamenti con la stessa licenza.\n© Roberto Bisceglie — CC BY 4.0"
+  },
+  {
+    "objectID": "docs/it/decksharp_specs.html#la-matrice-di-annotazione",
+    "href": "docs/it/decksharp_specs.html#la-matrice-di-annotazione",
+    "title": "Specifiche DECK#",
+    "section": "13. La matrice di annotazione",
+    "text": "13. La matrice di annotazione\nLa matrice definisce le annotazioni strutturali fisse di tutte le 54 carte. Ogni carta riceve:\n\nConnettività: bordi aperti (gli altri ricevono marcatore di muro). Notazione: N/S/E/W separati da +.\nPrimario: glifo in zona S (e speculare in zona N per hand mode).\nModificatore: glifo in angolo NE (e speculare in angolo SW per hand mode).\n\nTutte le 52 carte regolari ricevono inoltre: punto SE (polo nord) e marcatori di quadrante.\nI Jolly ricevono il punto SE sul recto e i marcatori di quadrante sul dorso.\nLa distribuzione è un artefatto di design authored, ortogonale a valore/seme/colore per costruzione deliberata. Il colore dei glifi non è incluso come colonna — è interamente derivato dal seme secondo la regola contrastante (sezione 4.3): glifi neri su ♥/♦, glifi rossi su ♣/♠.\n\n\n\nValore\nSeme\nConnettività\nPrimario\nModificatore\n\n\n\n\nA\n♥\nN+W\n—\n•\n\n\n2\n♥\nS\n□\n+\n\n\n3\n♥\nS+W\n×\n△\n\n\n4\n♥\nW\n△\n+\n\n\n5\n♥\nN+S+E\n□\n△\n\n\n6\n♥\nN+S\n—\n•\n\n\n7\n♥\nE+W\n+\n—\n\n\n8\n♥\nE+W\n•\n—\n\n\n9\n♥\nS+W\n×\n○\n\n\n10\n♥\nN+S+W\n•\n+\n\n\nJ\n♥\nN\n+\n□\n\n\nQ\n♥\nW\n•\n△\n\n\nK\n♥\nN+E\n△\n•\n\n\nA\n♦\nE\n+\n○\n\n\n2\n♦\nN+E\n×\n×\n\n\n3\n♦\nN+S+E+W\n○\n+\n\n\n4\n♦\nN+S+W\n○\n□\n\n\n5\n♦\nN\n□\n•\n\n\n6\n♦\nE+W\n×\n×\n\n\n7\n♦\nS\n+\n—\n\n\n8\n♦\nN+S+E+W\n—\n×\n\n\n9\n♦\nS+E\n□\n—\n\n\n10\n♦\nN+S\n—\n×\n\n\nJ\n♦\nN+S\n△\n•\n\n\nQ\n♦\nN+S+E+W\n○\n—\n\n\nK\n♦\nS+E+W\n•\n□\n\n\nA\n♣\nS\n△\n•\n\n\n2\n♣\nE+W\n□\n•\n\n\n3\n♣\nN+S+E\n•\n△\n\n\n4\n♣\nS+E\n—\n×\n\n\n5\n♣\nN\n□\n+\n\n\n6\n♣\nE\n+\n○\n\n\n7\n♣\nN+E+W\n+\n○\n\n\n8\n♣\nN+E+W\n□\n+\n\n\n9\n♣\nS+E+W\n○\n□\n\n\n10\n♣\nS+E+W\n—\n○\n\n\nJ\n♣\nN+W\n•\n□\n\n\nQ\n♣\nN+E+W\n△\n—\n\n\nK\n♣\nN+S+E\n×\n+\n\n\nA\n♠\nN\n—\n—\n\n\n2\n♠\nW\n×\n+\n\n\n3\n♠\nE\n○\n□\n\n\n4\n♠\nN+S+W\n+\n×\n\n\n5\n♠\nS\n×\n□\n\n\n6\n♠\nE\n•\n△\n\n\n7\n♠\nN+S+E\n○\n×\n\n\n8\n♠\nN+E+W\n•\n△\n\n\n9\n♠\nS+E+W\n△\n○\n\n\n10\n♠\nN+S\n△\n—\n\n\nJ\n♠\nW\n+\n•\n\n\nQ\n♠\nN+S+W\n○\n○\n\n\nK\n♠\nN+S+E+W\n—\n△\n\n\nJolly\n—\n—\n—\n—\n\n\nJolly\n—\n—\n—\n—\n\n\n\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html",
+    "href": "docs/it/decksharp_guida_design.html",
+    "title": "Guida al Design DECK#",
+    "section": "",
+    "text": "version: 0.1.0 · status: draft"
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#natura-di-questo-documento",
+    "href": "docs/it/decksharp_guida_design.html#natura-di-questo-documento",
+    "title": "Guida al Design DECK#",
+    "section": "1. Natura di questo documento",
+    "text": "1. Natura di questo documento\nQuesta guida non prescrive come costruire un gioco su DECK#. Mostra cosa offre il sistema — le sue proprietà matematiche, le sue tensioni produttive, i suoi spazi di possibilità — perché il designer li possa riconoscere e sfruttare deliberatamente.\nDECK# è un substrato. Il designer è l’autore. Questo documento è uno strumento di orientamento, non un vincolo."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#la-matematica-del-mazzo",
+    "href": "docs/it/decksharp_guida_design.html#la-matematica-del-mazzo",
+    "title": "Guida al Design DECK#",
+    "section": "2. La matematica del mazzo",
+    "text": "2. La matematica del mazzo\nPrima di assegnare qualsiasi significato, vale la pena capire la struttura che si eredita. Il mazzo DECK# annotato porta con sé proprietà che non sono ovvie ma che hanno implicazioni profonde sul design.\n\n2.1 Il bilanciamento dei glifi\nI sette glifi primari (—, •, +, ×, △, ○, □) compaiono ciascuno 7 o 8 volte sulle 52 carte regolari. Lo stesso vale per i modificatori.\nImplicazione pratica: qualunque semantica tu assegni a un glifo, quella semantica sarà distribuita uniformemente nel mazzo. Se il cerchio ○ significa “carta evento”, ci saranno 7–8 eventi nel mazzo, né troppo rari né dominanti. Il bilanciamento è una garanzia di sistema, non una responsabilità del designer.\nQuesto vale anche per le coppie primario+modificatore: esistono 32 coppie distinte su 52 carte. La varietà è alta; nessuna combinazione domina.\n\n\n2.2 La struttura della connettività\nI bordi aperti per carta si distribuiscono in tre fasce precise:\nBordi aperti | Numero di carte |\n||| | 1 | 16 | | 2 | 16 | | 3 | 16 | | 4 (tutti) | 4 |\nUna simmetria quasi musicale: tre fasce da 16, più quattro carte con connettività massima. Se stai costruendo un gioco con elementi spaziali, questa distribuzione è la tua palette topologica: un terzo del mazzo crea vicoli, un terzo corridoi, un terzo incroci, quattro carte nodi.\n\n\n2.3 La texture del valore ordinale\nLa connettività non è distribuita in modo perfettamente uniforme rispetto al valore della carta — e questo non è un difetto, è una texture che i giochi possono sfruttare.\nFascia di valore | Bordi aperti medi |\n||| | A, J (basso) | 1.25 – 1.50 | | 2, 5, 6 (medio-basso) | 1.50 | | 3, 7, 10 (medio-alto) | 2.25 – 2.50 | | 8, K (alto) | 3.00 | | Q | 2.75 |\nSe mappi il valore ordinale a “rango” o “potere”, le carte alte tendono a essere anche più connesse spazialmente. Questo può essere una risonanza interessante — o una tensione da spezzare deliberatamente. Entrambe sono scelte di design valide, ma devono essere scelte consapevoli.\n\n\n2.4 Cosa non è garantito\nLa connettività è ortogonale a seme e colore per costruzione deliberata — nessun seme domina un’altra dimensione dell’annotazione. Il valore ordinale, invece, presenta la texture descritta sopra. Tenerla a mente evita sorprese durante il playtesting."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#i-tre-assi-ereditati",
+    "href": "docs/it/decksharp_guida_design.html#i-tre-assi-ereditati",
+    "title": "Guida al Design DECK#",
+    "section": "3. I tre assi ereditati",
+    "text": "3. I tre assi ereditati\nIl mazzo standard porta tre assi informativi che DECK# non ridefinisce. Come questi assi vengono mappati a concetti di gioco è la prima grande decisione del designer — e probabilmente la più strutturante.\n\n3.1 Il valore ordinale\nTredici gradi da A a K. Questo asse è il più ricco in termini di granularità.\nPossibili mappature:\n\nPotenza o intensità: più alto = più forte. La mappatura più intuitiva, con la texture di connettività come corollario spaziale.\nFase o stadio: A = inizio, K = fine. Utile per giochi narrativi o con archi temporali.\nTipo discreto: A–6 = un tipo, 7–K = un altro. Riduce la granularità a vantaggio della semplicità.\nRisorse quantificate: il valore come numero puro. Efficace per giochi economici.\n\nLe figure (J, Q, K) formano una sottoclasse naturale. Trattarle come categoria speciale aggiunge un livello di gerarchia senza costi di componenti.\n\n\n3.2 Il colore\nRosso / Nero. Asse binario, massimamente visibile.\nPossibili mappature:\n\nFazione o polarità: la mappatura più immediata. Due forze, due fazioni, due stati.\nModalità: azione/reazione, attacco/difesa, giorno/notte.\nCosto e beneficio: rosso = rischio, nero = sicurezza — o viceversa.\n\nIl colore è l’asse con la maggiore saliency visiva. Assegnargli un significato di bassa importanza meccanica è uno spreco. Assegnargli troppa importanza lo rende un discriminatore di gioco prima ancora che il giocatore possa leggere le annotazioni.\n\n\n3.3 Il seme\nQuattro semi, due rossi e due neri. Il seme porta una struttura interna: non è solo un asse a quattro valori, ma un asse a quattro valori con due coppie cromatiche.\nPossibili mappature:\n\nQuattro categorie indipendenti: classi, biomi, fazioni, tipi di risorsa.\nDue coppie con distinzione interna: cuori vs quadri come varianti di “rosso”, fiori vs picche come varianti di “nero”. Utile per sistemi con gerarchia a due livelli.\nIgnora il seme, usa solo il colore: legittimo se le quattro categorie creano troppa complessità per il gioco target.\n\n\n\n3.4 La coerenza degli assi\nUna domanda chiave da porsi prima del playtesting: gli assi ereditati parlano tra loro in modo coerente con il tono del gioco?\nSe il valore mappa a “livello di minaccia” e il colore mappa a “alleato/nemico”, il Re rosso sarà una minaccia massima da parte di un nemico. Il Due nero sarà una minaccia minima da parte di un alleato. Questa combinazione ha senso nel tuo gioco? Produce situazioni interessanti o confuse?\nNon esiste una risposta unica. Esiste solo la necessità di averla posta."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#il-vocabolario-grafico",
+    "href": "docs/it/decksharp_guida_design.html#il-vocabolario-grafico",
+    "title": "Guida al Design DECK#",
+    "section": "4. Il vocabolario grafico",
+    "text": "4. Il vocabolario grafico\nI sette glifi di DECK# sono aniconici: non raffigurano nulla. Questo è una caratteristica, non una limitazione. L’aniconicità garantisce che la semantica assegnata dal gioco non entri in conflitto con associazioni culturali pregresse — o che possa farlo deliberatamente.\n\n4.1 Assegnare semantica ai glifi\nAlcune considerazioni pratiche:\nSfrutta le semantiche naturali senza esserne prigioniero. La specifica suggerisce associazioni intuitive (△ = direzione, × = negazione, ○ = ciclo). Queste associazioni riducono il carico cognitivo per il giocatore nuovo. Usarle è spesso la scelta più efficiente; ignorarle è possibile ma richiede un sistema di riferimento compensativo (glossario, leggenda).\nPrimario e modificatore sono due layer semantici distinti. Non trattarli come due “proprietà” equivalenti. Una mappatura efficace tende ad avere il primario come categoria o tipo (cosa è questa carta) e il modificatore come qualità o stato (come si comporta). L’inversione è possibile ma rara.\nConsidera il carico cognitivo totale. Sette glifi per strato, due strati, più i tre assi ereditati: il giocatore può trovarsi a decodificare fino a cinque dimensioni per carta. La semplicità di lettura va testata sul campo, non assunta.\n\n\n4.2 Conflitti visivi da evitare\nLa specifica elenca le forme riservate ai semi (cuore, rombo, trifoglio, picca). Il punto non è solo estetico: un glifo che assomiglia a un seme crea ambiguità di lettura in condizioni di gioco reali — carte usate, luce non ideale, giocatori non familiari col sistema.\nIl quadrato □ e il cerchio ○ sono i glifi più sicuri. Il triangolo △ è sicuro in posizione angolare e piccolo. Linea — e croce + sono letti automaticamente come separatori o connettori — un’associazione da sfruttare o da contrastare con istruzione esplicita."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#il-sistema-spaziale",
+    "href": "docs/it/decksharp_guida_design.html#il-sistema-spaziale",
+    "title": "Guida al Design DECK#",
+    "section": "5. Il sistema spaziale",
+    "text": "5. Il sistema spaziale\nIl sistema spaziale di DECK# è opzionale a livello di profilo (Base vs Esteso), ma la sua struttura merita attenzione anche nei giochi di carte puri — perché definisce come le carte interagiscono fisicamente sul tavolo.\n\n5.1 La connettività come grafo\nAccostando carte sul tavolo, i bordi marcati come “muro” chiudono il passaggio; i bordi aperti creano connessione. Il risultato è un grafo topologico emergente: non è la griglia di un gioco di ruolo standard, non è una mappa fissa, è uno spazio che si costruisce carta per carta durante la partita.\nImplicazioni di design:\n\nIl gioco può lasciare che il giocatore scelga l’orientamento delle carte (polo nord = variabile), creando un sistema generativo. Ogni sessione produce una mappa diversa.\nIl gioco può fissare l’orientamento, usando la connettività come proprietà intrinseca della carta — un corridoio è un corridoio, indipendentemente da come è posato.\nIl gioco può mescolare i due approcci: orientamento libero in fase di setup, fisso in fase di gioco.\n\n\n\n5.2 La transizione hand→tile\nQuando una carta passa dalla mano al tavolo, cambia ontologia: da informazione nascosta a componente fisico. Questa transizione deve essere specificata dal designer in tre punti:\n1. Rivelazione: la carta viene posata coperta o scoperta? Una carta coperta è uno spazio di incertezza; una scoperta è informazione condivisa. Entrambe hanno senso in contesti diversi.\n2. Orientamento: il polo nord è scelto dal giocatore o è fisso? La scelta dell’orientamento è un atto strategico se le annotazioni spaziali (connettività, direzione del triangolo) hanno peso meccanico.\n3. Attivazione: le annotazioni spaziali diventano attive immediatamente o in un momento successivo? Una carta posata coperta con connettività che si attiva solo alla rivelazione crea una meccanica di sorpresa. Una carta con effetto ritardato crea pianificazione.\nQueste tre decisioni non sono indipendenti. Definirle insieme produce il comportamento tattico del posizionamento."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#i-jolly",
+    "href": "docs/it/decksharp_guida_design.html#i-jolly",
+    "title": "Guida al Design DECK#",
+    "section": "6. I Jolly",
+    "text": "6. I Jolly\nI Jolly sono le due carte strutturalmente fuori sistema: nessun asse ereditato, nessuna annotazione DECK# tranne il polo nord sul recto. Sul dorso ricevono i marcatori di quadrante — identici a tutte le altre carte — per non essere riconoscibili a carte coperte. Sono variabili non istanziate.\nLa scelta di usarli — e come — dice qualcosa di fondamentale sull’architettura del gioco.\n\n6.1 Wildcard meccanica\nIl Jolly come carta universale: può essere giocata come qualsiasi carta del mazzo, o come qualsiasi valore/seme/glifo. Semplice da implementare, alto impatto strategico. Rischio: banalizzare le decisioni se troppo potente, o essere ignorata se troppo debole.\n\n\n6.2 Carta evento\nIl Jolly come interruzione del flusso normale: quando pescato o posato, innesca un effetto globale. Non è parte del mazzo “giocabile” in senso ordinario — è un marcatore di discontinuità. Utile per giochi con archi narrativi o fasi di gioco distinte.\n\n\n6.3 Tracciatore di stato globale\nIl Jolly come componente fisso sul tavolo, non in mano. Viene usato per tenere traccia di uno stato condiviso — un contatore, una fase, una condizione attiva. In questo caso non viene mai “giocato”: è sempre visibile, sempre presente. Funziona in giochi con variabili di stato persistenti tra turni.\n\n\n6.4 Jolly di categoria\nI due Jolly come due entità distinte (non intercambiabili). Ognuno rappresenta qualcosa di irriducibile al sistema ordinale — un personaggio unico, una risorsa non generabile, un evento singolare. Richiede che il gioco dia loro un’identità esplicita.\nLa domanda da porsi: il tuo gioco ha bisogno di elementi che non si possano ottenere variando valore, seme, colore e glifi? Se sì, i Jolly sono lo strumento. Se no, usarli è opzionale — e ometterli è una scelta di design, non una mancanza."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#pattern-di-design",
+    "href": "docs/it/decksharp_guida_design.html#pattern-di-design",
+    "title": "Guida al Design DECK#",
+    "section": "7. Pattern di design",
+    "text": "7. Pattern di design\nQuesti non sono template. Sono configurazioni ricorrenti che emergono da come i profili Base ed Esteso vengono utilizzati in pratica. Riconoscerli aiuta a orientarsi nella fase di ideazione.\n\n7.1 Gioco di carte puro\nProfilo Base. Le carte restano in mano o vengono posate come azione (non come griglia). Il sistema spaziale è inattivo o marginale. Il nucleo del gioco è la gestione della mano e la risoluzione delle carte giocate.\nDECK# aggiunge: due livelli semantici per carta (primario + modificatore), più i tre assi ereditati. È possibile costruire giochi con meccaniche di drafting, combo, o narrativa emergente senza mai posare una carta sul tavolo in modalità tile.\nTensione produttiva: il bilanciamento dei glifi garantisce equità di distribuzione. Un gioco di carte che sfrutta questo avrà meno problemi di “mazzo rotto” rispetto a un sistema custom.\n\n\n7.2 Griglia tattica e dungeon crawler\nProfilo Esteso. Le carte vengono posate sul tavolo in modalità tile, costruendo lo spazio di gioco. La connettività dei bordi definisce la topologia. Segnalini e dadi gestiscono entità e risoluzione.\nDECK# aggiunge: uno spazio generativo che cambia ogni sessione, con proprietà topologiche predeterminate (connettività) ma disposizione variabile (orientamento). L’asimmetria della distribuzione della connettività (vedi sezione 2.3) può generare zone naturalmente più aperte o più chiuse.\nTensione produttiva: la transizione hand→tile è il momento meccanico più ricco. Come si rivela lo spazio — chi decide l’orientamento, quando si attivano i bordi — definisce il ritmo tattico del gioco.\n\n\n7.3 Gioco solitario e cooperativo\nProfilo Base o Esteso. Un solo giocatore (o gruppo cooperativo) contro il sistema. DECK# non include meccaniche oracolari per default — questa è una scelta deliberata. Il designer deve costruire un motore oracolare che usi il mazzo come fonte di risposta.\nApprocci possibili:\n\nPesca una carta e leggi il primario come risposta (sì/no/forse, basato su opposizioni binarie dei glifi).\nCombina valore + glifo primario per generare un evento da una tabella.\nUsa la connettività della carta pescata per determinare la direzione narrativa.\n\nDECK# offre sufficiente spazio semantico multidimensionale per costruire sistemi oracolari ricchi senza richiedere componenti aggiuntivi.\n\n\n7.4 Multiplayer asimmetrico\nProfilo Base o Esteso. Giocatori con ruoli, risorse o capacità diverse. DECK# supporta l’asimmetria attraverso la mappatura degli assi: il colore (rosso/nero) è l’asse più naturale per differenziare fazioni. Il seme può aggiungere un secondo livello di differenziazione intra-fazione.\nAttenzione: in un gioco asimmetrico, la distribuzione bilanciata dei glifi è una risorsa equa per tutti i giocatori. Se un giocatore ha accesso solo a un sottoinsieme del mazzo (per seme o colore), la distribuzione dei glifi in quel sottoinsieme non è più garantita uguale. Vale la pena verificare le distribuzioni parziali durante la progettazione."
+  },
+  {
+    "objectID": "docs/it/decksharp_guida_design.html#checklist-del-designer",
+    "href": "docs/it/decksharp_guida_design.html#checklist-del-designer",
+    "title": "Guida al Design DECK#",
+    "section": "8. Checklist del designer",
+    "text": "8. Checklist del designer\nOgni gioco costruito su DECK# richiede che il designer specifichi esplicitamente i seguenti elementi. Questa checklist estende la sezione 11 della specifica con domande orientate al design.\n\nAssi ereditati\n\nCome viene mappato il valore ordinale (A–K)? È una scala continua o discretizzata per fasce?\nCome viene usato il colore (rosso/nero)? La mappatura è meccanicamente significativa?\nCome vengono usati i semi? Come quattro categorie, due coppie, o viene ignorata la distinzione di seme?\nLe tre mappature sono coerenti tra loro? Producono combinazioni interessanti o problematiche?\n\n\n\nVocabolario grafico\n\nQuale semantica viene assegnata ai glifi primari? È documentata in modo chiaro per il giocatore?\nQuale semantica viene assegnata ai glifi modificatori? È distinta e complementare al primario?\nI glifi usati sfruttano o contrastano le semantiche naturali (sezione 4 della specifica)?\n\n\n\nSistema spaziale (se applicabile)\n\nIl profilo è Base o Esteso?\nSe Esteso: come viene gestita la transizione hand→tile (rivelazione, orientamento, attivazione)?\nLa distribuzione della connettività (1/2/3/4 bordi aperti) è congruente con il design dello spazio di gioco?\n\n\n\nJolly\n\nI Jolly vengono usati? Se sì, quanti (zero, uno, entrambi)?\nQuale ruolo hanno: wildcard, evento, tracciatore di stato, entità distinta?\nIl loro ruolo è irriducibile a quello di qualsiasi altra carta del sistema?\n\n\n\nGiocabilità\n\nQuante dimensioni informative deve decodificare il giocatore per leggere una carta? Questo carico è sostenibile?\nLa distribuzione bilanciata dei glifi è un asset per il gioco o crea un problema da gestire?\nSe il gioco usa un sottoinsieme del mazzo (per seme, colore o valore), la distribuzione dei glifi in quel sottoinsieme è stata verificata?\n\n\nDECK#\n© 2026 Roberto Bisceglie\nThis work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/"
   }
 ]

@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Roberto Bisceglie">
+<meta name="dcterms.date" content="2026-07-01">
+
+<title>DECK# Game Design Guide – DECK#</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../docs/assets/logo.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-421f92b7efeafb8936a62dbbb3c9442a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1afb3e959ab81541f25277dd6a6313c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-421f92b7efeafb8936a62dbbb3c9442a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&amp;family=Montserrat:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">DECK#</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-english" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">English</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-english">    
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_specs.html">
+ <span class="dropdown-text">Specification</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_annotation_guide.html">
+ <span class="dropdown-text">Annotation Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_design_guide.html">
+ <span class="dropdown-text">Design Guide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/en/decksharp_notes.html">
+ <span class="dropdown-text">Design Notes</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-italiano" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Italiano</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-italiano">    
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_specs.html">
+ <span class="dropdown-text">Specifiche</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_guida_annotazione.html">
+ <span class="dropdown-text">Guida all’Annotazione</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_guida_design.html">
+ <span class="dropdown-text">Guida al Design</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../docs/it/decksharp_notes.html">
+ <span class="dropdown-text">Note di Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../docs/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/zeruhur/decksharp"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#nature-of-this-document" id="toc-nature-of-this-document" class="nav-link active" data-scroll-target="#nature-of-this-document">1. Nature of this document</a></li>
+  <li><a href="#the-mathematics-of-the-deck" id="toc-the-mathematics-of-the-deck" class="nav-link" data-scroll-target="#the-mathematics-of-the-deck">2. The mathematics of the deck</a>
+  <ul class="collapse">
+  <li><a href="#glyph-balance" id="toc-glyph-balance" class="nav-link" data-scroll-target="#glyph-balance">2.1 Glyph balance</a></li>
+  <li><a href="#connectivity-structure" id="toc-connectivity-structure" class="nav-link" data-scroll-target="#connectivity-structure">2.2 Connectivity structure</a></li>
+  <li><a href="#the-texture-of-ordinal-rank" id="toc-the-texture-of-ordinal-rank" class="nav-link" data-scroll-target="#the-texture-of-ordinal-rank">2.3 The texture of ordinal rank</a></li>
+  <li><a href="#what-is-not-guaranteed" id="toc-what-is-not-guaranteed" class="nav-link" data-scroll-target="#what-is-not-guaranteed">2.4 What is not guaranteed</a></li>
+  </ul></li>
+  <li><a href="#the-three-inherited-axes" id="toc-the-three-inherited-axes" class="nav-link" data-scroll-target="#the-three-inherited-axes">3. The three inherited axes</a>
+  <ul class="collapse">
+  <li><a href="#ordinal-rank" id="toc-ordinal-rank" class="nav-link" data-scroll-target="#ordinal-rank">3.1 Ordinal rank</a></li>
+  <li><a href="#color" id="toc-color" class="nav-link" data-scroll-target="#color">3.2 Color</a></li>
+  <li><a href="#suit" id="toc-suit" class="nav-link" data-scroll-target="#suit">3.3 Suit</a></li>
+  <li><a href="#axis-coherence" id="toc-axis-coherence" class="nav-link" data-scroll-target="#axis-coherence">3.4 Axis coherence</a></li>
+  </ul></li>
+  <li><a href="#the-graphic-vocabulary" id="toc-the-graphic-vocabulary" class="nav-link" data-scroll-target="#the-graphic-vocabulary">4. The graphic vocabulary</a>
+  <ul class="collapse">
+  <li><a href="#assigning-semantics-to-glyphs" id="toc-assigning-semantics-to-glyphs" class="nav-link" data-scroll-target="#assigning-semantics-to-glyphs">4.1 Assigning semantics to glyphs</a></li>
+  <li><a href="#visual-conflicts-to-avoid" id="toc-visual-conflicts-to-avoid" class="nav-link" data-scroll-target="#visual-conflicts-to-avoid">4.2 Visual conflicts to avoid</a></li>
+  </ul></li>
+  <li><a href="#the-spatial-system" id="toc-the-spatial-system" class="nav-link" data-scroll-target="#the-spatial-system">5. The spatial system</a>
+  <ul class="collapse">
+  <li><a href="#connectivity-as-a-graph" id="toc-connectivity-as-a-graph" class="nav-link" data-scroll-target="#connectivity-as-a-graph">5.1 Connectivity as a graph</a></li>
+  <li><a href="#the-hand-tile-transition" id="toc-the-hand-tile-transition" class="nav-link" data-scroll-target="#the-hand-tile-transition">5.2 The hand → tile transition</a></li>
+  </ul></li>
+  <li><a href="#jokers" id="toc-jokers" class="nav-link" data-scroll-target="#jokers">6. Jokers</a>
+  <ul class="collapse">
+  <li><a href="#mechanical-wildcard" id="toc-mechanical-wildcard" class="nav-link" data-scroll-target="#mechanical-wildcard">6.1 Mechanical wildcard</a></li>
+  <li><a href="#event-card" id="toc-event-card" class="nav-link" data-scroll-target="#event-card">6.2 Event card</a></li>
+  <li><a href="#global-state-tracker" id="toc-global-state-tracker" class="nav-link" data-scroll-target="#global-state-tracker">6.3 Global state tracker</a></li>
+  <li><a href="#category-joker" id="toc-category-joker" class="nav-link" data-scroll-target="#category-joker">6.4 Category Joker</a></li>
+  </ul></li>
+  <li><a href="#design-patterns" id="toc-design-patterns" class="nav-link" data-scroll-target="#design-patterns">7. Design patterns</a>
+  <ul class="collapse">
+  <li><a href="#pure-card-game" id="toc-pure-card-game" class="nav-link" data-scroll-target="#pure-card-game">7.1 Pure card game</a></li>
+  <li><a href="#tactical-grid-and-dungeon-crawler" id="toc-tactical-grid-and-dungeon-crawler" class="nav-link" data-scroll-target="#tactical-grid-and-dungeon-crawler">7.2 Tactical grid and dungeon crawler</a></li>
+  <li><a href="#solo-and-cooperative-game" id="toc-solo-and-cooperative-game" class="nav-link" data-scroll-target="#solo-and-cooperative-game">7.3 Solo and cooperative game</a></li>
+  <li><a href="#asymmetric-multiplayer" id="toc-asymmetric-multiplayer" class="nav-link" data-scroll-target="#asymmetric-multiplayer">7.4 Asymmetric multiplayer</a></li>
+  </ul></li>
+  <li><a href="#designer-checklist" id="toc-designer-checklist" class="nav-link" data-scroll-target="#designer-checklist">8. Designer checklist</a>
+  <ul class="collapse">
+  <li><a href="#inherited-axes" id="toc-inherited-axes" class="nav-link" data-scroll-target="#inherited-axes">Inherited axes</a></li>
+  <li><a href="#graphic-vocabulary" id="toc-graphic-vocabulary" class="nav-link" data-scroll-target="#graphic-vocabulary">Graphic vocabulary</a></li>
+  <li><a href="#spatial-system-if-applicable" id="toc-spatial-system-if-applicable" class="nav-link" data-scroll-target="#spatial-system-if-applicable">Spatial system (if applicable)</a></li>
+  <li><a href="#jokers-1" id="toc-jokers-1" class="nav-link" data-scroll-target="#jokers-1">Jokers</a></li>
+  <li><a href="#playability" id="toc-playability" class="nav-link" data-scroll-target="#playability">Playability</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/zeruhur/decksharp/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="decksharp_design_guide.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="decksharp_design_guide.odt"><i class="bi bi-file"></i>OpenOffice</a></li><li><a href="decksharp_design_guide.epub"><i class="bi bi-file"></i>ePub</a></li><li><a href="decksharp_design_guide-gfm.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DECK# Game Design Guide</h1>
+<p class="subtitle lead">Companion to DECK# specification v0.7.0</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Roberto Bisceglie </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>version: 0.1.0 · status: draft</p>
+<section id="nature-of-this-document" class="level2">
+<h2 class="anchored" data-anchor-id="nature-of-this-document">1. Nature of this document</h2>
+<p>This guide does not prescribe how to build a game on DECK#. It shows what the system offers — its mathematical properties, its productive tensions, its spaces of possibility — so the designer can recognize and deliberately exploit them.</p>
+<p>DECK# is a substrate. The designer is the author. This document is an orientation tool, not a constraint.</p>
+</section>
+<section id="the-mathematics-of-the-deck" class="level2">
+<h2 class="anchored" data-anchor-id="the-mathematics-of-the-deck">2. The mathematics of the deck</h2>
+<p>Before assigning any meaning, it is worth understanding the structure you inherit. The annotated DECK# deck carries properties that are not obvious but have deep implications for design.</p>
+<section id="glyph-balance" class="level3">
+<h3 class="anchored" data-anchor-id="glyph-balance">2.1 Glyph balance</h3>
+<p>The seven primary glyphs (—, •, +, ×, △, ○, □) each appear 7 or 8 times across the 52 standard cards. The same holds for modifiers.</p>
+<p>Practical implication: <strong>whatever semantics you assign to a glyph, that semantics will be uniformly distributed throughout the deck</strong>. If the circle ○ means “event card,” there will be 7–8 events in the deck — neither too rare nor dominant. Balance is a system guarantee, not a designer responsibility.</p>
+<p>This also holds for primary+modifier pairs: there are 32 distinct pairs across 52 cards. Variety is high; no combination dominates.</p>
+</section>
+<section id="connectivity-structure" class="level3">
+<h3 class="anchored" data-anchor-id="connectivity-structure">2.2 Connectivity structure</h3>
+<p>Open edges per card are distributed across three precise tiers:</p>
+<div class="line-block">Open edges | Number of cards |</div>
+<p>||| | 1 | 16 | | 2 | 16 | | 3 | 16 | | 4 (all) | 4 |</p>
+<p>An almost musical symmetry: three tiers of 16, plus four cards with maximum connectivity. If you are building a game with spatial elements, this distribution is your topological palette: one third of the deck creates dead ends, one third corridors, one third intersections, and four cards are nodes.</p>
+</section>
+<section id="the-texture-of-ordinal-rank" class="level3">
+<h3 class="anchored" data-anchor-id="the-texture-of-ordinal-rank">2.3 The texture of ordinal rank</h3>
+<p>Connectivity is not distributed perfectly uniformly relative to card rank — and this is not a flaw; it is a texture that games can exploit.</p>
+<div class="line-block">Rank range | Average open edges |</div>
+<p>||| | A, J (low) | 1.25 – 1.50 | | 2, 5, 6 (low-mid) | 1.50 | | 3, 7, 10 (high-mid) | 2.25 – 2.50 | | 8, K (high) | 3.00 | | Q | 2.75 |</p>
+<p>If you map ordinal rank to “rank” or “power,” high cards tend to be more spatially connected as well. This can be an interesting resonance — or a tension to deliberately break. Both are valid design choices, but they must be conscious choices.</p>
+</section>
+<section id="what-is-not-guaranteed" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-not-guaranteed">2.4 What is not guaranteed</h3>
+<p>Connectivity is orthogonal to suit and color by deliberate construction — no suit dominates another dimension of annotation. Ordinal rank, however, exhibits the texture described above. Keeping this in mind avoids surprises during playtesting.</p>
+</section>
+</section>
+<section id="the-three-inherited-axes" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-inherited-axes">3. The three inherited axes</h2>
+<p>The standard deck carries three information axes that DECK# does not redefine. How these axes are mapped to game concepts is the designer’s first major decision — and probably the most structuring one.</p>
+<section id="ordinal-rank" class="level3">
+<h3 class="anchored" data-anchor-id="ordinal-rank">3.1 Ordinal rank</h3>
+<p>Thirteen degrees from A to K. This axis is the richest in terms of granularity.</p>
+<p>Possible mappings:</p>
+<ul>
+<li><strong>Power or intensity</strong>: higher = stronger. The most intuitive mapping, with connectivity texture as a spatial corollary.</li>
+<li><strong>Phase or stage</strong>: A = beginning, K = end. Useful for narrative games or those with temporal arcs.</li>
+<li><strong>Discrete type</strong>: A–6 = one type, 7–K = another. Reduces granularity in favor of simplicity.</li>
+<li><strong>Quantified resources</strong>: rank as a pure number. Effective for economic games.</li>
+</ul>
+<p>Face cards (J, Q, K) form a natural subclass. Treating them as a special category adds a level of hierarchy at no component cost.</p>
+</section>
+<section id="color" class="level3">
+<h3 class="anchored" data-anchor-id="color">3.2 Color</h3>
+<p>Red / Black. Binary axis, maximally visible.</p>
+<p>Possible mappings:</p>
+<ul>
+<li><strong>Faction or polarity</strong>: the most immediate mapping. Two forces, two factions, two states.</li>
+<li><strong>Mode</strong>: action/reaction, attack/defense, day/night.</li>
+<li><strong>Cost and benefit</strong>: red = risk, black = safety — or vice versa.</li>
+</ul>
+<p>Color is the axis with the highest visual salience. Assigning it a mechanically low-importance meaning is a waste. Assigning it too much importance makes it a game discriminator before the player can even read the annotations.</p>
+</section>
+<section id="suit" class="level3">
+<h3 class="anchored" data-anchor-id="suit">3.3 Suit</h3>
+<p>Four suits, two red and two black. Suit carries an internal structure: it is not merely a four-value axis, but a four-value axis with two chromatic pairs.</p>
+<p>Possible mappings:</p>
+<ul>
+<li><strong>Four independent categories</strong>: classes, biomes, factions, resource types.</li>
+<li><strong>Two pairs with internal distinction</strong>: hearts vs diamonds as variants of “red,” clubs vs spades as variants of “black.” Useful for systems with a two-level hierarchy.</li>
+<li><strong>Ignore suit, use only color</strong>: legitimate if four categories create too much complexity for the target game.</li>
+</ul>
+</section>
+<section id="axis-coherence" class="level3">
+<h3 class="anchored" data-anchor-id="axis-coherence">3.4 Axis coherence</h3>
+<p>A key question to ask before playtesting: <strong>do the inherited axes speak to each other in a way that is coherent with the game’s tone?</strong></p>
+<p>If rank maps to “threat level” and color maps to “ally/enemy,” the Red King will be a maximum threat from an enemy. The Black Two will be a minimal threat from an ally. Does this combination make sense in your game? Does it produce interesting or confusing situations?</p>
+<p>There is no single answer. There is only the necessity of having asked.</p>
+</section>
+</section>
+<section id="the-graphic-vocabulary" class="level2">
+<h2 class="anchored" data-anchor-id="the-graphic-vocabulary">4. The graphic vocabulary</h2>
+<p>DECK#’s seven glyphs are aniconic: they depict nothing. This is a feature, not a limitation. Aniconicity ensures that the semantics assigned by the game do not conflict with pre-existing cultural associations — or that it can do so deliberately.</p>
+<section id="assigning-semantics-to-glyphs" class="level3">
+<h3 class="anchored" data-anchor-id="assigning-semantics-to-glyphs">4.1 Assigning semantics to glyphs</h3>
+<p>Some practical considerations:</p>
+<p><strong>Exploit natural semantics without being bound by them.</strong> The specification suggests intuitive associations (△ = direction, × = negation, ○ = cycle). These associations reduce the cognitive load for new players. Using them is often the most efficient choice; ignoring them is possible but requires a compensatory reference system (glossary, legend).</p>
+<p><strong>Primary and modifier are two distinct semantic layers.</strong> Do not treat them as two equivalent “properties.” An effective mapping tends to have the primary as category or type (what this card is) and the modifier as quality or state (how it behaves). The reversal is possible but rare.</p>
+<p><strong>Consider total cognitive load.</strong> Seven glyphs per layer, two layers, plus three inherited axes: the player may need to decode up to five dimensions per card. Reading simplicity must be field-tested, not assumed.</p>
+</section>
+<section id="visual-conflicts-to-avoid" class="level3">
+<h3 class="anchored" data-anchor-id="visual-conflicts-to-avoid">4.2 Visual conflicts to avoid</h3>
+<p>The specification lists the shapes reserved for suits (heart, diamond, trefoil, spade). The point is not merely aesthetic: a glyph that resembles a suit creates reading ambiguity in real play conditions — worn cards, non-ideal lighting, players unfamiliar with the system.</p>
+<p>The square □ and circle ○ are the safest glyphs. The triangle △ is safe in a corner position and when small. The line — and cross + are automatically read as separators or connectors — an association to exploit or counter with explicit instruction.</p>
+</section>
+</section>
+<section id="the-spatial-system" class="level2">
+<h2 class="anchored" data-anchor-id="the-spatial-system">5. The spatial system</h2>
+<p>DECK#’s spatial system is optional at the profile level (Base vs Extended), but its structure deserves attention even in pure card games — because it defines how cards interact physically on the table.</p>
+<section id="connectivity-as-a-graph" class="level3">
+<h3 class="anchored" data-anchor-id="connectivity-as-a-graph">5.1 Connectivity as a graph</h3>
+<p>When cards are placed adjacent on the table, edges marked as “wall” close the passage; open edges create connection. The result is an emergent topological graph: not the grid of a standard role-playing game, not a fixed map, but a space that is built card by card during play.</p>
+<p>Design implications:</p>
+<ul>
+<li>The game can allow the player to choose card orientation (north pole = variable), creating a generative system. Each session produces a different map.</li>
+<li>The game can fix orientation, using connectivity as an intrinsic card property — a corridor is a corridor, regardless of how it is placed.</li>
+<li>The game can mix both approaches: free orientation during setup, fixed during play.</li>
+</ul>
+</section>
+<section id="the-hand-tile-transition" class="level3">
+<h3 class="anchored" data-anchor-id="the-hand-tile-transition">5.2 The hand → tile transition</h3>
+<p>When a card moves from hand to table, it changes ontology: from hidden information to physical component. This transition must be specified by the designer across three points:</p>
+<p><strong>1. Reveal:</strong> is the card placed face-down or face-up? A face-down card is a space of uncertainty; a face-up one is shared information. Both make sense in different contexts.</p>
+<p><strong>2. Orientation:</strong> is the north pole chosen by the player or fixed? Choosing orientation is a strategic act if spatial annotations (connectivity, triangle direction) carry mechanical weight.</p>
+<p><strong>3. Activation:</strong> do spatial annotations become active immediately or at a later point? A card placed face-down with connectivity that activates only on reveal creates a surprise mechanic. A card with a delayed effect creates planning opportunities.</p>
+<p>These three decisions are not independent. Defining them together produces the tactical behavior of placement.</p>
+</section>
+</section>
+<section id="jokers" class="level2">
+<h2 class="anchored" data-anchor-id="jokers">6. Jokers</h2>
+<p>Jokers are the two cards structurally outside the system: no inherited axis, no DECK# annotation except the north pole dot on the front face. On the back they receive quadrant markers — identical to all other cards — so they are not recognizable when face-down. They are uninstantiated variables.</p>
+<p>The choice to use them — and how — says something fundamental about the game’s architecture.</p>
+<section id="mechanical-wildcard" class="level3">
+<h3 class="anchored" data-anchor-id="mechanical-wildcard">6.1 Mechanical wildcard</h3>
+<p>The Joker as universal card: it can be played as any card in the deck, or as any rank/suit/glyph. Simple to implement, high strategic impact. Risk: trivializing decisions if too powerful, or being ignored if too weak.</p>
+</section>
+<section id="event-card" class="level3">
+<h3 class="anchored" data-anchor-id="event-card">6.2 Event card</h3>
+<p>The Joker as an interruption of normal flow: when drawn or played, it triggers a global effect. It is not part of the “playable” deck in the ordinary sense — it is a discontinuity marker. Useful for games with narrative arcs or distinct game phases.</p>
+</section>
+<section id="global-state-tracker" class="level3">
+<h3 class="anchored" data-anchor-id="global-state-tracker">6.3 Global state tracker</h3>
+<p>The Joker as a fixed component on the table, not in hand. Used to track a shared state — a counter, a phase, an active condition. In this case it is never “played”: it is always visible, always present. Works in games with persistent state variables between turns.</p>
+</section>
+<section id="category-joker" class="level3">
+<h3 class="anchored" data-anchor-id="category-joker">6.4 Category Joker</h3>
+<p>The two Jokers as two distinct entities (not interchangeable). Each represents something irreducible to the ordinal system — a unique character, a non-generatable resource, a singular event. Requires the game to give them an explicit identity.</p>
+<p><strong>The question to ask:</strong> does your game need elements that cannot be obtained by varying rank, suit, color, and glyphs? If so, Jokers are the tool. If not, using them is optional — and omitting them is a design choice, not an omission.</p>
+</section>
+</section>
+<section id="design-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="design-patterns">7. Design patterns</h2>
+<p>These are not templates. They are recurring configurations that emerge from how the Base and Extended profiles are used in practice. Recognizing them helps orient the ideation phase.</p>
+<section id="pure-card-game" class="level3">
+<h3 class="anchored" data-anchor-id="pure-card-game">7.1 Pure card game</h3>
+<p><strong>Base Profile.</strong> Cards stay in hand or are played as an action (not placed as a grid). The spatial system is inactive or marginal. The core of the game is hand management and resolution of played cards.</p>
+<p>DECK# adds: two semantic levels per card (primary + modifier), plus the three inherited axes. Games with drafting, combo, or emergent narrative mechanics are possible without ever placing a card in tile mode.</p>
+<p><strong>Productive tension:</strong> glyph balance guarantees distribution equity. A card game that exploits this will have fewer “broken deck” problems than a custom system.</p>
+</section>
+<section id="tactical-grid-and-dungeon-crawler" class="level3">
+<h3 class="anchored" data-anchor-id="tactical-grid-and-dungeon-crawler">7.2 Tactical grid and dungeon crawler</h3>
+<p><strong>Extended Profile.</strong> Cards are placed on the table in tile mode, building the play space. Edge connectivity defines the topology. Tokens and dice manage entities and resolution.</p>
+<p>DECK# adds: a generative space that changes each session, with predetermined topological properties (connectivity) but variable arrangement (orientation). The asymmetry of connectivity distribution (see section 2.3) can naturally produce more open or more closed zones.</p>
+<p><strong>Productive tension:</strong> the hand → tile transition is the richest mechanical moment. How space is revealed — who decides orientation, when edges activate — defines the tactical rhythm of the game.</p>
+</section>
+<section id="solo-and-cooperative-game" class="level3">
+<h3 class="anchored" data-anchor-id="solo-and-cooperative-game">7.3 Solo and cooperative game</h3>
+<p><strong>Base or Extended Profile.</strong> A single player (or cooperative group) against the system. DECK# does not include oracle mechanics by default — this is a deliberate choice. The designer must build an oracle engine that uses the deck as a source of answers.</p>
+<p>Possible approaches:</p>
+<ul>
+<li>Draw a card and read the primary glyph as an answer (yes/no/maybe, based on binary glyph oppositions).</li>
+<li>Combine rank + primary glyph to generate an event from a table.</li>
+<li>Use the connectivity of the drawn card to determine narrative direction.</li>
+</ul>
+<p>DECK# provides sufficient multidimensional semantic space to build rich oracle systems without requiring additional components.</p>
+</section>
+<section id="asymmetric-multiplayer" class="level3">
+<h3 class="anchored" data-anchor-id="asymmetric-multiplayer">7.4 Asymmetric multiplayer</h3>
+<p><strong>Base or Extended Profile.</strong> Players with different roles, resources, or capabilities. DECK# supports asymmetry through axis mapping: color (red/black) is the most natural axis for differentiating factions. Suit can add a second level of intra-faction differentiation.</p>
+<p><strong>Caution:</strong> in an asymmetric game, balanced glyph distribution is a fair resource for all players. If a player has access only to a subset of the deck (by suit or color), glyph distribution in that subset is no longer guaranteed equal. It is worth verifying partial distributions during design.</p>
+</section>
+</section>
+<section id="designer-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="designer-checklist">8. Designer checklist</h2>
+<p>Every game built on DECK# requires the designer to explicitly specify the following elements. This checklist extends section 11 of the specification with design-oriented questions.</p>
+<section id="inherited-axes" class="level3">
+<h3 class="anchored" data-anchor-id="inherited-axes">Inherited axes</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">How is ordinal rank (A–K) mapped? Is it a continuous scale or discretized into tiers?</label></li>
+<li><label><input type="checkbox">How is color (red/black) used? Is the mapping mechanically significant?</label></li>
+<li><label><input type="checkbox">How are suits used? As four categories, two pairs, or is the suit distinction ignored?</label></li>
+<li><label><input type="checkbox">Are the three mappings mutually coherent? Do they produce interesting or problematic combinations?</label></li>
+</ul>
+</section>
+<section id="graphic-vocabulary" class="level3">
+<h3 class="anchored" data-anchor-id="graphic-vocabulary">Graphic vocabulary</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">What semantics are assigned to primary glyphs? Is it clearly documented for the player?</label></li>
+<li><label><input type="checkbox">What semantics are assigned to modifier glyphs? Is it distinct and complementary to the primary?</label></li>
+<li><label><input type="checkbox">Do the glyphs used exploit or contrast the natural semantics (section 4 of the specification)?</label></li>
+</ul>
+</section>
+<section id="spatial-system-if-applicable" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-system-if-applicable">Spatial system (if applicable)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Is the profile Base or Extended?</label></li>
+<li><label><input type="checkbox">If Extended: how is the hand → tile transition managed (reveal, orientation, activation)?</label></li>
+<li><label><input type="checkbox">Is the connectivity distribution (1/2/3/4 open edges) congruent with the play space design?</label></li>
+</ul>
+</section>
+<section id="jokers-1" class="level3">
+<h3 class="anchored" data-anchor-id="jokers-1">Jokers</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Are Jokers used? If so, how many (zero, one, both)?</label></li>
+<li><label><input type="checkbox">What role do they have: wildcard, event, state tracker, distinct entity?</label></li>
+<li><label><input type="checkbox">Is their role irreducible to that of any other card in the system?</label></li>
+</ul>
+</section>
+<section id="playability" class="level3">
+<h3 class="anchored" data-anchor-id="playability">Playability</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">How many information dimensions must the player decode to read a card? Is this load sustainable?</label></li>
+<li><label><input type="checkbox">Is balanced glyph distribution an asset for the game or does it create a problem to manage?</label></li>
+<li><label><input type="checkbox">If the game uses a deck subset (by suit, color, or rank), has glyph distribution in that subset been verified?</label></li>
+</ul>
+<hr>
+<p>DECK#</p>
+<p>© 2026 Roberto Bisceglie</p>
+<p>This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var sidebar = document.getElementById("quarto-margin-sidebar");
+  var formats = document.querySelector(".quarto-alternate-formats");
+  if (sidebar && formats) {
+    sidebar.insertBefore(formats, sidebar.firstChild);
+  }
+
+  // Rename "Typst" label to "PDF"
+  document.querySelectorAll(".quarto-alternate-formats a").forEach(function (a) {
+    a.childNodes.forEach(function (node) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() === "Typst") {
+        node.textContent = "PDF";
+      }
+    });
+  });
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/zeruhur\.github\.io\/decksharp\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 <a href="https://github.com/zeruhur">Roberto Bisceglie</a> — <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/zeruhur/decksharp/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
