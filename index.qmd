@@ -17,6 +17,8 @@ format-links: false
 *Un protocollo di annotazione stratificata per mazzi di carte standard*
 
 `version 0.7.0 · draft · CC BY 4.0`
+
+[Download Print Deck (PDF)](decksharp_nandeck.pdf){.btn .btn-outline-primary .mt-3}
 :::
 
 ---

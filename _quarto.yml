@@ -43,6 +43,9 @@ website:
       - icon: github
         href: https://github.com/zeruhur/decksharp
 
+  resources:
+    - decksharp_nandeck.pdf
+
   favicon: docs/assets/logo.svg
 
   page-footer:
