@@ -5,6 +5,8 @@ project:
     - index.qmd
     - "docs/**/*.md"
     - "docs/**/*.qmd"
+  resources:
+    - decksharp_nandeck.pdf
 
 website:
   title: "DECK#"
@@ -42,9 +44,6 @@ website:
     right:
       - icon: github
         href: https://github.com/zeruhur/decksharp
-
-  resources:
-    - decksharp_nandeck.pdf
 
   favicon: docs/assets/logo.svg
 
