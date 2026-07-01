@@ -3,8 +3,9 @@ project:
   output-dir: _site
   render:
     - index.qmd
-    - "docs/**/*.md"
-    - "docs/**/*.qmd"
+    - "docs/*.qmd"
+    - "docs/en/*.md"
+    - "docs/it/*.md"
   resources:
     - decksharp_nandeck.pdf
 
