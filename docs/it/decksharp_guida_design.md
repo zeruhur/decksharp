@@ -7,6 +7,7 @@ version: 1.0
 lang: it
 cover-logo: ../assets/logo.svg
 format:
+  html: default
   typst:
     toc: true
     toc-depth: 2
