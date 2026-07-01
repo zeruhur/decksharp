@@ -1,6 +1,6 @@
 # Specifiche DECK#
 Roberto Bisceglie
-2026-06-30
+2026-07-01
 
 version: 0.7.0 · status: draft
 
