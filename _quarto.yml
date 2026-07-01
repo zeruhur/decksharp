@@ -3,9 +3,15 @@ project:
   output-dir: _site
   render:
     - index.qmd
-    - "docs/*.qmd"
-    - "docs/en/*.md"
-    - "docs/it/*.md"
+    - docs/about.qmd
+    - docs/en/decksharp_specs.md
+    - docs/en/decksharp_annotation_guide.md
+    - docs/en/decksharp_design_guide.md
+    - docs/en/decksharp_notes.md
+    - docs/it/decksharp_specs.md
+    - docs/it/decksharp_guida_annotazione.md
+    - docs/it/decksharp_guida_design.md
+    - docs/it/decksharp_notes.md
   resources:
     - decksharp_nandeck.pdf
 
